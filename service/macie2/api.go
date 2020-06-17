@@ -38,7 +38,7 @@ const opAcceptInvitation = "AcceptInvitation"
 //        fmt.Println(resp)
 //    }
 //
-// See also, https://docs.aws.amazon.com/goto/WebAPI/macie2-2020-01-01T00:00:00Z/AcceptInvitation
+// See also, https://docs.aws.amazon.com/goto/WebAPI/macie2-2020-01-01/AcceptInvitation
 func (c *Macie2) AcceptInvitationRequest(input *AcceptInvitationInput) (req *request.Request, output *AcceptInvitationOutput) {
 	op := &request.Operation{
 		Name:       opAcceptInvitation,
@@ -97,7 +97,7 @@ func (c *Macie2) AcceptInvitationRequest(input *AcceptInvitationInput) (req *req
 //   Provides information about an error that occurred due to a versioning conflict
 //   for a specified resource.
 //
-// See also, https://docs.aws.amazon.com/goto/WebAPI/macie2-2020-01-01T00:00:00Z/AcceptInvitation
+// See also, https://docs.aws.amazon.com/goto/WebAPI/macie2-2020-01-01/AcceptInvitation
 func (c *Macie2) AcceptInvitation(input *AcceptInvitationInput) (*AcceptInvitationOutput, error) {
 	req, out := c.AcceptInvitationRequest(input)
 	return out, req.Send()
@@ -114,111 +114,6 @@ func (c *Macie2) AcceptInvitation(input *AcceptInvitationInput) (*AcceptInvitati
 // for more information on using Contexts.
 func (c *Macie2) AcceptInvitationWithContext(ctx aws.Context, input *AcceptInvitationInput, opts ...request.Option) (*AcceptInvitationOutput, error) {
 	req, out := c.AcceptInvitationRequest(input)
-	req.SetContext(ctx)
-	req.ApplyOptions(opts...)
-	return out, req.Send()
-}
-
-const opArchiveFindings = "ArchiveFindings"
-
-// ArchiveFindingsRequest generates a "aws/request.Request" representing the
-// client's request for the ArchiveFindings operation. The "output" return
-// value will be populated with the request's response once the request completes
-// successfully.
-//
-// Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
-//
-// See ArchiveFindings for more information on using the ArchiveFindings
-// API call, and error handling.
-//
-// This method is useful when you want to inject custom logic or configuration
-// into the SDK's request lifecycle. Such as custom headers, or retry logic.
-//
-//
-//    // Example sending a request using the ArchiveFindingsRequest method.
-//    req, resp := client.ArchiveFindingsRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
-//
-// See also, https://docs.aws.amazon.com/goto/WebAPI/macie2-2020-01-01T00:00:00Z/ArchiveFindings
-func (c *Macie2) ArchiveFindingsRequest(input *ArchiveFindingsInput) (req *request.Request, output *ArchiveFindingsOutput) {
-	op := &request.Operation{
-		Name:       opArchiveFindings,
-		HTTPMethod: "POST",
-		HTTPPath:   "/findings/archive",
-	}
-
-	if input == nil {
-		input = &ArchiveFindingsInput{}
-	}
-
-	output = &ArchiveFindingsOutput{}
-	req = c.newRequest(op, input, output)
-	req.Handlers.Unmarshal.Swap(restjson.UnmarshalHandler.Name, protocol.UnmarshalDiscardBodyHandler)
-	return
-}
-
-// ArchiveFindings API operation for Amazon Macie 2.
-//
-// Archives one or more findings.
-//
-// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
-// with awserr.Error's Code and Message methods to get detailed information about
-// the error.
-//
-// See the AWS API reference guide for Amazon Macie 2's
-// API operation ArchiveFindings for usage and error information.
-//
-// Returned Error Types:
-//   * ValidationException
-//   Provides information about an error that occurred due to a syntax error in
-//   a request.
-//
-//   * InternalServerException
-//   Provides information about an error that occurred due to an unknown internal
-//   server error, exception, or failure.
-//
-//   * ServiceQuotaExceededException
-//   Provides information about an error that occurred due to one or more service
-//   quotas for an account.
-//
-//   * AccessDeniedException
-//   Provides information about an error that occurred due to insufficient access
-//   to a specified resource.
-//
-//   * ResourceNotFoundException
-//   Provides information about an error that occurred because a specified resource
-//   wasn't found.
-//
-//   * ThrottlingException
-//   Provides information about an error that occurred because too many requests
-//   were sent during a certain amount of time.
-//
-//   * ConflictException
-//   Provides information about an error that occurred due to a versioning conflict
-//   for a specified resource.
-//
-// See also, https://docs.aws.amazon.com/goto/WebAPI/macie2-2020-01-01T00:00:00Z/ArchiveFindings
-func (c *Macie2) ArchiveFindings(input *ArchiveFindingsInput) (*ArchiveFindingsOutput, error) {
-	req, out := c.ArchiveFindingsRequest(input)
-	return out, req.Send()
-}
-
-// ArchiveFindingsWithContext is the same as ArchiveFindings with the addition of
-// the ability to pass a context and additional request options.
-//
-// See ArchiveFindings for details on how to use this API operation.
-//
-// The context must be non-nil and will be used for request cancellation. If
-// the context is nil a panic will occur. In the future the SDK may create
-// sub-contexts for http.Requests. See https://golang.org/pkg/context/
-// for more information on using Contexts.
-func (c *Macie2) ArchiveFindingsWithContext(ctx aws.Context, input *ArchiveFindingsInput, opts ...request.Option) (*ArchiveFindingsOutput, error) {
-	req, out := c.ArchiveFindingsRequest(input)
 	req.SetContext(ctx)
 	req.ApplyOptions(opts...)
 	return out, req.Send()
@@ -249,7 +144,7 @@ const opBatchGetCustomDataIdentifiers = "BatchGetCustomDataIdentifiers"
 //        fmt.Println(resp)
 //    }
 //
-// See also, https://docs.aws.amazon.com/goto/WebAPI/macie2-2020-01-01T00:00:00Z/BatchGetCustomDataIdentifiers
+// See also, https://docs.aws.amazon.com/goto/WebAPI/macie2-2020-01-01/BatchGetCustomDataIdentifiers
 func (c *Macie2) BatchGetCustomDataIdentifiersRequest(input *BatchGetCustomDataIdentifiersInput) (req *request.Request, output *BatchGetCustomDataIdentifiersOutput) {
 	op := &request.Operation{
 		Name:       opBatchGetCustomDataIdentifiers,
@@ -306,7 +201,7 @@ func (c *Macie2) BatchGetCustomDataIdentifiersRequest(input *BatchGetCustomDataI
 //   Provides information about an error that occurred due to a versioning conflict
 //   for a specified resource.
 //
-// See also, https://docs.aws.amazon.com/goto/WebAPI/macie2-2020-01-01T00:00:00Z/BatchGetCustomDataIdentifiers
+// See also, https://docs.aws.amazon.com/goto/WebAPI/macie2-2020-01-01/BatchGetCustomDataIdentifiers
 func (c *Macie2) BatchGetCustomDataIdentifiers(input *BatchGetCustomDataIdentifiersInput) (*BatchGetCustomDataIdentifiersOutput, error) {
 	req, out := c.BatchGetCustomDataIdentifiersRequest(input)
 	return out, req.Send()
@@ -353,7 +248,7 @@ const opCreateClassificationJob = "CreateClassificationJob"
 //        fmt.Println(resp)
 //    }
 //
-// See also, https://docs.aws.amazon.com/goto/WebAPI/macie2-2020-01-01T00:00:00Z/CreateClassificationJob
+// See also, https://docs.aws.amazon.com/goto/WebAPI/macie2-2020-01-01/CreateClassificationJob
 func (c *Macie2) CreateClassificationJobRequest(input *CreateClassificationJobInput) (req *request.Request, output *CreateClassificationJobOutput) {
 	op := &request.Operation{
 		Name:       opCreateClassificationJob,
@@ -410,7 +305,7 @@ func (c *Macie2) CreateClassificationJobRequest(input *CreateClassificationJobIn
 //   Provides information about an error that occurred due to a versioning conflict
 //   for a specified resource.
 //
-// See also, https://docs.aws.amazon.com/goto/WebAPI/macie2-2020-01-01T00:00:00Z/CreateClassificationJob
+// See also, https://docs.aws.amazon.com/goto/WebAPI/macie2-2020-01-01/CreateClassificationJob
 func (c *Macie2) CreateClassificationJob(input *CreateClassificationJobInput) (*CreateClassificationJobOutput, error) {
 	req, out := c.CreateClassificationJobRequest(input)
 	return out, req.Send()
@@ -457,7 +352,7 @@ const opCreateCustomDataIdentifier = "CreateCustomDataIdentifier"
 //        fmt.Println(resp)
 //    }
 //
-// See also, https://docs.aws.amazon.com/goto/WebAPI/macie2-2020-01-01T00:00:00Z/CreateCustomDataIdentifier
+// See also, https://docs.aws.amazon.com/goto/WebAPI/macie2-2020-01-01/CreateCustomDataIdentifier
 func (c *Macie2) CreateCustomDataIdentifierRequest(input *CreateCustomDataIdentifierInput) (req *request.Request, output *CreateCustomDataIdentifierOutput) {
 	op := &request.Operation{
 		Name:       opCreateCustomDataIdentifier,
@@ -514,7 +409,7 @@ func (c *Macie2) CreateCustomDataIdentifierRequest(input *CreateCustomDataIdenti
 //   Provides information about an error that occurred due to a versioning conflict
 //   for a specified resource.
 //
-// See also, https://docs.aws.amazon.com/goto/WebAPI/macie2-2020-01-01T00:00:00Z/CreateCustomDataIdentifier
+// See also, https://docs.aws.amazon.com/goto/WebAPI/macie2-2020-01-01/CreateCustomDataIdentifier
 func (c *Macie2) CreateCustomDataIdentifier(input *CreateCustomDataIdentifierInput) (*CreateCustomDataIdentifierOutput, error) {
 	req, out := c.CreateCustomDataIdentifierRequest(input)
 	return out, req.Send()
@@ -561,7 +456,7 @@ const opCreateFindingsFilter = "CreateFindingsFilter"
 //        fmt.Println(resp)
 //    }
 //
-// See also, https://docs.aws.amazon.com/goto/WebAPI/macie2-2020-01-01T00:00:00Z/CreateFindingsFilter
+// See also, https://docs.aws.amazon.com/goto/WebAPI/macie2-2020-01-01/CreateFindingsFilter
 func (c *Macie2) CreateFindingsFilterRequest(input *CreateFindingsFilterInput) (req *request.Request, output *CreateFindingsFilterOutput) {
 	op := &request.Operation{
 		Name:       opCreateFindingsFilter,
@@ -618,7 +513,7 @@ func (c *Macie2) CreateFindingsFilterRequest(input *CreateFindingsFilterInput) (
 //   Provides information about an error that occurred due to a versioning conflict
 //   for a specified resource.
 //
-// See also, https://docs.aws.amazon.com/goto/WebAPI/macie2-2020-01-01T00:00:00Z/CreateFindingsFilter
+// See also, https://docs.aws.amazon.com/goto/WebAPI/macie2-2020-01-01/CreateFindingsFilter
 func (c *Macie2) CreateFindingsFilter(input *CreateFindingsFilterInput) (*CreateFindingsFilterOutput, error) {
 	req, out := c.CreateFindingsFilterRequest(input)
 	return out, req.Send()
@@ -665,7 +560,7 @@ const opCreateInvitations = "CreateInvitations"
 //        fmt.Println(resp)
 //    }
 //
-// See also, https://docs.aws.amazon.com/goto/WebAPI/macie2-2020-01-01T00:00:00Z/CreateInvitations
+// See also, https://docs.aws.amazon.com/goto/WebAPI/macie2-2020-01-01/CreateInvitations
 func (c *Macie2) CreateInvitationsRequest(input *CreateInvitationsInput) (req *request.Request, output *CreateInvitationsOutput) {
 	op := &request.Operation{
 		Name:       opCreateInvitations,
@@ -722,7 +617,7 @@ func (c *Macie2) CreateInvitationsRequest(input *CreateInvitationsInput) (req *r
 //   Provides information about an error that occurred due to a versioning conflict
 //   for a specified resource.
 //
-// See also, https://docs.aws.amazon.com/goto/WebAPI/macie2-2020-01-01T00:00:00Z/CreateInvitations
+// See also, https://docs.aws.amazon.com/goto/WebAPI/macie2-2020-01-01/CreateInvitations
 func (c *Macie2) CreateInvitations(input *CreateInvitationsInput) (*CreateInvitationsOutput, error) {
 	req, out := c.CreateInvitationsRequest(input)
 	return out, req.Send()
@@ -769,7 +664,7 @@ const opCreateMember = "CreateMember"
 //        fmt.Println(resp)
 //    }
 //
-// See also, https://docs.aws.amazon.com/goto/WebAPI/macie2-2020-01-01T00:00:00Z/CreateMember
+// See also, https://docs.aws.amazon.com/goto/WebAPI/macie2-2020-01-01/CreateMember
 func (c *Macie2) CreateMemberRequest(input *CreateMemberInput) (req *request.Request, output *CreateMemberOutput) {
 	op := &request.Operation{
 		Name:       opCreateMember,
@@ -826,7 +721,7 @@ func (c *Macie2) CreateMemberRequest(input *CreateMemberInput) (req *request.Req
 //   Provides information about an error that occurred due to a versioning conflict
 //   for a specified resource.
 //
-// See also, https://docs.aws.amazon.com/goto/WebAPI/macie2-2020-01-01T00:00:00Z/CreateMember
+// See also, https://docs.aws.amazon.com/goto/WebAPI/macie2-2020-01-01/CreateMember
 func (c *Macie2) CreateMember(input *CreateMemberInput) (*CreateMemberOutput, error) {
 	req, out := c.CreateMemberRequest(input)
 	return out, req.Send()
@@ -873,7 +768,7 @@ const opCreateSampleFindings = "CreateSampleFindings"
 //        fmt.Println(resp)
 //    }
 //
-// See also, https://docs.aws.amazon.com/goto/WebAPI/macie2-2020-01-01T00:00:00Z/CreateSampleFindings
+// See also, https://docs.aws.amazon.com/goto/WebAPI/macie2-2020-01-01/CreateSampleFindings
 func (c *Macie2) CreateSampleFindingsRequest(input *CreateSampleFindingsInput) (req *request.Request, output *CreateSampleFindingsOutput) {
 	op := &request.Operation{
 		Name:       opCreateSampleFindings,
@@ -931,7 +826,7 @@ func (c *Macie2) CreateSampleFindingsRequest(input *CreateSampleFindingsInput) (
 //   Provides information about an error that occurred due to a versioning conflict
 //   for a specified resource.
 //
-// See also, https://docs.aws.amazon.com/goto/WebAPI/macie2-2020-01-01T00:00:00Z/CreateSampleFindings
+// See also, https://docs.aws.amazon.com/goto/WebAPI/macie2-2020-01-01/CreateSampleFindings
 func (c *Macie2) CreateSampleFindings(input *CreateSampleFindingsInput) (*CreateSampleFindingsOutput, error) {
 	req, out := c.CreateSampleFindingsRequest(input)
 	return out, req.Send()
@@ -978,7 +873,7 @@ const opDeclineInvitations = "DeclineInvitations"
 //        fmt.Println(resp)
 //    }
 //
-// See also, https://docs.aws.amazon.com/goto/WebAPI/macie2-2020-01-01T00:00:00Z/DeclineInvitations
+// See also, https://docs.aws.amazon.com/goto/WebAPI/macie2-2020-01-01/DeclineInvitations
 func (c *Macie2) DeclineInvitationsRequest(input *DeclineInvitationsInput) (req *request.Request, output *DeclineInvitationsOutput) {
 	op := &request.Operation{
 		Name:       opDeclineInvitations,
@@ -1036,7 +931,7 @@ func (c *Macie2) DeclineInvitationsRequest(input *DeclineInvitationsInput) (req 
 //   Provides information about an error that occurred due to a versioning conflict
 //   for a specified resource.
 //
-// See also, https://docs.aws.amazon.com/goto/WebAPI/macie2-2020-01-01T00:00:00Z/DeclineInvitations
+// See also, https://docs.aws.amazon.com/goto/WebAPI/macie2-2020-01-01/DeclineInvitations
 func (c *Macie2) DeclineInvitations(input *DeclineInvitationsInput) (*DeclineInvitationsOutput, error) {
 	req, out := c.DeclineInvitationsRequest(input)
 	return out, req.Send()
@@ -1083,7 +978,7 @@ const opDeleteCustomDataIdentifier = "DeleteCustomDataIdentifier"
 //        fmt.Println(resp)
 //    }
 //
-// See also, https://docs.aws.amazon.com/goto/WebAPI/macie2-2020-01-01T00:00:00Z/DeleteCustomDataIdentifier
+// See also, https://docs.aws.amazon.com/goto/WebAPI/macie2-2020-01-01/DeleteCustomDataIdentifier
 func (c *Macie2) DeleteCustomDataIdentifierRequest(input *DeleteCustomDataIdentifierInput) (req *request.Request, output *DeleteCustomDataIdentifierOutput) {
 	op := &request.Operation{
 		Name:       opDeleteCustomDataIdentifier,
@@ -1141,7 +1036,7 @@ func (c *Macie2) DeleteCustomDataIdentifierRequest(input *DeleteCustomDataIdenti
 //   Provides information about an error that occurred due to a versioning conflict
 //   for a specified resource.
 //
-// See also, https://docs.aws.amazon.com/goto/WebAPI/macie2-2020-01-01T00:00:00Z/DeleteCustomDataIdentifier
+// See also, https://docs.aws.amazon.com/goto/WebAPI/macie2-2020-01-01/DeleteCustomDataIdentifier
 func (c *Macie2) DeleteCustomDataIdentifier(input *DeleteCustomDataIdentifierInput) (*DeleteCustomDataIdentifierOutput, error) {
 	req, out := c.DeleteCustomDataIdentifierRequest(input)
 	return out, req.Send()
@@ -1188,7 +1083,7 @@ const opDeleteFindingsFilter = "DeleteFindingsFilter"
 //        fmt.Println(resp)
 //    }
 //
-// See also, https://docs.aws.amazon.com/goto/WebAPI/macie2-2020-01-01T00:00:00Z/DeleteFindingsFilter
+// See also, https://docs.aws.amazon.com/goto/WebAPI/macie2-2020-01-01/DeleteFindingsFilter
 func (c *Macie2) DeleteFindingsFilterRequest(input *DeleteFindingsFilterInput) (req *request.Request, output *DeleteFindingsFilterOutput) {
 	op := &request.Operation{
 		Name:       opDeleteFindingsFilter,
@@ -1246,7 +1141,7 @@ func (c *Macie2) DeleteFindingsFilterRequest(input *DeleteFindingsFilterInput) (
 //   Provides information about an error that occurred due to a versioning conflict
 //   for a specified resource.
 //
-// See also, https://docs.aws.amazon.com/goto/WebAPI/macie2-2020-01-01T00:00:00Z/DeleteFindingsFilter
+// See also, https://docs.aws.amazon.com/goto/WebAPI/macie2-2020-01-01/DeleteFindingsFilter
 func (c *Macie2) DeleteFindingsFilter(input *DeleteFindingsFilterInput) (*DeleteFindingsFilterOutput, error) {
 	req, out := c.DeleteFindingsFilterRequest(input)
 	return out, req.Send()
@@ -1293,7 +1188,7 @@ const opDeleteInvitations = "DeleteInvitations"
 //        fmt.Println(resp)
 //    }
 //
-// See also, https://docs.aws.amazon.com/goto/WebAPI/macie2-2020-01-01T00:00:00Z/DeleteInvitations
+// See also, https://docs.aws.amazon.com/goto/WebAPI/macie2-2020-01-01/DeleteInvitations
 func (c *Macie2) DeleteInvitationsRequest(input *DeleteInvitationsInput) (req *request.Request, output *DeleteInvitationsOutput) {
 	op := &request.Operation{
 		Name:       opDeleteInvitations,
@@ -1351,7 +1246,7 @@ func (c *Macie2) DeleteInvitationsRequest(input *DeleteInvitationsInput) (req *r
 //   Provides information about an error that occurred due to a versioning conflict
 //   for a specified resource.
 //
-// See also, https://docs.aws.amazon.com/goto/WebAPI/macie2-2020-01-01T00:00:00Z/DeleteInvitations
+// See also, https://docs.aws.amazon.com/goto/WebAPI/macie2-2020-01-01/DeleteInvitations
 func (c *Macie2) DeleteInvitations(input *DeleteInvitationsInput) (*DeleteInvitationsOutput, error) {
 	req, out := c.DeleteInvitationsRequest(input)
 	return out, req.Send()
@@ -1398,7 +1293,7 @@ const opDeleteMember = "DeleteMember"
 //        fmt.Println(resp)
 //    }
 //
-// See also, https://docs.aws.amazon.com/goto/WebAPI/macie2-2020-01-01T00:00:00Z/DeleteMember
+// See also, https://docs.aws.amazon.com/goto/WebAPI/macie2-2020-01-01/DeleteMember
 func (c *Macie2) DeleteMemberRequest(input *DeleteMemberInput) (req *request.Request, output *DeleteMemberOutput) {
 	op := &request.Operation{
 		Name:       opDeleteMember,
@@ -1456,7 +1351,7 @@ func (c *Macie2) DeleteMemberRequest(input *DeleteMemberInput) (req *request.Req
 //   Provides information about an error that occurred due to a versioning conflict
 //   for a specified resource.
 //
-// See also, https://docs.aws.amazon.com/goto/WebAPI/macie2-2020-01-01T00:00:00Z/DeleteMember
+// See also, https://docs.aws.amazon.com/goto/WebAPI/macie2-2020-01-01/DeleteMember
 func (c *Macie2) DeleteMember(input *DeleteMemberInput) (*DeleteMemberOutput, error) {
 	req, out := c.DeleteMemberRequest(input)
 	return out, req.Send()
@@ -1503,7 +1398,7 @@ const opDescribeBuckets = "DescribeBuckets"
 //        fmt.Println(resp)
 //    }
 //
-// See also, https://docs.aws.amazon.com/goto/WebAPI/macie2-2020-01-01T00:00:00Z/DescribeBuckets
+// See also, https://docs.aws.amazon.com/goto/WebAPI/macie2-2020-01-01/DescribeBuckets
 func (c *Macie2) DescribeBucketsRequest(input *DescribeBucketsInput) (req *request.Request, output *DescribeBucketsOutput) {
 	op := &request.Operation{
 		Name:       opDescribeBuckets,
@@ -1561,7 +1456,7 @@ func (c *Macie2) DescribeBucketsRequest(input *DescribeBucketsInput) (req *reque
 //   Provides information about an error that occurred due to a versioning conflict
 //   for a specified resource.
 //
-// See also, https://docs.aws.amazon.com/goto/WebAPI/macie2-2020-01-01T00:00:00Z/DescribeBuckets
+// See also, https://docs.aws.amazon.com/goto/WebAPI/macie2-2020-01-01/DescribeBuckets
 func (c *Macie2) DescribeBuckets(input *DescribeBucketsInput) (*DescribeBucketsOutput, error) {
 	req, out := c.DescribeBucketsRequest(input)
 	return out, req.Send()
@@ -1608,7 +1503,7 @@ const opDescribeClassificationJob = "DescribeClassificationJob"
 //        fmt.Println(resp)
 //    }
 //
-// See also, https://docs.aws.amazon.com/goto/WebAPI/macie2-2020-01-01T00:00:00Z/DescribeClassificationJob
+// See also, https://docs.aws.amazon.com/goto/WebAPI/macie2-2020-01-01/DescribeClassificationJob
 func (c *Macie2) DescribeClassificationJobRequest(input *DescribeClassificationJobInput) (req *request.Request, output *DescribeClassificationJobOutput) {
 	op := &request.Operation{
 		Name:       opDescribeClassificationJob,
@@ -1666,7 +1561,7 @@ func (c *Macie2) DescribeClassificationJobRequest(input *DescribeClassificationJ
 //   Provides information about an error that occurred due to a versioning conflict
 //   for a specified resource.
 //
-// See also, https://docs.aws.amazon.com/goto/WebAPI/macie2-2020-01-01T00:00:00Z/DescribeClassificationJob
+// See also, https://docs.aws.amazon.com/goto/WebAPI/macie2-2020-01-01/DescribeClassificationJob
 func (c *Macie2) DescribeClassificationJob(input *DescribeClassificationJobInput) (*DescribeClassificationJobOutput, error) {
 	req, out := c.DescribeClassificationJobRequest(input)
 	return out, req.Send()
@@ -1713,7 +1608,7 @@ const opDescribeOrganizationConfiguration = "DescribeOrganizationConfiguration"
 //        fmt.Println(resp)
 //    }
 //
-// See also, https://docs.aws.amazon.com/goto/WebAPI/macie2-2020-01-01T00:00:00Z/DescribeOrganizationConfiguration
+// See also, https://docs.aws.amazon.com/goto/WebAPI/macie2-2020-01-01/DescribeOrganizationConfiguration
 func (c *Macie2) DescribeOrganizationConfigurationRequest(input *DescribeOrganizationConfigurationInput) (req *request.Request, output *DescribeOrganizationConfigurationOutput) {
 	op := &request.Operation{
 		Name:       opDescribeOrganizationConfiguration,
@@ -1771,7 +1666,7 @@ func (c *Macie2) DescribeOrganizationConfigurationRequest(input *DescribeOrganiz
 //   Provides information about an error that occurred due to a versioning conflict
 //   for a specified resource.
 //
-// See also, https://docs.aws.amazon.com/goto/WebAPI/macie2-2020-01-01T00:00:00Z/DescribeOrganizationConfiguration
+// See also, https://docs.aws.amazon.com/goto/WebAPI/macie2-2020-01-01/DescribeOrganizationConfiguration
 func (c *Macie2) DescribeOrganizationConfiguration(input *DescribeOrganizationConfigurationInput) (*DescribeOrganizationConfigurationOutput, error) {
 	req, out := c.DescribeOrganizationConfigurationRequest(input)
 	return out, req.Send()
@@ -1818,7 +1713,7 @@ const opDisableMacie = "DisableMacie"
 //        fmt.Println(resp)
 //    }
 //
-// See also, https://docs.aws.amazon.com/goto/WebAPI/macie2-2020-01-01T00:00:00Z/DisableMacie
+// See also, https://docs.aws.amazon.com/goto/WebAPI/macie2-2020-01-01/DisableMacie
 func (c *Macie2) DisableMacieRequest(input *DisableMacieInput) (req *request.Request, output *DisableMacieOutput) {
 	op := &request.Operation{
 		Name:       opDisableMacie,
@@ -1876,7 +1771,7 @@ func (c *Macie2) DisableMacieRequest(input *DisableMacieInput) (req *request.Req
 //   Provides information about an error that occurred due to a versioning conflict
 //   for a specified resource.
 //
-// See also, https://docs.aws.amazon.com/goto/WebAPI/macie2-2020-01-01T00:00:00Z/DisableMacie
+// See also, https://docs.aws.amazon.com/goto/WebAPI/macie2-2020-01-01/DisableMacie
 func (c *Macie2) DisableMacie(input *DisableMacieInput) (*DisableMacieOutput, error) {
 	req, out := c.DisableMacieRequest(input)
 	return out, req.Send()
@@ -1923,7 +1818,7 @@ const opDisableOrganizationAdminAccount = "DisableOrganizationAdminAccount"
 //        fmt.Println(resp)
 //    }
 //
-// See also, https://docs.aws.amazon.com/goto/WebAPI/macie2-2020-01-01T00:00:00Z/DisableOrganizationAdminAccount
+// See also, https://docs.aws.amazon.com/goto/WebAPI/macie2-2020-01-01/DisableOrganizationAdminAccount
 func (c *Macie2) DisableOrganizationAdminAccountRequest(input *DisableOrganizationAdminAccountInput) (req *request.Request, output *DisableOrganizationAdminAccountOutput) {
 	op := &request.Operation{
 		Name:       opDisableOrganizationAdminAccount,
@@ -1982,7 +1877,7 @@ func (c *Macie2) DisableOrganizationAdminAccountRequest(input *DisableOrganizati
 //   Provides information about an error that occurred due to a versioning conflict
 //   for a specified resource.
 //
-// See also, https://docs.aws.amazon.com/goto/WebAPI/macie2-2020-01-01T00:00:00Z/DisableOrganizationAdminAccount
+// See also, https://docs.aws.amazon.com/goto/WebAPI/macie2-2020-01-01/DisableOrganizationAdminAccount
 func (c *Macie2) DisableOrganizationAdminAccount(input *DisableOrganizationAdminAccountInput) (*DisableOrganizationAdminAccountOutput, error) {
 	req, out := c.DisableOrganizationAdminAccountRequest(input)
 	return out, req.Send()
@@ -2029,7 +1924,7 @@ const opDisassociateFromMasterAccount = "DisassociateFromMasterAccount"
 //        fmt.Println(resp)
 //    }
 //
-// See also, https://docs.aws.amazon.com/goto/WebAPI/macie2-2020-01-01T00:00:00Z/DisassociateFromMasterAccount
+// See also, https://docs.aws.amazon.com/goto/WebAPI/macie2-2020-01-01/DisassociateFromMasterAccount
 func (c *Macie2) DisassociateFromMasterAccountRequest(input *DisassociateFromMasterAccountInput) (req *request.Request, output *DisassociateFromMasterAccountOutput) {
 	op := &request.Operation{
 		Name:       opDisassociateFromMasterAccount,
@@ -2087,7 +1982,7 @@ func (c *Macie2) DisassociateFromMasterAccountRequest(input *DisassociateFromMas
 //   Provides information about an error that occurred due to a versioning conflict
 //   for a specified resource.
 //
-// See also, https://docs.aws.amazon.com/goto/WebAPI/macie2-2020-01-01T00:00:00Z/DisassociateFromMasterAccount
+// See also, https://docs.aws.amazon.com/goto/WebAPI/macie2-2020-01-01/DisassociateFromMasterAccount
 func (c *Macie2) DisassociateFromMasterAccount(input *DisassociateFromMasterAccountInput) (*DisassociateFromMasterAccountOutput, error) {
 	req, out := c.DisassociateFromMasterAccountRequest(input)
 	return out, req.Send()
@@ -2134,7 +2029,7 @@ const opDisassociateMember = "DisassociateMember"
 //        fmt.Println(resp)
 //    }
 //
-// See also, https://docs.aws.amazon.com/goto/WebAPI/macie2-2020-01-01T00:00:00Z/DisassociateMember
+// See also, https://docs.aws.amazon.com/goto/WebAPI/macie2-2020-01-01/DisassociateMember
 func (c *Macie2) DisassociateMemberRequest(input *DisassociateMemberInput) (req *request.Request, output *DisassociateMemberOutput) {
 	op := &request.Operation{
 		Name:       opDisassociateMember,
@@ -2192,7 +2087,7 @@ func (c *Macie2) DisassociateMemberRequest(input *DisassociateMemberInput) (req 
 //   Provides information about an error that occurred due to a versioning conflict
 //   for a specified resource.
 //
-// See also, https://docs.aws.amazon.com/goto/WebAPI/macie2-2020-01-01T00:00:00Z/DisassociateMember
+// See also, https://docs.aws.amazon.com/goto/WebAPI/macie2-2020-01-01/DisassociateMember
 func (c *Macie2) DisassociateMember(input *DisassociateMemberInput) (*DisassociateMemberOutput, error) {
 	req, out := c.DisassociateMemberRequest(input)
 	return out, req.Send()
@@ -2239,7 +2134,7 @@ const opEnableMacie = "EnableMacie"
 //        fmt.Println(resp)
 //    }
 //
-// See also, https://docs.aws.amazon.com/goto/WebAPI/macie2-2020-01-01T00:00:00Z/EnableMacie
+// See also, https://docs.aws.amazon.com/goto/WebAPI/macie2-2020-01-01/EnableMacie
 func (c *Macie2) EnableMacieRequest(input *EnableMacieInput) (req *request.Request, output *EnableMacieOutput) {
 	op := &request.Operation{
 		Name:       opEnableMacie,
@@ -2298,7 +2193,7 @@ func (c *Macie2) EnableMacieRequest(input *EnableMacieInput) (req *request.Reque
 //   Provides information about an error that occurred due to a versioning conflict
 //   for a specified resource.
 //
-// See also, https://docs.aws.amazon.com/goto/WebAPI/macie2-2020-01-01T00:00:00Z/EnableMacie
+// See also, https://docs.aws.amazon.com/goto/WebAPI/macie2-2020-01-01/EnableMacie
 func (c *Macie2) EnableMacie(input *EnableMacieInput) (*EnableMacieOutput, error) {
 	req, out := c.EnableMacieRequest(input)
 	return out, req.Send()
@@ -2345,7 +2240,7 @@ const opEnableOrganizationAdminAccount = "EnableOrganizationAdminAccount"
 //        fmt.Println(resp)
 //    }
 //
-// See also, https://docs.aws.amazon.com/goto/WebAPI/macie2-2020-01-01T00:00:00Z/EnableOrganizationAdminAccount
+// See also, https://docs.aws.amazon.com/goto/WebAPI/macie2-2020-01-01/EnableOrganizationAdminAccount
 func (c *Macie2) EnableOrganizationAdminAccountRequest(input *EnableOrganizationAdminAccountInput) (req *request.Request, output *EnableOrganizationAdminAccountOutput) {
 	op := &request.Operation{
 		Name:       opEnableOrganizationAdminAccount,
@@ -2404,7 +2299,7 @@ func (c *Macie2) EnableOrganizationAdminAccountRequest(input *EnableOrganization
 //   Provides information about an error that occurred due to a versioning conflict
 //   for a specified resource.
 //
-// See also, https://docs.aws.amazon.com/goto/WebAPI/macie2-2020-01-01T00:00:00Z/EnableOrganizationAdminAccount
+// See also, https://docs.aws.amazon.com/goto/WebAPI/macie2-2020-01-01/EnableOrganizationAdminAccount
 func (c *Macie2) EnableOrganizationAdminAccount(input *EnableOrganizationAdminAccountInput) (*EnableOrganizationAdminAccountOutput, error) {
 	req, out := c.EnableOrganizationAdminAccountRequest(input)
 	return out, req.Send()
@@ -2451,7 +2346,7 @@ const opGetBucketStatistics = "GetBucketStatistics"
 //        fmt.Println(resp)
 //    }
 //
-// See also, https://docs.aws.amazon.com/goto/WebAPI/macie2-2020-01-01T00:00:00Z/GetBucketStatistics
+// See also, https://docs.aws.amazon.com/goto/WebAPI/macie2-2020-01-01/GetBucketStatistics
 func (c *Macie2) GetBucketStatisticsRequest(input *GetBucketStatisticsInput) (req *request.Request, output *GetBucketStatisticsOutput) {
 	op := &request.Operation{
 		Name:       opGetBucketStatistics,
@@ -2509,7 +2404,7 @@ func (c *Macie2) GetBucketStatisticsRequest(input *GetBucketStatisticsInput) (re
 //   Provides information about an error that occurred due to a versioning conflict
 //   for a specified resource.
 //
-// See also, https://docs.aws.amazon.com/goto/WebAPI/macie2-2020-01-01T00:00:00Z/GetBucketStatistics
+// See also, https://docs.aws.amazon.com/goto/WebAPI/macie2-2020-01-01/GetBucketStatistics
 func (c *Macie2) GetBucketStatistics(input *GetBucketStatisticsInput) (*GetBucketStatisticsOutput, error) {
 	req, out := c.GetBucketStatisticsRequest(input)
 	return out, req.Send()
@@ -2556,7 +2451,7 @@ const opGetClassificationExportConfiguration = "GetClassificationExportConfigura
 //        fmt.Println(resp)
 //    }
 //
-// See also, https://docs.aws.amazon.com/goto/WebAPI/macie2-2020-01-01T00:00:00Z/GetClassificationExportConfiguration
+// See also, https://docs.aws.amazon.com/goto/WebAPI/macie2-2020-01-01/GetClassificationExportConfiguration
 func (c *Macie2) GetClassificationExportConfigurationRequest(input *GetClassificationExportConfigurationInput) (req *request.Request, output *GetClassificationExportConfigurationOutput) {
 	op := &request.Operation{
 		Name:       opGetClassificationExportConfiguration,
@@ -2613,7 +2508,7 @@ func (c *Macie2) GetClassificationExportConfigurationRequest(input *GetClassific
 //   Provides information about an error that occurred due to a versioning conflict
 //   for a specified resource.
 //
-// See also, https://docs.aws.amazon.com/goto/WebAPI/macie2-2020-01-01T00:00:00Z/GetClassificationExportConfiguration
+// See also, https://docs.aws.amazon.com/goto/WebAPI/macie2-2020-01-01/GetClassificationExportConfiguration
 func (c *Macie2) GetClassificationExportConfiguration(input *GetClassificationExportConfigurationInput) (*GetClassificationExportConfigurationOutput, error) {
 	req, out := c.GetClassificationExportConfigurationRequest(input)
 	return out, req.Send()
@@ -2660,7 +2555,7 @@ const opGetCustomDataIdentifier = "GetCustomDataIdentifier"
 //        fmt.Println(resp)
 //    }
 //
-// See also, https://docs.aws.amazon.com/goto/WebAPI/macie2-2020-01-01T00:00:00Z/GetCustomDataIdentifier
+// See also, https://docs.aws.amazon.com/goto/WebAPI/macie2-2020-01-01/GetCustomDataIdentifier
 func (c *Macie2) GetCustomDataIdentifierRequest(input *GetCustomDataIdentifierInput) (req *request.Request, output *GetCustomDataIdentifierOutput) {
 	op := &request.Operation{
 		Name:       opGetCustomDataIdentifier,
@@ -2718,7 +2613,7 @@ func (c *Macie2) GetCustomDataIdentifierRequest(input *GetCustomDataIdentifierIn
 //   Provides information about an error that occurred due to a versioning conflict
 //   for a specified resource.
 //
-// See also, https://docs.aws.amazon.com/goto/WebAPI/macie2-2020-01-01T00:00:00Z/GetCustomDataIdentifier
+// See also, https://docs.aws.amazon.com/goto/WebAPI/macie2-2020-01-01/GetCustomDataIdentifier
 func (c *Macie2) GetCustomDataIdentifier(input *GetCustomDataIdentifierInput) (*GetCustomDataIdentifierOutput, error) {
 	req, out := c.GetCustomDataIdentifierRequest(input)
 	return out, req.Send()
@@ -2765,7 +2660,7 @@ const opGetFindingStatistics = "GetFindingStatistics"
 //        fmt.Println(resp)
 //    }
 //
-// See also, https://docs.aws.amazon.com/goto/WebAPI/macie2-2020-01-01T00:00:00Z/GetFindingStatistics
+// See also, https://docs.aws.amazon.com/goto/WebAPI/macie2-2020-01-01/GetFindingStatistics
 func (c *Macie2) GetFindingStatisticsRequest(input *GetFindingStatisticsInput) (req *request.Request, output *GetFindingStatisticsOutput) {
 	op := &request.Operation{
 		Name:       opGetFindingStatistics,
@@ -2822,7 +2717,7 @@ func (c *Macie2) GetFindingStatisticsRequest(input *GetFindingStatisticsInput) (
 //   Provides information about an error that occurred due to a versioning conflict
 //   for a specified resource.
 //
-// See also, https://docs.aws.amazon.com/goto/WebAPI/macie2-2020-01-01T00:00:00Z/GetFindingStatistics
+// See also, https://docs.aws.amazon.com/goto/WebAPI/macie2-2020-01-01/GetFindingStatistics
 func (c *Macie2) GetFindingStatistics(input *GetFindingStatisticsInput) (*GetFindingStatisticsOutput, error) {
 	req, out := c.GetFindingStatisticsRequest(input)
 	return out, req.Send()
@@ -2869,7 +2764,7 @@ const opGetFindings = "GetFindings"
 //        fmt.Println(resp)
 //    }
 //
-// See also, https://docs.aws.amazon.com/goto/WebAPI/macie2-2020-01-01T00:00:00Z/GetFindings
+// See also, https://docs.aws.amazon.com/goto/WebAPI/macie2-2020-01-01/GetFindings
 func (c *Macie2) GetFindingsRequest(input *GetFindingsInput) (req *request.Request, output *GetFindingsOutput) {
 	op := &request.Operation{
 		Name:       opGetFindings,
@@ -2926,7 +2821,7 @@ func (c *Macie2) GetFindingsRequest(input *GetFindingsInput) (req *request.Reque
 //   Provides information about an error that occurred due to a versioning conflict
 //   for a specified resource.
 //
-// See also, https://docs.aws.amazon.com/goto/WebAPI/macie2-2020-01-01T00:00:00Z/GetFindings
+// See also, https://docs.aws.amazon.com/goto/WebAPI/macie2-2020-01-01/GetFindings
 func (c *Macie2) GetFindings(input *GetFindingsInput) (*GetFindingsOutput, error) {
 	req, out := c.GetFindingsRequest(input)
 	return out, req.Send()
@@ -2973,7 +2868,7 @@ const opGetFindingsFilter = "GetFindingsFilter"
 //        fmt.Println(resp)
 //    }
 //
-// See also, https://docs.aws.amazon.com/goto/WebAPI/macie2-2020-01-01T00:00:00Z/GetFindingsFilter
+// See also, https://docs.aws.amazon.com/goto/WebAPI/macie2-2020-01-01/GetFindingsFilter
 func (c *Macie2) GetFindingsFilterRequest(input *GetFindingsFilterInput) (req *request.Request, output *GetFindingsFilterOutput) {
 	op := &request.Operation{
 		Name:       opGetFindingsFilter,
@@ -3031,7 +2926,7 @@ func (c *Macie2) GetFindingsFilterRequest(input *GetFindingsFilterInput) (req *r
 //   Provides information about an error that occurred due to a versioning conflict
 //   for a specified resource.
 //
-// See also, https://docs.aws.amazon.com/goto/WebAPI/macie2-2020-01-01T00:00:00Z/GetFindingsFilter
+// See also, https://docs.aws.amazon.com/goto/WebAPI/macie2-2020-01-01/GetFindingsFilter
 func (c *Macie2) GetFindingsFilter(input *GetFindingsFilterInput) (*GetFindingsFilterOutput, error) {
 	req, out := c.GetFindingsFilterRequest(input)
 	return out, req.Send()
@@ -3078,7 +2973,7 @@ const opGetInvitationsCount = "GetInvitationsCount"
 //        fmt.Println(resp)
 //    }
 //
-// See also, https://docs.aws.amazon.com/goto/WebAPI/macie2-2020-01-01T00:00:00Z/GetInvitationsCount
+// See also, https://docs.aws.amazon.com/goto/WebAPI/macie2-2020-01-01/GetInvitationsCount
 func (c *Macie2) GetInvitationsCountRequest(input *GetInvitationsCountInput) (req *request.Request, output *GetInvitationsCountOutput) {
 	op := &request.Operation{
 		Name:       opGetInvitationsCount,
@@ -3136,7 +3031,7 @@ func (c *Macie2) GetInvitationsCountRequest(input *GetInvitationsCountInput) (re
 //   Provides information about an error that occurred due to a versioning conflict
 //   for a specified resource.
 //
-// See also, https://docs.aws.amazon.com/goto/WebAPI/macie2-2020-01-01T00:00:00Z/GetInvitationsCount
+// See also, https://docs.aws.amazon.com/goto/WebAPI/macie2-2020-01-01/GetInvitationsCount
 func (c *Macie2) GetInvitationsCount(input *GetInvitationsCountInput) (*GetInvitationsCountOutput, error) {
 	req, out := c.GetInvitationsCountRequest(input)
 	return out, req.Send()
@@ -3183,7 +3078,7 @@ const opGetMacieSession = "GetMacieSession"
 //        fmt.Println(resp)
 //    }
 //
-// See also, https://docs.aws.amazon.com/goto/WebAPI/macie2-2020-01-01T00:00:00Z/GetMacieSession
+// See also, https://docs.aws.amazon.com/goto/WebAPI/macie2-2020-01-01/GetMacieSession
 func (c *Macie2) GetMacieSessionRequest(input *GetMacieSessionInput) (req *request.Request, output *GetMacieSessionOutput) {
 	op := &request.Operation{
 		Name:       opGetMacieSession,
@@ -3241,7 +3136,7 @@ func (c *Macie2) GetMacieSessionRequest(input *GetMacieSessionInput) (req *reque
 //   Provides information about an error that occurred due to a versioning conflict
 //   for a specified resource.
 //
-// See also, https://docs.aws.amazon.com/goto/WebAPI/macie2-2020-01-01T00:00:00Z/GetMacieSession
+// See also, https://docs.aws.amazon.com/goto/WebAPI/macie2-2020-01-01/GetMacieSession
 func (c *Macie2) GetMacieSession(input *GetMacieSessionInput) (*GetMacieSessionOutput, error) {
 	req, out := c.GetMacieSessionRequest(input)
 	return out, req.Send()
@@ -3288,7 +3183,7 @@ const opGetMasterAccount = "GetMasterAccount"
 //        fmt.Println(resp)
 //    }
 //
-// See also, https://docs.aws.amazon.com/goto/WebAPI/macie2-2020-01-01T00:00:00Z/GetMasterAccount
+// See also, https://docs.aws.amazon.com/goto/WebAPI/macie2-2020-01-01/GetMasterAccount
 func (c *Macie2) GetMasterAccountRequest(input *GetMasterAccountInput) (req *request.Request, output *GetMasterAccountOutput) {
 	op := &request.Operation{
 		Name:       opGetMasterAccount,
@@ -3345,7 +3240,7 @@ func (c *Macie2) GetMasterAccountRequest(input *GetMasterAccountInput) (req *req
 //   Provides information about an error that occurred due to a versioning conflict
 //   for a specified resource.
 //
-// See also, https://docs.aws.amazon.com/goto/WebAPI/macie2-2020-01-01T00:00:00Z/GetMasterAccount
+// See also, https://docs.aws.amazon.com/goto/WebAPI/macie2-2020-01-01/GetMasterAccount
 func (c *Macie2) GetMasterAccount(input *GetMasterAccountInput) (*GetMasterAccountOutput, error) {
 	req, out := c.GetMasterAccountRequest(input)
 	return out, req.Send()
@@ -3392,7 +3287,7 @@ const opGetMember = "GetMember"
 //        fmt.Println(resp)
 //    }
 //
-// See also, https://docs.aws.amazon.com/goto/WebAPI/macie2-2020-01-01T00:00:00Z/GetMember
+// See also, https://docs.aws.amazon.com/goto/WebAPI/macie2-2020-01-01/GetMember
 func (c *Macie2) GetMemberRequest(input *GetMemberInput) (req *request.Request, output *GetMemberOutput) {
 	op := &request.Operation{
 		Name:       opGetMember,
@@ -3450,7 +3345,7 @@ func (c *Macie2) GetMemberRequest(input *GetMemberInput) (req *request.Request, 
 //   Provides information about an error that occurred due to a versioning conflict
 //   for a specified resource.
 //
-// See also, https://docs.aws.amazon.com/goto/WebAPI/macie2-2020-01-01T00:00:00Z/GetMember
+// See also, https://docs.aws.amazon.com/goto/WebAPI/macie2-2020-01-01/GetMember
 func (c *Macie2) GetMember(input *GetMemberInput) (*GetMemberOutput, error) {
 	req, out := c.GetMemberRequest(input)
 	return out, req.Send()
@@ -3497,7 +3392,7 @@ const opGetUsageStatistics = "GetUsageStatistics"
 //        fmt.Println(resp)
 //    }
 //
-// See also, https://docs.aws.amazon.com/goto/WebAPI/macie2-2020-01-01T00:00:00Z/GetUsageStatistics
+// See also, https://docs.aws.amazon.com/goto/WebAPI/macie2-2020-01-01/GetUsageStatistics
 func (c *Macie2) GetUsageStatisticsRequest(input *GetUsageStatisticsInput) (req *request.Request, output *GetUsageStatisticsOutput) {
 	op := &request.Operation{
 		Name:       opGetUsageStatistics,
@@ -3554,7 +3449,7 @@ func (c *Macie2) GetUsageStatisticsRequest(input *GetUsageStatisticsInput) (req 
 //   Provides information about an error that occurred due to a versioning conflict
 //   for a specified resource.
 //
-// See also, https://docs.aws.amazon.com/goto/WebAPI/macie2-2020-01-01T00:00:00Z/GetUsageStatistics
+// See also, https://docs.aws.amazon.com/goto/WebAPI/macie2-2020-01-01/GetUsageStatistics
 func (c *Macie2) GetUsageStatistics(input *GetUsageStatisticsInput) (*GetUsageStatisticsOutput, error) {
 	req, out := c.GetUsageStatisticsRequest(input)
 	return out, req.Send()
@@ -3601,7 +3496,7 @@ const opGetUsageTotals = "GetUsageTotals"
 //        fmt.Println(resp)
 //    }
 //
-// See also, https://docs.aws.amazon.com/goto/WebAPI/macie2-2020-01-01T00:00:00Z/GetUsageTotals
+// See also, https://docs.aws.amazon.com/goto/WebAPI/macie2-2020-01-01/GetUsageTotals
 func (c *Macie2) GetUsageTotalsRequest(input *GetUsageTotalsInput) (req *request.Request, output *GetUsageTotalsOutput) {
 	op := &request.Operation{
 		Name:       opGetUsageTotals,
@@ -3658,7 +3553,7 @@ func (c *Macie2) GetUsageTotalsRequest(input *GetUsageTotalsInput) (req *request
 //   Provides information about an error that occurred due to a versioning conflict
 //   for a specified resource.
 //
-// See also, https://docs.aws.amazon.com/goto/WebAPI/macie2-2020-01-01T00:00:00Z/GetUsageTotals
+// See also, https://docs.aws.amazon.com/goto/WebAPI/macie2-2020-01-01/GetUsageTotals
 func (c *Macie2) GetUsageTotals(input *GetUsageTotalsInput) (*GetUsageTotalsOutput, error) {
 	req, out := c.GetUsageTotalsRequest(input)
 	return out, req.Send()
@@ -3705,7 +3600,7 @@ const opListClassificationJobs = "ListClassificationJobs"
 //        fmt.Println(resp)
 //    }
 //
-// See also, https://docs.aws.amazon.com/goto/WebAPI/macie2-2020-01-01T00:00:00Z/ListClassificationJobs
+// See also, https://docs.aws.amazon.com/goto/WebAPI/macie2-2020-01-01/ListClassificationJobs
 func (c *Macie2) ListClassificationJobsRequest(input *ListClassificationJobsInput) (req *request.Request, output *ListClassificationJobsOutput) {
 	op := &request.Operation{
 		Name:       opListClassificationJobs,
@@ -3763,7 +3658,7 @@ func (c *Macie2) ListClassificationJobsRequest(input *ListClassificationJobsInpu
 //   Provides information about an error that occurred due to a versioning conflict
 //   for a specified resource.
 //
-// See also, https://docs.aws.amazon.com/goto/WebAPI/macie2-2020-01-01T00:00:00Z/ListClassificationJobs
+// See also, https://docs.aws.amazon.com/goto/WebAPI/macie2-2020-01-01/ListClassificationJobs
 func (c *Macie2) ListClassificationJobs(input *ListClassificationJobsInput) (*ListClassificationJobsOutput, error) {
 	req, out := c.ListClassificationJobsRequest(input)
 	return out, req.Send()
@@ -3810,7 +3705,7 @@ const opListCustomDataIdentifiers = "ListCustomDataIdentifiers"
 //        fmt.Println(resp)
 //    }
 //
-// See also, https://docs.aws.amazon.com/goto/WebAPI/macie2-2020-01-01T00:00:00Z/ListCustomDataIdentifiers
+// See also, https://docs.aws.amazon.com/goto/WebAPI/macie2-2020-01-01/ListCustomDataIdentifiers
 func (c *Macie2) ListCustomDataIdentifiersRequest(input *ListCustomDataIdentifiersInput) (req *request.Request, output *ListCustomDataIdentifiersOutput) {
 	op := &request.Operation{
 		Name:       opListCustomDataIdentifiers,
@@ -3868,7 +3763,7 @@ func (c *Macie2) ListCustomDataIdentifiersRequest(input *ListCustomDataIdentifie
 //   Provides information about an error that occurred due to a versioning conflict
 //   for a specified resource.
 //
-// See also, https://docs.aws.amazon.com/goto/WebAPI/macie2-2020-01-01T00:00:00Z/ListCustomDataIdentifiers
+// See also, https://docs.aws.amazon.com/goto/WebAPI/macie2-2020-01-01/ListCustomDataIdentifiers
 func (c *Macie2) ListCustomDataIdentifiers(input *ListCustomDataIdentifiersInput) (*ListCustomDataIdentifiersOutput, error) {
 	req, out := c.ListCustomDataIdentifiersRequest(input)
 	return out, req.Send()
@@ -3915,7 +3810,7 @@ const opListFindings = "ListFindings"
 //        fmt.Println(resp)
 //    }
 //
-// See also, https://docs.aws.amazon.com/goto/WebAPI/macie2-2020-01-01T00:00:00Z/ListFindings
+// See also, https://docs.aws.amazon.com/goto/WebAPI/macie2-2020-01-01/ListFindings
 func (c *Macie2) ListFindingsRequest(input *ListFindingsInput) (req *request.Request, output *ListFindingsOutput) {
 	op := &request.Operation{
 		Name:       opListFindings,
@@ -3972,7 +3867,7 @@ func (c *Macie2) ListFindingsRequest(input *ListFindingsInput) (req *request.Req
 //   Provides information about an error that occurred due to a versioning conflict
 //   for a specified resource.
 //
-// See also, https://docs.aws.amazon.com/goto/WebAPI/macie2-2020-01-01T00:00:00Z/ListFindings
+// See also, https://docs.aws.amazon.com/goto/WebAPI/macie2-2020-01-01/ListFindings
 func (c *Macie2) ListFindings(input *ListFindingsInput) (*ListFindingsOutput, error) {
 	req, out := c.ListFindingsRequest(input)
 	return out, req.Send()
@@ -4019,7 +3914,7 @@ const opListFindingsFilters = "ListFindingsFilters"
 //        fmt.Println(resp)
 //    }
 //
-// See also, https://docs.aws.amazon.com/goto/WebAPI/macie2-2020-01-01T00:00:00Z/ListFindingsFilters
+// See also, https://docs.aws.amazon.com/goto/WebAPI/macie2-2020-01-01/ListFindingsFilters
 func (c *Macie2) ListFindingsFiltersRequest(input *ListFindingsFiltersInput) (req *request.Request, output *ListFindingsFiltersOutput) {
 	op := &request.Operation{
 		Name:       opListFindingsFilters,
@@ -4076,7 +3971,7 @@ func (c *Macie2) ListFindingsFiltersRequest(input *ListFindingsFiltersInput) (re
 //   Provides information about an error that occurred due to a versioning conflict
 //   for a specified resource.
 //
-// See also, https://docs.aws.amazon.com/goto/WebAPI/macie2-2020-01-01T00:00:00Z/ListFindingsFilters
+// See also, https://docs.aws.amazon.com/goto/WebAPI/macie2-2020-01-01/ListFindingsFilters
 func (c *Macie2) ListFindingsFilters(input *ListFindingsFiltersInput) (*ListFindingsFiltersOutput, error) {
 	req, out := c.ListFindingsFiltersRequest(input)
 	return out, req.Send()
@@ -4123,7 +4018,7 @@ const opListInvitations = "ListInvitations"
 //        fmt.Println(resp)
 //    }
 //
-// See also, https://docs.aws.amazon.com/goto/WebAPI/macie2-2020-01-01T00:00:00Z/ListInvitations
+// See also, https://docs.aws.amazon.com/goto/WebAPI/macie2-2020-01-01/ListInvitations
 func (c *Macie2) ListInvitationsRequest(input *ListInvitationsInput) (req *request.Request, output *ListInvitationsOutput) {
 	op := &request.Operation{
 		Name:       opListInvitations,
@@ -4181,7 +4076,7 @@ func (c *Macie2) ListInvitationsRequest(input *ListInvitationsInput) (req *reque
 //   Provides information about an error that occurred due to a versioning conflict
 //   for a specified resource.
 //
-// See also, https://docs.aws.amazon.com/goto/WebAPI/macie2-2020-01-01T00:00:00Z/ListInvitations
+// See also, https://docs.aws.amazon.com/goto/WebAPI/macie2-2020-01-01/ListInvitations
 func (c *Macie2) ListInvitations(input *ListInvitationsInput) (*ListInvitationsOutput, error) {
 	req, out := c.ListInvitationsRequest(input)
 	return out, req.Send()
@@ -4228,7 +4123,7 @@ const opListMembers = "ListMembers"
 //        fmt.Println(resp)
 //    }
 //
-// See also, https://docs.aws.amazon.com/goto/WebAPI/macie2-2020-01-01T00:00:00Z/ListMembers
+// See also, https://docs.aws.amazon.com/goto/WebAPI/macie2-2020-01-01/ListMembers
 func (c *Macie2) ListMembersRequest(input *ListMembersInput) (req *request.Request, output *ListMembersOutput) {
 	op := &request.Operation{
 		Name:       opListMembers,
@@ -4286,7 +4181,7 @@ func (c *Macie2) ListMembersRequest(input *ListMembersInput) (req *request.Reque
 //   Provides information about an error that occurred due to a versioning conflict
 //   for a specified resource.
 //
-// See also, https://docs.aws.amazon.com/goto/WebAPI/macie2-2020-01-01T00:00:00Z/ListMembers
+// See also, https://docs.aws.amazon.com/goto/WebAPI/macie2-2020-01-01/ListMembers
 func (c *Macie2) ListMembers(input *ListMembersInput) (*ListMembersOutput, error) {
 	req, out := c.ListMembersRequest(input)
 	return out, req.Send()
@@ -4333,7 +4228,7 @@ const opListOrganizationAdminAccounts = "ListOrganizationAdminAccounts"
 //        fmt.Println(resp)
 //    }
 //
-// See also, https://docs.aws.amazon.com/goto/WebAPI/macie2-2020-01-01T00:00:00Z/ListOrganizationAdminAccounts
+// See also, https://docs.aws.amazon.com/goto/WebAPI/macie2-2020-01-01/ListOrganizationAdminAccounts
 func (c *Macie2) ListOrganizationAdminAccountsRequest(input *ListOrganizationAdminAccountsInput) (req *request.Request, output *ListOrganizationAdminAccountsOutput) {
 	op := &request.Operation{
 		Name:       opListOrganizationAdminAccounts,
@@ -4391,7 +4286,7 @@ func (c *Macie2) ListOrganizationAdminAccountsRequest(input *ListOrganizationAdm
 //   Provides information about an error that occurred due to a versioning conflict
 //   for a specified resource.
 //
-// See also, https://docs.aws.amazon.com/goto/WebAPI/macie2-2020-01-01T00:00:00Z/ListOrganizationAdminAccounts
+// See also, https://docs.aws.amazon.com/goto/WebAPI/macie2-2020-01-01/ListOrganizationAdminAccounts
 func (c *Macie2) ListOrganizationAdminAccounts(input *ListOrganizationAdminAccountsInput) (*ListOrganizationAdminAccountsOutput, error) {
 	req, out := c.ListOrganizationAdminAccountsRequest(input)
 	return out, req.Send()
@@ -4438,7 +4333,7 @@ const opListTagsForResource = "ListTagsForResource"
 //        fmt.Println(resp)
 //    }
 //
-// See also, https://docs.aws.amazon.com/goto/WebAPI/macie2-2020-01-01T00:00:00Z/ListTagsForResource
+// See also, https://docs.aws.amazon.com/goto/WebAPI/macie2-2020-01-01/ListTagsForResource
 func (c *Macie2) ListTagsForResourceRequest(input *ListTagsForResourceInput) (req *request.Request, output *ListTagsForResourceOutput) {
 	op := &request.Operation{
 		Name:       opListTagsForResource,
@@ -4466,7 +4361,7 @@ func (c *Macie2) ListTagsForResourceRequest(input *ListTagsForResourceInput) (re
 //
 // See the AWS API reference guide for Amazon Macie 2's
 // API operation ListTagsForResource for usage and error information.
-// See also, https://docs.aws.amazon.com/goto/WebAPI/macie2-2020-01-01T00:00:00Z/ListTagsForResource
+// See also, https://docs.aws.amazon.com/goto/WebAPI/macie2-2020-01-01/ListTagsForResource
 func (c *Macie2) ListTagsForResource(input *ListTagsForResourceInput) (*ListTagsForResourceOutput, error) {
 	req, out := c.ListTagsForResourceRequest(input)
 	return out, req.Send()
@@ -4513,7 +4408,7 @@ const opPutClassificationExportConfiguration = "PutClassificationExportConfigura
 //        fmt.Println(resp)
 //    }
 //
-// See also, https://docs.aws.amazon.com/goto/WebAPI/macie2-2020-01-01T00:00:00Z/PutClassificationExportConfiguration
+// See also, https://docs.aws.amazon.com/goto/WebAPI/macie2-2020-01-01/PutClassificationExportConfiguration
 func (c *Macie2) PutClassificationExportConfigurationRequest(input *PutClassificationExportConfigurationInput) (req *request.Request, output *PutClassificationExportConfigurationOutput) {
 	op := &request.Operation{
 		Name:       opPutClassificationExportConfiguration,
@@ -4571,7 +4466,7 @@ func (c *Macie2) PutClassificationExportConfigurationRequest(input *PutClassific
 //   Provides information about an error that occurred due to a versioning conflict
 //   for a specified resource.
 //
-// See also, https://docs.aws.amazon.com/goto/WebAPI/macie2-2020-01-01T00:00:00Z/PutClassificationExportConfiguration
+// See also, https://docs.aws.amazon.com/goto/WebAPI/macie2-2020-01-01/PutClassificationExportConfiguration
 func (c *Macie2) PutClassificationExportConfiguration(input *PutClassificationExportConfigurationInput) (*PutClassificationExportConfigurationOutput, error) {
 	req, out := c.PutClassificationExportConfigurationRequest(input)
 	return out, req.Send()
@@ -4618,7 +4513,7 @@ const opTagResource = "TagResource"
 //        fmt.Println(resp)
 //    }
 //
-// See also, https://docs.aws.amazon.com/goto/WebAPI/macie2-2020-01-01T00:00:00Z/TagResource
+// See also, https://docs.aws.amazon.com/goto/WebAPI/macie2-2020-01-01/TagResource
 func (c *Macie2) TagResourceRequest(input *TagResourceInput) (req *request.Request, output *TagResourceOutput) {
 	op := &request.Operation{
 		Name:       opTagResource,
@@ -4648,7 +4543,7 @@ func (c *Macie2) TagResourceRequest(input *TagResourceInput) (req *request.Reque
 //
 // See the AWS API reference guide for Amazon Macie 2's
 // API operation TagResource for usage and error information.
-// See also, https://docs.aws.amazon.com/goto/WebAPI/macie2-2020-01-01T00:00:00Z/TagResource
+// See also, https://docs.aws.amazon.com/goto/WebAPI/macie2-2020-01-01/TagResource
 func (c *Macie2) TagResource(input *TagResourceInput) (*TagResourceOutput, error) {
 	req, out := c.TagResourceRequest(input)
 	return out, req.Send()
@@ -4695,7 +4590,7 @@ const opTestCustomDataIdentifier = "TestCustomDataIdentifier"
 //        fmt.Println(resp)
 //    }
 //
-// See also, https://docs.aws.amazon.com/goto/WebAPI/macie2-2020-01-01T00:00:00Z/TestCustomDataIdentifier
+// See also, https://docs.aws.amazon.com/goto/WebAPI/macie2-2020-01-01/TestCustomDataIdentifier
 func (c *Macie2) TestCustomDataIdentifierRequest(input *TestCustomDataIdentifierInput) (req *request.Request, output *TestCustomDataIdentifierOutput) {
 	op := &request.Operation{
 		Name:       opTestCustomDataIdentifier,
@@ -4752,7 +4647,7 @@ func (c *Macie2) TestCustomDataIdentifierRequest(input *TestCustomDataIdentifier
 //   Provides information about an error that occurred due to a versioning conflict
 //   for a specified resource.
 //
-// See also, https://docs.aws.amazon.com/goto/WebAPI/macie2-2020-01-01T00:00:00Z/TestCustomDataIdentifier
+// See also, https://docs.aws.amazon.com/goto/WebAPI/macie2-2020-01-01/TestCustomDataIdentifier
 func (c *Macie2) TestCustomDataIdentifier(input *TestCustomDataIdentifierInput) (*TestCustomDataIdentifierOutput, error) {
 	req, out := c.TestCustomDataIdentifierRequest(input)
 	return out, req.Send()
@@ -4769,111 +4664,6 @@ func (c *Macie2) TestCustomDataIdentifier(input *TestCustomDataIdentifierInput) 
 // for more information on using Contexts.
 func (c *Macie2) TestCustomDataIdentifierWithContext(ctx aws.Context, input *TestCustomDataIdentifierInput, opts ...request.Option) (*TestCustomDataIdentifierOutput, error) {
 	req, out := c.TestCustomDataIdentifierRequest(input)
-	req.SetContext(ctx)
-	req.ApplyOptions(opts...)
-	return out, req.Send()
-}
-
-const opUnarchiveFindings = "UnarchiveFindings"
-
-// UnarchiveFindingsRequest generates a "aws/request.Request" representing the
-// client's request for the UnarchiveFindings operation. The "output" return
-// value will be populated with the request's response once the request completes
-// successfully.
-//
-// Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
-//
-// See UnarchiveFindings for more information on using the UnarchiveFindings
-// API call, and error handling.
-//
-// This method is useful when you want to inject custom logic or configuration
-// into the SDK's request lifecycle. Such as custom headers, or retry logic.
-//
-//
-//    // Example sending a request using the UnarchiveFindingsRequest method.
-//    req, resp := client.UnarchiveFindingsRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
-//
-// See also, https://docs.aws.amazon.com/goto/WebAPI/macie2-2020-01-01T00:00:00Z/UnarchiveFindings
-func (c *Macie2) UnarchiveFindingsRequest(input *UnarchiveFindingsInput) (req *request.Request, output *UnarchiveFindingsOutput) {
-	op := &request.Operation{
-		Name:       opUnarchiveFindings,
-		HTTPMethod: "POST",
-		HTTPPath:   "/findings/unarchive",
-	}
-
-	if input == nil {
-		input = &UnarchiveFindingsInput{}
-	}
-
-	output = &UnarchiveFindingsOutput{}
-	req = c.newRequest(op, input, output)
-	req.Handlers.Unmarshal.Swap(restjson.UnmarshalHandler.Name, protocol.UnmarshalDiscardBodyHandler)
-	return
-}
-
-// UnarchiveFindings API operation for Amazon Macie 2.
-//
-// Reactivates (unarchives) one or more findings.
-//
-// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
-// with awserr.Error's Code and Message methods to get detailed information about
-// the error.
-//
-// See the AWS API reference guide for Amazon Macie 2's
-// API operation UnarchiveFindings for usage and error information.
-//
-// Returned Error Types:
-//   * ValidationException
-//   Provides information about an error that occurred due to a syntax error in
-//   a request.
-//
-//   * InternalServerException
-//   Provides information about an error that occurred due to an unknown internal
-//   server error, exception, or failure.
-//
-//   * ServiceQuotaExceededException
-//   Provides information about an error that occurred due to one or more service
-//   quotas for an account.
-//
-//   * AccessDeniedException
-//   Provides information about an error that occurred due to insufficient access
-//   to a specified resource.
-//
-//   * ResourceNotFoundException
-//   Provides information about an error that occurred because a specified resource
-//   wasn't found.
-//
-//   * ThrottlingException
-//   Provides information about an error that occurred because too many requests
-//   were sent during a certain amount of time.
-//
-//   * ConflictException
-//   Provides information about an error that occurred due to a versioning conflict
-//   for a specified resource.
-//
-// See also, https://docs.aws.amazon.com/goto/WebAPI/macie2-2020-01-01T00:00:00Z/UnarchiveFindings
-func (c *Macie2) UnarchiveFindings(input *UnarchiveFindingsInput) (*UnarchiveFindingsOutput, error) {
-	req, out := c.UnarchiveFindingsRequest(input)
-	return out, req.Send()
-}
-
-// UnarchiveFindingsWithContext is the same as UnarchiveFindings with the addition of
-// the ability to pass a context and additional request options.
-//
-// See UnarchiveFindings for details on how to use this API operation.
-//
-// The context must be non-nil and will be used for request cancellation. If
-// the context is nil a panic will occur. In the future the SDK may create
-// sub-contexts for http.Requests. See https://golang.org/pkg/context/
-// for more information on using Contexts.
-func (c *Macie2) UnarchiveFindingsWithContext(ctx aws.Context, input *UnarchiveFindingsInput, opts ...request.Option) (*UnarchiveFindingsOutput, error) {
-	req, out := c.UnarchiveFindingsRequest(input)
 	req.SetContext(ctx)
 	req.ApplyOptions(opts...)
 	return out, req.Send()
@@ -4904,7 +4694,7 @@ const opUntagResource = "UntagResource"
 //        fmt.Println(resp)
 //    }
 //
-// See also, https://docs.aws.amazon.com/goto/WebAPI/macie2-2020-01-01T00:00:00Z/UntagResource
+// See also, https://docs.aws.amazon.com/goto/WebAPI/macie2-2020-01-01/UntagResource
 func (c *Macie2) UntagResourceRequest(input *UntagResourceInput) (req *request.Request, output *UntagResourceOutput) {
 	op := &request.Operation{
 		Name:       opUntagResource,
@@ -4933,7 +4723,7 @@ func (c *Macie2) UntagResourceRequest(input *UntagResourceInput) (req *request.R
 //
 // See the AWS API reference guide for Amazon Macie 2's
 // API operation UntagResource for usage and error information.
-// See also, https://docs.aws.amazon.com/goto/WebAPI/macie2-2020-01-01T00:00:00Z/UntagResource
+// See also, https://docs.aws.amazon.com/goto/WebAPI/macie2-2020-01-01/UntagResource
 func (c *Macie2) UntagResource(input *UntagResourceInput) (*UntagResourceOutput, error) {
 	req, out := c.UntagResourceRequest(input)
 	return out, req.Send()
@@ -4980,7 +4770,7 @@ const opUpdateClassificationJob = "UpdateClassificationJob"
 //        fmt.Println(resp)
 //    }
 //
-// See also, https://docs.aws.amazon.com/goto/WebAPI/macie2-2020-01-01T00:00:00Z/UpdateClassificationJob
+// See also, https://docs.aws.amazon.com/goto/WebAPI/macie2-2020-01-01/UpdateClassificationJob
 func (c *Macie2) UpdateClassificationJobRequest(input *UpdateClassificationJobInput) (req *request.Request, output *UpdateClassificationJobOutput) {
 	op := &request.Operation{
 		Name:       opUpdateClassificationJob,
@@ -5038,7 +4828,7 @@ func (c *Macie2) UpdateClassificationJobRequest(input *UpdateClassificationJobIn
 //   Provides information about an error that occurred due to a versioning conflict
 //   for a specified resource.
 //
-// See also, https://docs.aws.amazon.com/goto/WebAPI/macie2-2020-01-01T00:00:00Z/UpdateClassificationJob
+// See also, https://docs.aws.amazon.com/goto/WebAPI/macie2-2020-01-01/UpdateClassificationJob
 func (c *Macie2) UpdateClassificationJob(input *UpdateClassificationJobInput) (*UpdateClassificationJobOutput, error) {
 	req, out := c.UpdateClassificationJobRequest(input)
 	return out, req.Send()
@@ -5085,7 +4875,7 @@ const opUpdateFindingsFilter = "UpdateFindingsFilter"
 //        fmt.Println(resp)
 //    }
 //
-// See also, https://docs.aws.amazon.com/goto/WebAPI/macie2-2020-01-01T00:00:00Z/UpdateFindingsFilter
+// See also, https://docs.aws.amazon.com/goto/WebAPI/macie2-2020-01-01/UpdateFindingsFilter
 func (c *Macie2) UpdateFindingsFilterRequest(input *UpdateFindingsFilterInput) (req *request.Request, output *UpdateFindingsFilterOutput) {
 	op := &request.Operation{
 		Name:       opUpdateFindingsFilter,
@@ -5142,7 +4932,7 @@ func (c *Macie2) UpdateFindingsFilterRequest(input *UpdateFindingsFilterInput) (
 //   Provides information about an error that occurred due to a versioning conflict
 //   for a specified resource.
 //
-// See also, https://docs.aws.amazon.com/goto/WebAPI/macie2-2020-01-01T00:00:00Z/UpdateFindingsFilter
+// See also, https://docs.aws.amazon.com/goto/WebAPI/macie2-2020-01-01/UpdateFindingsFilter
 func (c *Macie2) UpdateFindingsFilter(input *UpdateFindingsFilterInput) (*UpdateFindingsFilterOutput, error) {
 	req, out := c.UpdateFindingsFilterRequest(input)
 	return out, req.Send()
@@ -5189,7 +4979,7 @@ const opUpdateMacieSession = "UpdateMacieSession"
 //        fmt.Println(resp)
 //    }
 //
-// See also, https://docs.aws.amazon.com/goto/WebAPI/macie2-2020-01-01T00:00:00Z/UpdateMacieSession
+// See also, https://docs.aws.amazon.com/goto/WebAPI/macie2-2020-01-01/UpdateMacieSession
 func (c *Macie2) UpdateMacieSessionRequest(input *UpdateMacieSessionInput) (req *request.Request, output *UpdateMacieSessionOutput) {
 	op := &request.Operation{
 		Name:       opUpdateMacieSession,
@@ -5248,7 +5038,7 @@ func (c *Macie2) UpdateMacieSessionRequest(input *UpdateMacieSessionInput) (req 
 //   Provides information about an error that occurred due to a versioning conflict
 //   for a specified resource.
 //
-// See also, https://docs.aws.amazon.com/goto/WebAPI/macie2-2020-01-01T00:00:00Z/UpdateMacieSession
+// See also, https://docs.aws.amazon.com/goto/WebAPI/macie2-2020-01-01/UpdateMacieSession
 func (c *Macie2) UpdateMacieSession(input *UpdateMacieSessionInput) (*UpdateMacieSessionOutput, error) {
 	req, out := c.UpdateMacieSessionRequest(input)
 	return out, req.Send()
@@ -5295,7 +5085,7 @@ const opUpdateMemberSession = "UpdateMemberSession"
 //        fmt.Println(resp)
 //    }
 //
-// See also, https://docs.aws.amazon.com/goto/WebAPI/macie2-2020-01-01T00:00:00Z/UpdateMemberSession
+// See also, https://docs.aws.amazon.com/goto/WebAPI/macie2-2020-01-01/UpdateMemberSession
 func (c *Macie2) UpdateMemberSessionRequest(input *UpdateMemberSessionInput) (req *request.Request, output *UpdateMemberSessionOutput) {
 	op := &request.Operation{
 		Name:       opUpdateMemberSession,
@@ -5353,7 +5143,7 @@ func (c *Macie2) UpdateMemberSessionRequest(input *UpdateMemberSessionInput) (re
 //   Provides information about an error that occurred due to a versioning conflict
 //   for a specified resource.
 //
-// See also, https://docs.aws.amazon.com/goto/WebAPI/macie2-2020-01-01T00:00:00Z/UpdateMemberSession
+// See also, https://docs.aws.amazon.com/goto/WebAPI/macie2-2020-01-01/UpdateMemberSession
 func (c *Macie2) UpdateMemberSession(input *UpdateMemberSessionInput) (*UpdateMemberSessionOutput, error) {
 	req, out := c.UpdateMemberSessionRequest(input)
 	return out, req.Send()
@@ -5400,7 +5190,7 @@ const opUpdateOrganizationConfiguration = "UpdateOrganizationConfiguration"
 //        fmt.Println(resp)
 //    }
 //
-// See also, https://docs.aws.amazon.com/goto/WebAPI/macie2-2020-01-01T00:00:00Z/UpdateOrganizationConfiguration
+// See also, https://docs.aws.amazon.com/goto/WebAPI/macie2-2020-01-01/UpdateOrganizationConfiguration
 func (c *Macie2) UpdateOrganizationConfigurationRequest(input *UpdateOrganizationConfigurationInput) (req *request.Request, output *UpdateOrganizationConfigurationOutput) {
 	op := &request.Operation{
 		Name:       opUpdateOrganizationConfiguration,
@@ -5458,7 +5248,7 @@ func (c *Macie2) UpdateOrganizationConfigurationRequest(input *UpdateOrganizatio
 //   Provides information about an error that occurred due to a versioning conflict
 //   for a specified resource.
 //
-// See also, https://docs.aws.amazon.com/goto/WebAPI/macie2-2020-01-01T00:00:00Z/UpdateOrganizationConfiguration
+// See also, https://docs.aws.amazon.com/goto/WebAPI/macie2-2020-01-01/UpdateOrganizationConfiguration
 func (c *Macie2) UpdateOrganizationConfiguration(input *UpdateOrganizationConfigurationInput) (*UpdateOrganizationConfigurationOutput, error) {
 	req, out := c.UpdateOrganizationConfigurationRequest(input)
 	return out, req.Send()
@@ -5801,57 +5591,6 @@ func (s *ApiCallDetails) SetFirstSeen(v time.Time) *ApiCallDetails {
 func (s *ApiCallDetails) SetLastSeen(v time.Time) *ApiCallDetails {
 	s.LastSeen = &v
 	return s
-}
-
-// Specifies one or more findings to archive.
-type ArchiveFindingsInput struct {
-	_ struct{} `type:"structure"`
-
-	// FindingIds is a required field
-	FindingIds []*string `locationName:"findingIds" type:"list" required:"true"`
-}
-
-// String returns the string representation
-func (s ArchiveFindingsInput) String() string {
-	return awsutil.Prettify(s)
-}
-
-// GoString returns the string representation
-func (s ArchiveFindingsInput) GoString() string {
-	return s.String()
-}
-
-// Validate inspects the fields of the type to determine if they are valid.
-func (s *ArchiveFindingsInput) Validate() error {
-	invalidParams := request.ErrInvalidParams{Context: "ArchiveFindingsInput"}
-	if s.FindingIds == nil {
-		invalidParams.Add(request.NewErrParamRequired("FindingIds"))
-	}
-
-	if invalidParams.Len() > 0 {
-		return invalidParams
-	}
-	return nil
-}
-
-// SetFindingIds sets the FindingIds field's value.
-func (s *ArchiveFindingsInput) SetFindingIds(v []*string) *ArchiveFindingsInput {
-	s.FindingIds = v
-	return s
-}
-
-type ArchiveFindingsOutput struct {
-	_ struct{} `type:"structure"`
-}
-
-// String returns the string representation
-func (s ArchiveFindingsOutput) String() string {
-	return awsutil.Prettify(s)
-}
-
-// GoString returns the string representation
-func (s ArchiveFindingsOutput) GoString() string {
-	return s.String()
 }
 
 // Reserved for future use.
@@ -12837,57 +12576,6 @@ func (s *ThrottlingException) RequestID() string {
 	return s.RespMetadata.RequestID
 }
 
-// Specifies one or more findings to reactivate (unarchive).
-type UnarchiveFindingsInput struct {
-	_ struct{} `type:"structure"`
-
-	// FindingIds is a required field
-	FindingIds []*string `locationName:"findingIds" type:"list" required:"true"`
-}
-
-// String returns the string representation
-func (s UnarchiveFindingsInput) String() string {
-	return awsutil.Prettify(s)
-}
-
-// GoString returns the string representation
-func (s UnarchiveFindingsInput) GoString() string {
-	return s.String()
-}
-
-// Validate inspects the fields of the type to determine if they are valid.
-func (s *UnarchiveFindingsInput) Validate() error {
-	invalidParams := request.ErrInvalidParams{Context: "UnarchiveFindingsInput"}
-	if s.FindingIds == nil {
-		invalidParams.Add(request.NewErrParamRequired("FindingIds"))
-	}
-
-	if invalidParams.Len() > 0 {
-		return invalidParams
-	}
-	return nil
-}
-
-// SetFindingIds sets the FindingIds field's value.
-func (s *UnarchiveFindingsInput) SetFindingIds(v []*string) *UnarchiveFindingsInput {
-	s.FindingIds = v
-	return s
-}
-
-type UnarchiveFindingsOutput struct {
-	_ struct{} `type:"structure"`
-}
-
-// String returns the string representation
-func (s UnarchiveFindingsOutput) String() string {
-	return awsutil.Prettify(s)
-}
-
-// GoString returns the string representation
-func (s UnarchiveFindingsOutput) GoString() string {
-	return s.String()
-}
-
 // Provides information about an account-related request that hasn't been processed.
 type UnprocessedAccount struct {
 	_ struct{} `type:"structure"`
@@ -13804,6 +13492,9 @@ const (
 
 	// EncryptionTypeAwsKms is a EncryptionType enum value
 	EncryptionTypeAwsKms = "aws:kms"
+
+	// EncryptionTypeUnknown is a EncryptionType enum value
+	EncryptionTypeUnknown = "UNKNOWN"
 )
 
 // The source of an error, issue, or delay. Possible values are:
