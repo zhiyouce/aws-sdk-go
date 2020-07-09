@@ -172,6 +172,14 @@ type GlueAPI interface {
 	DeleteClassifierWithContext(aws.Context, *glue.DeleteClassifierInput, ...request.Option) (*glue.DeleteClassifierOutput, error)
 	DeleteClassifierRequest(*glue.DeleteClassifierInput) (*request.Request, *glue.DeleteClassifierOutput)
 
+	DeleteColumnStatisticsForPartition(*glue.DeleteColumnStatisticsForPartitionInput) (*glue.DeleteColumnStatisticsForPartitionOutput, error)
+	DeleteColumnStatisticsForPartitionWithContext(aws.Context, *glue.DeleteColumnStatisticsForPartitionInput, ...request.Option) (*glue.DeleteColumnStatisticsForPartitionOutput, error)
+	DeleteColumnStatisticsForPartitionRequest(*glue.DeleteColumnStatisticsForPartitionInput) (*request.Request, *glue.DeleteColumnStatisticsForPartitionOutput)
+
+	DeleteColumnStatisticsForTable(*glue.DeleteColumnStatisticsForTableInput) (*glue.DeleteColumnStatisticsForTableOutput, error)
+	DeleteColumnStatisticsForTableWithContext(aws.Context, *glue.DeleteColumnStatisticsForTableInput, ...request.Option) (*glue.DeleteColumnStatisticsForTableOutput, error)
+	DeleteColumnStatisticsForTableRequest(*glue.DeleteColumnStatisticsForTableInput) (*request.Request, *glue.DeleteColumnStatisticsForTableOutput)
+
 	DeleteConnection(*glue.DeleteConnectionInput) (*glue.DeleteConnectionOutput, error)
 	DeleteConnectionWithContext(aws.Context, *glue.DeleteConnectionInput, ...request.Option) (*glue.DeleteConnectionOutput, error)
 	DeleteConnectionRequest(*glue.DeleteConnectionInput) (*request.Request, *glue.DeleteConnectionOutput)
@@ -242,6 +250,14 @@ type GlueAPI interface {
 
 	GetClassifiersPages(*glue.GetClassifiersInput, func(*glue.GetClassifiersOutput, bool) bool) error
 	GetClassifiersPagesWithContext(aws.Context, *glue.GetClassifiersInput, func(*glue.GetClassifiersOutput, bool) bool, ...request.Option) error
+
+	GetColumnStatisticsForPartition(*glue.GetColumnStatisticsForPartitionInput) (*glue.GetColumnStatisticsForPartitionOutput, error)
+	GetColumnStatisticsForPartitionWithContext(aws.Context, *glue.GetColumnStatisticsForPartitionInput, ...request.Option) (*glue.GetColumnStatisticsForPartitionOutput, error)
+	GetColumnStatisticsForPartitionRequest(*glue.GetColumnStatisticsForPartitionInput) (*request.Request, *glue.GetColumnStatisticsForPartitionOutput)
+
+	GetColumnStatisticsForTable(*glue.GetColumnStatisticsForTableInput) (*glue.GetColumnStatisticsForTableOutput, error)
+	GetColumnStatisticsForTableWithContext(aws.Context, *glue.GetColumnStatisticsForTableInput, ...request.Option) (*glue.GetColumnStatisticsForTableOutput, error)
+	GetColumnStatisticsForTableRequest(*glue.GetColumnStatisticsForTableInput) (*request.Request, *glue.GetColumnStatisticsForTableOutput)
 
 	GetConnection(*glue.GetConnectionInput) (*glue.GetConnectionOutput, error)
 	GetConnectionWithContext(aws.Context, *glue.GetConnectionInput, ...request.Option) (*glue.GetConnectionOutput, error)
@@ -368,6 +384,10 @@ type GlueAPI interface {
 	GetPlan(*glue.GetPlanInput) (*glue.GetPlanOutput, error)
 	GetPlanWithContext(aws.Context, *glue.GetPlanInput, ...request.Option) (*glue.GetPlanOutput, error)
 	GetPlanRequest(*glue.GetPlanInput) (*request.Request, *glue.GetPlanOutput)
+
+	GetResourcePolicies(*glue.GetResourcePoliciesInput) (*glue.GetResourcePoliciesOutput, error)
+	GetResourcePoliciesWithContext(aws.Context, *glue.GetResourcePoliciesInput, ...request.Option) (*glue.GetResourcePoliciesOutput, error)
+	GetResourcePoliciesRequest(*glue.GetResourcePoliciesInput) (*request.Request, *glue.GetResourcePoliciesOutput)
 
 	GetResourcePolicy(*glue.GetResourcePolicyInput) (*glue.GetResourcePolicyOutput, error)
 	GetResourcePolicyWithContext(aws.Context, *glue.GetResourcePolicyInput, ...request.Option) (*glue.GetResourcePolicyOutput, error)
@@ -583,6 +603,14 @@ type GlueAPI interface {
 	UpdateClassifier(*glue.UpdateClassifierInput) (*glue.UpdateClassifierOutput, error)
 	UpdateClassifierWithContext(aws.Context, *glue.UpdateClassifierInput, ...request.Option) (*glue.UpdateClassifierOutput, error)
 	UpdateClassifierRequest(*glue.UpdateClassifierInput) (*request.Request, *glue.UpdateClassifierOutput)
+
+	UpdateColumnStatisticsForPartition(*glue.UpdateColumnStatisticsForPartitionInput) (*glue.UpdateColumnStatisticsForPartitionOutput, error)
+	UpdateColumnStatisticsForPartitionWithContext(aws.Context, *glue.UpdateColumnStatisticsForPartitionInput, ...request.Option) (*glue.UpdateColumnStatisticsForPartitionOutput, error)
+	UpdateColumnStatisticsForPartitionRequest(*glue.UpdateColumnStatisticsForPartitionInput) (*request.Request, *glue.UpdateColumnStatisticsForPartitionOutput)
+
+	UpdateColumnStatisticsForTable(*glue.UpdateColumnStatisticsForTableInput) (*glue.UpdateColumnStatisticsForTableOutput, error)
+	UpdateColumnStatisticsForTableWithContext(aws.Context, *glue.UpdateColumnStatisticsForTableInput, ...request.Option) (*glue.UpdateColumnStatisticsForTableOutput, error)
+	UpdateColumnStatisticsForTableRequest(*glue.UpdateColumnStatisticsForTableInput) (*request.Request, *glue.UpdateColumnStatisticsForTableOutput)
 
 	UpdateConnection(*glue.UpdateConnectionInput) (*glue.UpdateConnectionOutput, error)
 	UpdateConnectionWithContext(aws.Context, *glue.UpdateConnectionInput, ...request.Option) (*glue.UpdateConnectionOutput, error)
