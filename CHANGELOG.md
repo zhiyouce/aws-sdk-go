@@ -1,3 +1,262 @@
+Release v1.34.2 (2020-08-11)
+===
+
+### Service Client Updates
+* `service/ec2`: Updates service API
+  * This release rolls back the EC2 On-Demand Capacity Reservations (ODCRs) release 1.11.831 published on 2020-07-30, which was deployed in error.
+* `service/lambda`: Updates service API, documentation, and examples
+  * Support Managed Streaming for Kafka as an Event Source. Support retry until record expiration for Kinesis and Dynamodb streams event source mappings.
+* `service/organizations`: Updates service documentation
+  * Minor documentation update for AWS Organizations
+* `service/s3`: Updates service API, documentation, and examples
+  * Add support for in-region CopyObject and UploadPartCopy through S3 Access Points
+
+Release v1.34.1 (2020-08-10)
+===
+
+### Service Client Updates
+* `service/ec2`: Updates service API and documentation
+  * Remove CoIP Auto-Assign feature references.
+* `service/glue`: Updates service API and documentation
+  * Starting today, you can further control orchestration of your ETL workloads in AWS Glue by specifying the maximum number of concurrent runs for a Glue workflow.
+* `service/savingsplans`: Updates service API
+
+### SDK Enhancements
+* `aws/credentials/stscreds`: Add optional expiry duration to WebIdentityRoleProvider ([#3356](https://github.com/aws/aws-sdk-go/pull/3356))
+  * Adds a new optional field to the WebIdentityRoleProvider that allows you to specify the duration the assumed role credentials will be valid for.
+* `example/service/s3/putObjectWithProgress`: Fix example for file upload with progress ([#3377](https://github.com/aws/aws-sdk-go/pull/3377))
+  * Fixes [#2468](https://github.com/aws/aws-sdk-go/issues/2468) by ignoring the first read of the progress reader wrapper. Since the first read is used for signing the request, not upload progress.
+  * Updated the example to write progress inline instead of newlines.
+* `service/dynamodb/dynamodbattribute`: Fix typo in package docs ([#3446](https://github.com/aws/aws-sdk-go/pull/3446))
+  * Fixes typo in dynamodbattribute package docs.
+
+Release v1.34.0 (2020-08-07)
+===
+
+### Service Client Updates
+* `service/glue`: Updates service API and documentation
+  * AWS Glue now adds support for Network connection type enabling you to access resources inside your VPC using Glue crawlers and Glue ETL jobs.
+* `service/organizations`: Updates service API and documentation
+  * Documentation updates for some new error reasons.
+* `service/s3`: Updates service documentation and examples
+  * Updates Amazon S3 API reference documentation.
+* `service/sms`: Updates service API and documentation
+  * In this release, AWS Server Migration Service (SMS) has added new features: 1. APIs to work with application and instance level validation 2. Import application catalog from AWS Application Discovery Service 3. For an application you can start on-demand replication
+
+### SDK Features
+* `service/s3/s3crypto`: Updates to the Amazon S3 Encryption Client - This change includes fixes for issues that were reported by Sophie Schmieg from the Google ISE team, and for issues that were discovered by AWS Cryptography.
+
+Release v1.33.21 (2020-08-06)
+===
+
+### Service Client Updates
+* `service/ec2`: Updates service API, documentation, and paginators
+  * This release supports Wavelength resources, including carrier gateways, and carrier IP addresses.
+* `service/lex-models`: Updates service API and documentation
+* `service/personalize`: Updates service API and documentation
+* `service/personalize-events`: Updates service API and documentation
+* `service/personalize-runtime`: Updates service API and documentation
+* `service/runtime.lex`: Updates service API and documentation
+
+Release v1.33.20 (2020-08-05)
+===
+
+### Service Client Updates
+* `service/appsync`: Updates service API and documentation
+* `service/fsx`: Updates service documentation
+* `service/resourcegroupstaggingapi`: Updates service documentation
+  * Documentation updates for the Resource Group Tagging API namespace.
+* `service/sns`: Updates service documentation
+  * Documentation updates for SNS.
+* `service/transcribe`: Updates service API, documentation, and paginators
+
+Release v1.33.19 (2020-08-04)
+===
+
+### Service Client Updates
+* `service/health`: Updates service documentation
+  * Documentation updates for health
+
+Release v1.33.18 (2020-08-03)
+===
+
+### Service Client Updates
+* `service/ssm`: Updates service waiters and paginators
+  * Adds a waiter for CommandExecuted and paginators for various other APIs.
+
+Release v1.33.17 (2020-07-31)
+===
+
+### Service Client Updates
+* `service/chime`: Updates service API
+  * This release increases the CreateMeetingWithAttendee max attendee limit to 10.
+* `service/personalize-runtime`: Updates service API and documentation
+* `service/resourcegroupstaggingapi`: Updates service API and documentation
+  * Updates to the list of services supported by this API.
+* `service/storagegateway`: Updates service API and documentation
+  * Add support for gateway VM deprecation dates
+* `service/wafv2`: Updates service API and documentation
+
+Release v1.33.16 (2020-07-30)
+===
+
+### Service Client Updates
+* `service/cloudfront`: Updates service documentation
+  * Documentation updates for CloudFront
+* `service/codebuild`: Updates service API, documentation, and paginators
+  * Adding support for BuildBatch, and CodeCoverage APIs. BuildBatch allows you to model your project environment in source, and helps start multiple builds with a single API call. CodeCoverage allows you to track your code coverage using AWS CodeBuild.
+* `service/ec2`: Updates service API
+  * EC2 On-Demand Capacity Reservations now adds support to bring your own licenses (BYOL) of Windows operating system to launch EC2 instances.
+* `service/guardduty`: Updates service API, documentation, and paginators
+  * GuardDuty can now provide detailed cost metrics broken down by account, data source, and S3 resources, based on the past 30 days of usage.  This new feature also supports viewing cost metrics for all member accounts as a GuardDuty master.
+* `service/kafka`: Updates service API and documentation
+* `service/organizations`: Updates service documentation
+  * Documentation updates for AWS Organizations
+* `service/resource-groups`: Updates service documentation
+* `service/servicecatalog`: Updates service API and documentation
+  * This release adds support for ProvisionProduct, UpdateProvisionedProduct & DescribeProvisioningParameters by product name, provisioning artifact name and path name. In addition DescribeProvisioningParameters now returns a list of provisioning artifact outputs.
+* `service/sesv2`: Updates service API, documentation, and paginators
+
+Release v1.33.15 (2020-07-29)
+===
+
+### Service Client Updates
+* `service/ec2`: Updates service API, documentation, and paginators
+  * Adding support to target EC2 On-Demand Capacity Reservations within an AWS Resource Group to launch EC2 instances.
+* `service/ecr`: Updates service API and documentation
+  * This release adds support for encrypting the contents of your Amazon ECR repository with customer master keys (CMKs) stored in AWS Key Management Service.
+* `service/firehose`: Updates service API and documentation
+  * This release includes a new Kinesis Data Firehose feature that supports data delivery to Https endpoint and to partners. You can now use Kinesis Data Firehose to ingest real-time data and deliver to Https endpoint and partners in a serverless, reliable, and salable manner.
+* `service/guardduty`: Updates service API and documentation
+  * GuardDuty now supports S3 Data Events as a configurable data source type. This feature expands GuardDuty's monitoring scope to include S3 data plane operations, such as GetObject and PutObject. This data source is optional and can be enabled or disabled at anytime. Accounts already using GuardDuty must first enable the new feature to use it; new accounts will be enabled by default. GuardDuty masters can configure this data source for individual member accounts and GuardDuty masters associated through AWS Organizations can automatically enable the data source in member accounts.
+* `service/resource-groups`: Updates service API and documentation
+* `service/servicediscovery`: Updates service documentation
+
+Release v1.33.14 (2020-07-28)
+===
+
+### Service Client Updates
+* `service/autoscaling`: Updates service API and documentation
+  * Now you can enable Instance Metadata Service Version 2 (IMDSv2) or disable the instance metadata endpoint with Launch Configurations.
+* `service/ec2`: Updates service API and documentation
+  * Introduces support for tag-on-create capability for the following APIs: CreateVpnConnection, CreateVpnGateway, and CreateCustomerGateway. A user can now add tags while creating these resources. For further detail, please see AWS Tagging Strategies.
+* `service/imagebuilder`: Updates service API and documentation
+* `service/ivs`: Updates service API and documentation
+* `service/medialive`: Updates service API and documentation
+  * AWS Elemental MediaLive now supports several new features: EBU-TT-D captions in Microsoft Smooth outputs; interlaced video in HEVC outputs; video noise reduction (using temporal filtering) in HEVC outputs.
+* `service/rds`: Updates service documentation
+  * Adds reporting of manual cluster snapshot quota to DescribeAccountAttributes API
+* `service/securityhub`: Updates service API and documentation
+
+Release v1.33.13 (2020-07-27)
+===
+
+### Service Client Updates
+* `service/datasync`: Updates service API and documentation
+* `service/dms`: Updates service API, documentation, and paginators
+  * Basic endpoint settings for relational databases, Preflight validation API.
+* `service/ec2`: Updates service API
+  * m6gd, c6gd, r6gd instances are powered by AWS Graviton2 processors and support local NVMe instance storage
+* `service/frauddetector`: Updates service API and documentation
+* `service/glue`: Updates service API and documentation
+  * Add ability to manually resume workflows in AWS Glue providing customers further control over the orchestration of ETL workloads.
+* `service/ssm`: Updates service documentation
+  * Assorted doc ticket-fix updates for Systems Manager.
+
+Release v1.33.12 (2020-07-24)
+===
+
+### Service Client Updates
+* `service/frauddetector`: Updates service API and documentation
+* `service/fsx`: Updates service documentation
+* `service/kendra`: Updates service API and documentation
+  * Amazon Kendra now supports sorting query results based on document attributes. Amazon Kendra also introduced an option to enclose table and column names with double quotes for database data sources.
+* `service/macie2`: Updates service API and documentation
+* `service/mediaconnect`: Updates service API and documentation
+* `service/mediapackage`: Updates service API and documentation
+  * The release adds daterange as a new ad marker option. This option enables MediaPackage to insert EXT-X-DATERANGE tags in HLS and CMAF manifests. The EXT-X-DATERANGE tag is used to signal ad and program transition events.
+* `service/monitoring`: Updates service API and documentation
+  * AWS CloudWatch ListMetrics now supports an optional parameter (RecentlyActive) to filter results by only metrics that have received new datapoints in the past 3 hours. This enables more targeted metric data retrieval through the Get APIs
+* `service/mq`: Updates service API, documentation, and paginators
+  * Amazon MQ now supports LDAP (Lightweight Directory Access Protocol), providing authentication and authorization of Amazon MQ users via a customer designated LDAP server.
+* `service/sagemaker`: Updates service API, documentation, and paginators
+  * Sagemaker Ground Truth:Added support for OIDC (OpenID Connect) to authenticate workers via their own identity provider instead of through Amazon Cognito. This release adds new APIs (CreateWorkforce, DeleteWorkforce, and ListWorkforces) to SageMaker Ground Truth service.  Sagemaker Neo: Added support for detailed target device description by using TargetPlatform fields - OS, architecture, and accelerator. Added support for additional compilation parameters by using JSON field CompilerOptions.  Sagemaker Search: SageMaker Search supports transform job details in trial components.
+
+### SDK Bugs
+* `service/s3/s3crypto`: Fix client's temporary file buffer error on retry ([#3344](https://github.com/aws/aws-sdk-go/pull/3344))
+  * Fixes the Crypto client's temporary file buffer cleanup returning an error when the request is retried.
+
+Release v1.33.11 (2020-07-23)
+===
+
+### Service Client Updates
+* `service/config`: Updates service API and documentation
+* `service/directconnect`: Updates service documentation
+  * Documentation updates for AWS Direct Connect
+* `service/fsx`: Updates service API and documentation
+* `service/glue`: Updates service API and documentation
+  * Added new ConnectionProperties: "KAFKA_SSL_ENABLED" (to toggle SSL connections) and "KAFKA_CUSTOM_CERT" (import CA certificate file)
+* `service/lightsail`: Updates service API and documentation
+  * This release adds support for Amazon Lightsail content delivery network (CDN) distributions and SSL/TLS certificates.
+* `service/workspaces`: Updates service API and documentation
+  * Added UpdateWorkspaceImagePermission API to share Amazon WorkSpaces images across AWS accounts.
+
+Release v1.33.10 (2020-07-22)
+===
+
+### Service Client Updates
+* `service/medialive`: Updates service API and documentation
+  * The AWS Elemental MediaLive APIs and SDKs now support the ability to get thumbnails for MediaLive devices that are attached or not attached to a channel. Previously, this thumbnail feature was available only on the console.
+* `service/quicksight`: Updates service API, documentation, and paginators
+  * New API operations - GetSessionEmbedUrl, CreateNamespace, DescribeNamespace, ListNamespaces, DeleteNamespace, DescribeAccountSettings, UpdateAccountSettings, CreateAccountCustomization, DescribeAccountCustomization, UpdateAccountCustomization, DeleteAccountCustomization. Modified API operations to support custom permissions restrictions - RegisterUser, UpdateUser, UpdateDashboardPermissions
+
+### SDK Enhancements
+* `example/aws/request/httptrace`: Update example with more metrics ([#3436](https://github.com/aws/aws-sdk-go/pull/3436))
+  * Updates the tracing example to include additional metrics such as SDKs request handlers, and support multiple request attempts.
+
+Release v1.33.9 (2020-07-21)
+===
+
+### Service Client Updates
+* `service/codeguruprofiler`: Updates service API and documentation
+
+Release v1.33.8 (2020-07-20)
+===
+
+### Service Client Updates
+* `service/cloudfront`: Adds new service
+  * CloudFront adds support for cache policies and origin request policies. With these new policies, you can now more granularly control the query string, header, and cookie values that are included in the cache key and in requests that CloudFront sends to your origin.
+* `service/codebuild`: Updates service API and documentation
+  * AWS CodeBuild adds support for Session Manager and Windows 2019 Environment type
+* `service/ec2`: Updates service API and documentation
+  * Added support for tag-on-create for CreateVpcPeeringConnection and CreateRouteTable. You can now specify tags when creating any of these resources. For more information about tagging, see AWS Tagging Strategies. Add poolArn to the response of DescribeCoipPools.
+* `service/fms`: Updates service API and documentation
+* `service/frauddetector`: Updates service API, documentation, and paginators
+* `service/groundstation`: Updates service API and documentation
+* `service/rds`: Updates service API and documentation
+  * Add a new SupportsParallelQuery output field to DescribeDBEngineVersions. This field shows whether the engine version supports parallelquery. Add a new SupportsGlobalDatabases output field to DescribeDBEngineVersions and DescribeOrderableDBInstanceOptions. This field shows whether global database is supported by engine version or the combination of engine version and instance class.
+
+Release v1.33.7 (2020-07-17)
+===
+
+### Service Client Updates
+* `service/application-autoscaling`: Updates service documentation
+* `service/appsync`: Updates service documentation
+* `service/connect`: Updates service API and documentation
+* `service/ec2`: Updates service API and documentation
+  * Documentation updates for EC2
+* `service/elasticbeanstalk`: Updates service waiters and paginators
+  * Add waiters for `EnvironmentExists`, `EnvironmentUpdated`, and `EnvironmentTerminated`. Add paginators for `DescribeEnvironmentManagedActionHistory` and `ListPlatformVersions`.
+* `service/macie2`: Updates service API, documentation, and paginators
+
+### SDK Enhancements
+* `service/s3/s3manager`: Clarify documentation and behavior of GetBucketRegion ([#3428](https://github.com/aws/aws-sdk-go/pull/3428))
+  * Updates the documentation for GetBucketRegion's behavior with regard to default configuration for path style addressing. Provides examples how to override this behavior.
+  * Updates the GetBucketRegion utility to not require a region hint when the session or client was configured with a custom endpoint URL.
+  * Related to [#3115](https://github.com/aws/aws-sdk-go/issues/3115)
+* `service/s3`: Add failsafe handling for unknown stream messages
+  * Adds failsafe handling for receiving unknown stream messages from an API. A `<streamName>UnknownEvent` type will encapsulate the unknown message received from the API. Where `<streamName>` is the name of the API's stream, (e.g. S3's `SelectObjectContentEventStreamUnknownEvent`).
+
 Release v1.33.6 (2020-07-15)
 ===
 
@@ -6028,7 +6287,7 @@ Release v1.14.19 (2018-07-03)
   * Feature 1 - On-demand cluster release version - When Amazon Redshift releases a new cluster version, you can choose to upgrade to that version immediately instead of waiting until your next maintenance window. You can also choose to roll back to a previous version. The two new APIs added for managing cluster release version are - ModifyClusterDbRevision, DescribeClusterDbRevisions. Feature 2 - Upgradeable reserved instance - You can now exchange one Reserved Instance for a new Reserved Instance with no changes to the terms of your existing Reserved Instance (term, payment type, or number of nodes). The two new APIs added for managing these upgrades are - AcceptReservedNodeExchange, GetReservedNodeExchangeOfferings.
 
 ### SDK Enhancements
-* `private/model/api`: Add EventStream support over RPC protocl ([#1998](https://github.com/aws/aws-sdk-go/pull/1998))
+* `private/model/api`: Add EventStream support over RPC protocol ([#1998](https://github.com/aws/aws-sdk-go/pull/1998))
   * Adds support for EventStream over JSON PRC protocol. This adds support for the EventStream's initial-response event, EventStream headers, and EventStream modeled exceptions. Also replaces the hand written tests with generated tests for EventStream usage.
 
 Release v1.14.18 (2018-07-02)
@@ -6238,7 +6497,7 @@ Release v1.14.0 (2018-06-04)
 
 ### SDK Features
 * Add support for EventStream based APIs (S3 SelectObjectContent) ([#1941](https://github.com/aws/aws-sdk-go/pull/1941))
-  * Adds support for EventStream asynchronous APIs such as S3 SelectObjectContents API. This API allows your application to receiving multiple events asynchronously from the API response. Your application recieves these events from a channel on the API response.
+  * Adds support for EventStream asynchronous APIs such as S3 SelectObjectContents API. This API allows your application to receiving multiple events asynchronously from the API response. Your application receives these events from a channel on the API response.
   * See PR [#1941](https://github.com/aws/aws-sdk-go/pull/1941) for example.
   * Fixes [#1895](https://github.com/aws/aws-sdk-go/issues/1895)
 
@@ -8813,7 +9072,7 @@ Release v1.8.8 (2017-04-04)
 
 ### Service Client Updates
 * `service/cloudwatch`: Updates service API, documentation, and paginators
-  * Amazon Web Services announced the immediate availability of two additional alarm configuration rules for Amazon CloudWatch Alarms. The first rule is for configuring missing data treatment. Customers have the options to treat missing data as alarm threshold breached, alarm threshold not breached, maintain alarm state and the current default treatment. The second rule is for alarms based on percentiles metrics that can trigger unnecassarily if the percentile is calculated from a small number of samples. The new rule can treat percentiles with low sample counts as same as missing data. If the first rule is enabled, the same treatment will be applied when an alarm encounters a percentile with low sample counts.
+  * Amazon Web Services announced the immediate availability of two additional alarm configuration rules for Amazon CloudWatch Alarms. The first rule is for configuring missing data treatment. Customers have the options to treat missing data as alarm threshold breached, alarm threshold not breached, maintain alarm state and the current default treatment. The second rule is for alarms based on percentiles metrics that can trigger unnecessarily if the percentile is calculated from a small number of samples. The new rule can treat percentiles with low sample counts as same as missing data. If the first rule is enabled, the same treatment will be applied when an alarm encounters a percentile with low sample counts.
 
 Release v1.8.7 (2017-04-03)
 ===
@@ -8941,7 +9200,7 @@ SDK Features
 SDK Enhancements
 ---
 * `aws/signer/v4`: Adds support for unsigned payload signer config (#1130)
-  * Adds configuration option to the v4.Signer to specify the request's body should not be signed. This will only correclty function on services that support unsigned payload. e.g. S3, Glacier.
+  * Adds configuration option to the v4.Signer to specify the request's body should not be signed. This will only correctly function on services that support unsigned payload. e.g. S3, Glacier.
 
 SDK Bug Fixes
 ---

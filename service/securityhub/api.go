@@ -4493,6 +4493,100 @@ func (c *SecurityHub) UpdateInsightWithContext(ctx aws.Context, input *UpdateIns
 	return out, req.Send()
 }
 
+const opUpdateSecurityHubConfiguration = "UpdateSecurityHubConfiguration"
+
+// UpdateSecurityHubConfigurationRequest generates a "aws/request.Request" representing the
+// client's request for the UpdateSecurityHubConfiguration operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See UpdateSecurityHubConfiguration for more information on using the UpdateSecurityHubConfiguration
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the UpdateSecurityHubConfigurationRequest method.
+//    req, resp := client.UpdateSecurityHubConfigurationRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/securityhub-2018-10-26/UpdateSecurityHubConfiguration
+func (c *SecurityHub) UpdateSecurityHubConfigurationRequest(input *UpdateSecurityHubConfigurationInput) (req *request.Request, output *UpdateSecurityHubConfigurationOutput) {
+	op := &request.Operation{
+		Name:       opUpdateSecurityHubConfiguration,
+		HTTPMethod: "PATCH",
+		HTTPPath:   "/accounts",
+	}
+
+	if input == nil {
+		input = &UpdateSecurityHubConfigurationInput{}
+	}
+
+	output = &UpdateSecurityHubConfigurationOutput{}
+	req = c.newRequest(op, input, output)
+	req.Handlers.Unmarshal.Swap(restjson.UnmarshalHandler.Name, protocol.UnmarshalDiscardBodyHandler)
+	return
+}
+
+// UpdateSecurityHubConfiguration API operation for AWS SecurityHub.
+//
+// Updates configuration options for Security Hub.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for AWS SecurityHub's
+// API operation UpdateSecurityHubConfiguration for usage and error information.
+//
+// Returned Error Types:
+//   * InternalException
+//   Internal server error.
+//
+//   * InvalidInputException
+//   The request was rejected because you supplied an invalid or out-of-range
+//   value for an input parameter.
+//
+//   * InvalidAccessException
+//   AWS Security Hub isn't enabled for the account used to make this request.
+//
+//   * LimitExceededException
+//   The request was rejected because it attempted to create resources beyond
+//   the current AWS account limits. The error code describes the limit exceeded.
+//
+//   * ResourceNotFoundException
+//   The request was rejected because we can't find the specified resource.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/securityhub-2018-10-26/UpdateSecurityHubConfiguration
+func (c *SecurityHub) UpdateSecurityHubConfiguration(input *UpdateSecurityHubConfigurationInput) (*UpdateSecurityHubConfigurationOutput, error) {
+	req, out := c.UpdateSecurityHubConfigurationRequest(input)
+	return out, req.Send()
+}
+
+// UpdateSecurityHubConfigurationWithContext is the same as UpdateSecurityHubConfiguration with the addition of
+// the ability to pass a context and additional request options.
+//
+// See UpdateSecurityHubConfiguration for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *SecurityHub) UpdateSecurityHubConfigurationWithContext(ctx aws.Context, input *UpdateSecurityHubConfigurationInput, opts ...request.Option) (*UpdateSecurityHubConfigurationOutput, error) {
+	req, out := c.UpdateSecurityHubConfigurationRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
 const opUpdateStandardsControl = "UpdateStandardsControl"
 
 // UpdateStandardsControlRequest generates a "aws/request.Request" representing the
@@ -8560,6 +8654,9 @@ type AwsSecurityFindingFilters struct {
 	VerificationState []*StringFilter `type:"list"`
 
 	// The workflow state of a finding.
+	//
+	// Note that this field is deprecated. To search for a finding based on its
+	// workflow status, use WorkflowStatus.
 	WorkflowState []*StringFilter `type:"list"`
 
 	// The status of the investigation into a finding. Allowed values are the following.
@@ -10880,6 +10977,13 @@ func (s *DescribeHubInput) SetHubArn(v string) *DescribeHubInput {
 type DescribeHubOutput struct {
 	_ struct{} `type:"structure"`
 
+	// Whether to automatically enable new controls when they are added to standards
+	// that are enabled.
+	//
+	// If set to true, then new controls for enabled standards are enabled automatically.
+	// If set to false, then new controls are not enabled.
+	AutoEnableControls *bool `type:"boolean"`
+
 	// The ARN of the Hub resource that was retrieved.
 	HubArn *string `type:"string"`
 
@@ -10895,6 +10999,12 @@ func (s DescribeHubOutput) String() string {
 // GoString returns the string representation
 func (s DescribeHubOutput) GoString() string {
 	return s.String()
+}
+
+// SetAutoEnableControls sets the AutoEnableControls field's value.
+func (s *DescribeHubOutput) SetAutoEnableControls(v bool) *DescribeHubOutput {
+	s.AutoEnableControls = &v
+	return s
 }
 
 // SetHubArn sets the HubArn field's value.
@@ -11541,6 +11651,9 @@ type GetFindingsInput struct {
 
 	// The finding attributes used to define a condition to filter the returned
 	// findings.
+	//
+	// Note that in the available filter fields, WorkflowState is deprecated. To
+	// search for a finding based on its workflow status, use WorkflowStatus.
 	Filters *AwsSecurityFindingFilters `type:"structure"`
 
 	// The maximum number of findings to return.
@@ -14357,6 +14470,15 @@ func (s *Result) SetProcessingResult(v string) *Result {
 }
 
 // The severity of the finding.
+//
+// The finding provider can provide the initial severity, but cannot update
+// it after that. The severity can only be updated by a master account. It cannot
+// be updated by a member account.
+//
+// The finding must have either Label or Normalized populated. If only one of
+// these attributes is populated, then Security Hub automatically populates
+// the other one. If neither attribute is populated, then the finding is invalid.
+// Label is the preferred attribute.
 type Severity struct {
 	_ struct{} `type:"structure"`
 
@@ -14371,12 +14493,8 @@ type Severity struct {
 	//    * HIGH - The issue must be addressed as a priority.
 	//
 	//    * CRITICAL - The issue must be remediated immediately to avoid it escalating.
-	Label *string `type:"string" enum:"SeverityLabel"`
-
-	// Deprecated. This attribute is being deprecated. Instead of providing Normalized,
-	// provide Label.
 	//
-	// If you provide Normalized and do not provide Label, Label is set automatically
+	// If you provide Normalized and do not provide Label, then Label is set automatically
 	// as follows.
 	//
 	//    * 0 - INFORMATIONAL
@@ -14388,6 +14506,23 @@ type Severity struct {
 	//    * 70–89 - HIGH
 	//
 	//    * 90–100 - CRITICAL
+	Label *string `type:"string" enum:"SeverityLabel"`
+
+	// Deprecated. The normalized severity of a finding. This attribute is being
+	// deprecated. Instead of providing Normalized, provide Label.
+	//
+	// If you provide Label and do not provide Normalized, then Normalized is set
+	// automatically as follows.
+	//
+	//    * INFORMATIONAL - 0
+	//
+	//    * LOW - 1
+	//
+	//    * MEDIUM - 40
+	//
+	//    * HIGH - 70
+	//
+	//    * CRITICAL - 90
 	Normalized *int64 `type:"integer"`
 
 	// The native severity from the finding product that generated the finding.
@@ -15401,6 +15536,47 @@ func (s UpdateInsightOutput) GoString() string {
 	return s.String()
 }
 
+type UpdateSecurityHubConfigurationInput struct {
+	_ struct{} `type:"structure"`
+
+	// Whether to automatically enable new controls when they are added to standards
+	// that are enabled.
+	//
+	// By default, this is set to true, and new controls are enabled automatically.
+	// To not automatically enable new controls, set this to false.
+	AutoEnableControls *bool `type:"boolean"`
+}
+
+// String returns the string representation
+func (s UpdateSecurityHubConfigurationInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s UpdateSecurityHubConfigurationInput) GoString() string {
+	return s.String()
+}
+
+// SetAutoEnableControls sets the AutoEnableControls field's value.
+func (s *UpdateSecurityHubConfigurationInput) SetAutoEnableControls(v bool) *UpdateSecurityHubConfigurationInput {
+	s.AutoEnableControls = &v
+	return s
+}
+
+type UpdateSecurityHubConfigurationOutput struct {
+	_ struct{} `type:"structure"`
+}
+
+// String returns the string representation
+func (s UpdateSecurityHubConfigurationOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s UpdateSecurityHubConfigurationOutput) GoString() string {
+	return s.String()
+}
+
 type UpdateStandardsControlInput struct {
 	_ struct{} `type:"structure"`
 
@@ -15808,6 +15984,14 @@ const (
 	AwsIamAccessKeyStatusInactive = "Inactive"
 )
 
+// AwsIamAccessKeyStatus_Values returns all elements of the AwsIamAccessKeyStatus enum
+func AwsIamAccessKeyStatus_Values() []string {
+	return []string{
+		AwsIamAccessKeyStatusActive,
+		AwsIamAccessKeyStatusInactive,
+	}
+}
+
 const (
 	// ComplianceStatusPassed is a ComplianceStatus enum value
 	ComplianceStatusPassed = "PASSED"
@@ -15822,6 +16006,16 @@ const (
 	ComplianceStatusNotAvailable = "NOT_AVAILABLE"
 )
 
+// ComplianceStatus_Values returns all elements of the ComplianceStatus enum
+func ComplianceStatus_Values() []string {
+	return []string{
+		ComplianceStatusPassed,
+		ComplianceStatusWarning,
+		ComplianceStatusFailed,
+		ComplianceStatusNotAvailable,
+	}
+}
+
 const (
 	// ControlStatusEnabled is a ControlStatus enum value
 	ControlStatusEnabled = "ENABLED"
@@ -15830,10 +16024,25 @@ const (
 	ControlStatusDisabled = "DISABLED"
 )
 
+// ControlStatus_Values returns all elements of the ControlStatus enum
+func ControlStatus_Values() []string {
+	return []string{
+		ControlStatusEnabled,
+		ControlStatusDisabled,
+	}
+}
+
 const (
 	// DateRangeUnitDays is a DateRangeUnit enum value
 	DateRangeUnitDays = "DAYS"
 )
+
+// DateRangeUnit_Values returns all elements of the DateRangeUnit enum
+func DateRangeUnit_Values() []string {
+	return []string{
+		DateRangeUnitDays,
+	}
+}
 
 const (
 	// IntegrationTypeSendFindingsToSecurityHub is a IntegrationType enum value
@@ -15842,6 +16051,14 @@ const (
 	// IntegrationTypeReceiveFindingsFromSecurityHub is a IntegrationType enum value
 	IntegrationTypeReceiveFindingsFromSecurityHub = "RECEIVE_FINDINGS_FROM_SECURITY_HUB"
 )
+
+// IntegrationType_Values returns all elements of the IntegrationType enum
+func IntegrationType_Values() []string {
+	return []string{
+		IntegrationTypeSendFindingsToSecurityHub,
+		IntegrationTypeReceiveFindingsFromSecurityHub,
+	}
+}
 
 const (
 	// MalwareStateObserved is a MalwareState enum value
@@ -15853,6 +16070,15 @@ const (
 	// MalwareStateRemoved is a MalwareState enum value
 	MalwareStateRemoved = "REMOVED"
 )
+
+// MalwareState_Values returns all elements of the MalwareState enum
+func MalwareState_Values() []string {
+	return []string{
+		MalwareStateObserved,
+		MalwareStateRemovalFailed,
+		MalwareStateRemoved,
+	}
+}
 
 const (
 	// MalwareTypeAdware is a MalwareType enum value
@@ -15901,10 +16127,38 @@ const (
 	MalwareTypeWorm = "WORM"
 )
 
+// MalwareType_Values returns all elements of the MalwareType enum
+func MalwareType_Values() []string {
+	return []string{
+		MalwareTypeAdware,
+		MalwareTypeBlendedThreat,
+		MalwareTypeBotnetAgent,
+		MalwareTypeCoinMiner,
+		MalwareTypeExploitKit,
+		MalwareTypeKeylogger,
+		MalwareTypeMacro,
+		MalwareTypePotentiallyUnwanted,
+		MalwareTypeSpyware,
+		MalwareTypeRansomware,
+		MalwareTypeRemoteAccess,
+		MalwareTypeRootkit,
+		MalwareTypeTrojan,
+		MalwareTypeVirus,
+		MalwareTypeWorm,
+	}
+}
+
 const (
 	// MapFilterComparisonEquals is a MapFilterComparison enum value
 	MapFilterComparisonEquals = "EQUALS"
 )
+
+// MapFilterComparison_Values returns all elements of the MapFilterComparison enum
+func MapFilterComparison_Values() []string {
+	return []string{
+		MapFilterComparisonEquals,
+	}
+}
 
 const (
 	// NetworkDirectionIn is a NetworkDirection enum value
@@ -15913,6 +16167,14 @@ const (
 	// NetworkDirectionOut is a NetworkDirection enum value
 	NetworkDirectionOut = "OUT"
 )
+
+// NetworkDirection_Values returns all elements of the NetworkDirection enum
+func NetworkDirection_Values() []string {
+	return []string{
+		NetworkDirectionIn,
+		NetworkDirectionOut,
+	}
+}
 
 const (
 	// PartitionAws is a Partition enum value
@@ -15925,6 +16187,15 @@ const (
 	PartitionAwsUsGov = "aws-us-gov"
 )
 
+// Partition_Values returns all elements of the Partition enum
+func Partition_Values() []string {
+	return []string{
+		PartitionAws,
+		PartitionAwsCn,
+		PartitionAwsUsGov,
+	}
+}
+
 const (
 	// RecordStateActive is a RecordState enum value
 	RecordStateActive = "ACTIVE"
@@ -15932,6 +16203,14 @@ const (
 	// RecordStateArchived is a RecordState enum value
 	RecordStateArchived = "ARCHIVED"
 )
+
+// RecordState_Values returns all elements of the RecordState enum
+func RecordState_Values() []string {
+	return []string{
+		RecordStateActive,
+		RecordStateArchived,
+	}
+}
 
 const (
 	// SeverityLabelInformational is a SeverityLabel enum value
@@ -15950,6 +16229,17 @@ const (
 	SeverityLabelCritical = "CRITICAL"
 )
 
+// SeverityLabel_Values returns all elements of the SeverityLabel enum
+func SeverityLabel_Values() []string {
+	return []string{
+		SeverityLabelInformational,
+		SeverityLabelLow,
+		SeverityLabelMedium,
+		SeverityLabelHigh,
+		SeverityLabelCritical,
+	}
+}
+
 const (
 	// SeverityRatingLow is a SeverityRating enum value
 	SeverityRatingLow = "LOW"
@@ -15964,6 +16254,16 @@ const (
 	SeverityRatingCritical = "CRITICAL"
 )
 
+// SeverityRating_Values returns all elements of the SeverityRating enum
+func SeverityRating_Values() []string {
+	return []string{
+		SeverityRatingLow,
+		SeverityRatingMedium,
+		SeverityRatingHigh,
+		SeverityRatingCritical,
+	}
+}
+
 const (
 	// SortOrderAsc is a SortOrder enum value
 	SortOrderAsc = "asc"
@@ -15971,6 +16271,14 @@ const (
 	// SortOrderDesc is a SortOrder enum value
 	SortOrderDesc = "desc"
 )
+
+// SortOrder_Values returns all elements of the SortOrder enum
+func SortOrder_Values() []string {
+	return []string{
+		SortOrderAsc,
+		SortOrderDesc,
+	}
+}
 
 const (
 	// StandardsStatusPending is a StandardsStatus enum value
@@ -15989,6 +16297,17 @@ const (
 	StandardsStatusIncomplete = "INCOMPLETE"
 )
 
+// StandardsStatus_Values returns all elements of the StandardsStatus enum
+func StandardsStatus_Values() []string {
+	return []string{
+		StandardsStatusPending,
+		StandardsStatusReady,
+		StandardsStatusFailed,
+		StandardsStatusDeleting,
+		StandardsStatusIncomplete,
+	}
+}
+
 const (
 	// StringFilterComparisonEquals is a StringFilterComparison enum value
 	StringFilterComparisonEquals = "EQUALS"
@@ -15996,6 +16315,14 @@ const (
 	// StringFilterComparisonPrefix is a StringFilterComparison enum value
 	StringFilterComparisonPrefix = "PREFIX"
 )
+
+// StringFilterComparison_Values returns all elements of the StringFilterComparison enum
+func StringFilterComparison_Values() []string {
+	return []string{
+		StringFilterComparisonEquals,
+		StringFilterComparisonPrefix,
+	}
+}
 
 const (
 	// ThreatIntelIndicatorCategoryBackdoor is a ThreatIntelIndicatorCategory enum value
@@ -16016,6 +16343,18 @@ const (
 	// ThreatIntelIndicatorCategoryKeylogger is a ThreatIntelIndicatorCategory enum value
 	ThreatIntelIndicatorCategoryKeylogger = "KEYLOGGER"
 )
+
+// ThreatIntelIndicatorCategory_Values returns all elements of the ThreatIntelIndicatorCategory enum
+func ThreatIntelIndicatorCategory_Values() []string {
+	return []string{
+		ThreatIntelIndicatorCategoryBackdoor,
+		ThreatIntelIndicatorCategoryCardStealer,
+		ThreatIntelIndicatorCategoryCommandAndControl,
+		ThreatIntelIndicatorCategoryDropSite,
+		ThreatIntelIndicatorCategoryExploitSite,
+		ThreatIntelIndicatorCategoryKeylogger,
+	}
+}
 
 const (
 	// ThreatIntelIndicatorTypeDomain is a ThreatIntelIndicatorType enum value
@@ -16052,6 +16391,23 @@ const (
 	ThreatIntelIndicatorTypeUrl = "URL"
 )
 
+// ThreatIntelIndicatorType_Values returns all elements of the ThreatIntelIndicatorType enum
+func ThreatIntelIndicatorType_Values() []string {
+	return []string{
+		ThreatIntelIndicatorTypeDomain,
+		ThreatIntelIndicatorTypeEmailAddress,
+		ThreatIntelIndicatorTypeHashMd5,
+		ThreatIntelIndicatorTypeHashSha1,
+		ThreatIntelIndicatorTypeHashSha256,
+		ThreatIntelIndicatorTypeHashSha512,
+		ThreatIntelIndicatorTypeIpv4Address,
+		ThreatIntelIndicatorTypeIpv6Address,
+		ThreatIntelIndicatorTypeMutex,
+		ThreatIntelIndicatorTypeProcess,
+		ThreatIntelIndicatorTypeUrl,
+	}
+}
+
 const (
 	// VerificationStateUnknown is a VerificationState enum value
 	VerificationStateUnknown = "UNKNOWN"
@@ -16065,6 +16421,16 @@ const (
 	// VerificationStateBenignPositive is a VerificationState enum value
 	VerificationStateBenignPositive = "BENIGN_POSITIVE"
 )
+
+// VerificationState_Values returns all elements of the VerificationState enum
+func VerificationState_Values() []string {
+	return []string{
+		VerificationStateUnknown,
+		VerificationStateTruePositive,
+		VerificationStateFalsePositive,
+		VerificationStateBenignPositive,
+	}
+}
 
 const (
 	// WorkflowStateNew is a WorkflowState enum value
@@ -16083,6 +16449,17 @@ const (
 	WorkflowStateResolved = "RESOLVED"
 )
 
+// WorkflowState_Values returns all elements of the WorkflowState enum
+func WorkflowState_Values() []string {
+	return []string{
+		WorkflowStateNew,
+		WorkflowStateAssigned,
+		WorkflowStateInProgress,
+		WorkflowStateDeferred,
+		WorkflowStateResolved,
+	}
+}
+
 const (
 	// WorkflowStatusNew is a WorkflowStatus enum value
 	WorkflowStatusNew = "NEW"
@@ -16096,3 +16473,13 @@ const (
 	// WorkflowStatusSuppressed is a WorkflowStatus enum value
 	WorkflowStatusSuppressed = "SUPPRESSED"
 )
+
+// WorkflowStatus_Values returns all elements of the WorkflowStatus enum
+func WorkflowStatus_Values() []string {
+	return []string{
+		WorkflowStatusNew,
+		WorkflowStatusNotified,
+		WorkflowStatusResolved,
+		WorkflowStatusSuppressed,
+	}
+}

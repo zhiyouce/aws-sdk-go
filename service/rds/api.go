@@ -14359,8 +14359,13 @@ func (c *RDS) StopDBInstanceWithContext(ctx aws.Context, input *StopDBInstanceIn
 //    * EventSubscriptions - The number of event subscriptions per account.
 //    The used value is the count of the event subscriptions in the account.
 //
-//    * ManualSnapshots - The number of manual DB snapshots per account. The
-//    used value is the count of the manual DB snapshots in the account.
+//    * ManualClusterSnapshots - The number of manual DB cluster snapshots per
+//    account. The used value is the count of the manual DB cluster snapshots
+//    in the account.
+//
+//    * ManualSnapshots - The number of manual DB instance snapshots per account.
+//    The used value is the count of the manual DB instance snapshots in the
+//    account.
 //
 //    * OptionGroups - The number of DB option groups per account, excluding
 //    default option groups. The used value is the count of nondefault DB option
@@ -21718,9 +21723,17 @@ type DBEngineVersion struct {
 	// of the CreateDBInstance action.
 	SupportedTimezones []*Timezone `locationNameList:"Timezone" type:"list"`
 
+	// A value that indicates whether you can use Aurora global databases with a
+	// specific DB engine version.
+	SupportsGlobalDatabases *bool `type:"boolean"`
+
 	// A value that indicates whether the engine version supports exporting the
 	// log types specified by ExportableLogTypes to CloudWatch Logs.
 	SupportsLogExportsToCloudwatchLogs *bool `type:"boolean"`
+
+	// A value that indicates whether you can use Aurora parallel query with a specific
+	// DB engine version.
+	SupportsParallelQuery *bool `type:"boolean"`
 
 	// Indicates whether the database engine version supports read replicas.
 	SupportsReadReplica *bool `type:"boolean"`
@@ -21812,9 +21825,21 @@ func (s *DBEngineVersion) SetSupportedTimezones(v []*Timezone) *DBEngineVersion 
 	return s
 }
 
+// SetSupportsGlobalDatabases sets the SupportsGlobalDatabases field's value.
+func (s *DBEngineVersion) SetSupportsGlobalDatabases(v bool) *DBEngineVersion {
+	s.SupportsGlobalDatabases = &v
+	return s
+}
+
 // SetSupportsLogExportsToCloudwatchLogs sets the SupportsLogExportsToCloudwatchLogs field's value.
 func (s *DBEngineVersion) SetSupportsLogExportsToCloudwatchLogs(v bool) *DBEngineVersion {
 	s.SupportsLogExportsToCloudwatchLogs = &v
+	return s
+}
+
+// SetSupportsParallelQuery sets the SupportsParallelQuery field's value.
+func (s *DBEngineVersion) SetSupportsParallelQuery(v bool) *DBEngineVersion {
+	s.SupportsParallelQuery = &v
 	return s
 }
 
@@ -35386,6 +35411,10 @@ type OrderableDBInstanceOption struct {
 	// from 1 to 60 seconds.
 	SupportsEnhancedMonitoring *bool `type:"boolean"`
 
+	// A value that indicates whether you can use Aurora global databases with a
+	// specific combination of other DB engine attributes.
+	SupportsGlobalDatabases *bool `type:"boolean"`
+
 	// Indicates whether a DB instance supports IAM database authentication.
 	SupportsIAMDatabaseAuthentication *bool `type:"boolean"`
 
@@ -35530,6 +35559,12 @@ func (s *OrderableDBInstanceOption) SetSupportedEngineModes(v []*string) *Ordera
 // SetSupportsEnhancedMonitoring sets the SupportsEnhancedMonitoring field's value.
 func (s *OrderableDBInstanceOption) SetSupportsEnhancedMonitoring(v bool) *OrderableDBInstanceOption {
 	s.SupportsEnhancedMonitoring = &v
+	return s
+}
+
+// SetSupportsGlobalDatabases sets the SupportsGlobalDatabases field's value.
+func (s *OrderableDBInstanceOption) SetSupportsGlobalDatabases(v bool) *OrderableDBInstanceOption {
+	s.SupportsGlobalDatabases = &v
 	return s
 }
 
@@ -41990,6 +42025,14 @@ const (
 	ActivityStreamModeAsync = "async"
 )
 
+// ActivityStreamMode_Values returns all elements of the ActivityStreamMode enum
+func ActivityStreamMode_Values() []string {
+	return []string{
+		ActivityStreamModeSync,
+		ActivityStreamModeAsync,
+	}
+}
+
 const (
 	// ActivityStreamStatusStopped is a ActivityStreamStatus enum value
 	ActivityStreamStatusStopped = "stopped"
@@ -42004,6 +42047,16 @@ const (
 	ActivityStreamStatusStopping = "stopping"
 )
 
+// ActivityStreamStatus_Values returns all elements of the ActivityStreamStatus enum
+func ActivityStreamStatus_Values() []string {
+	return []string{
+		ActivityStreamStatusStopped,
+		ActivityStreamStatusStarting,
+		ActivityStreamStatusStarted,
+		ActivityStreamStatusStopping,
+	}
+}
+
 const (
 	// ApplyMethodImmediate is a ApplyMethod enum value
 	ApplyMethodImmediate = "immediate"
@@ -42012,10 +42065,25 @@ const (
 	ApplyMethodPendingReboot = "pending-reboot"
 )
 
+// ApplyMethod_Values returns all elements of the ApplyMethod enum
+func ApplyMethod_Values() []string {
+	return []string{
+		ApplyMethodImmediate,
+		ApplyMethodPendingReboot,
+	}
+}
+
 const (
 	// AuthSchemeSecrets is a AuthScheme enum value
 	AuthSchemeSecrets = "SECRETS"
 )
+
+// AuthScheme_Values returns all elements of the AuthScheme enum
+func AuthScheme_Values() []string {
+	return []string{
+		AuthSchemeSecrets,
+	}
+}
 
 const (
 	// DBProxyStatusAvailable is a DBProxyStatus enum value
@@ -42046,6 +42114,21 @@ const (
 	DBProxyStatusReactivating = "reactivating"
 )
 
+// DBProxyStatus_Values returns all elements of the DBProxyStatus enum
+func DBProxyStatus_Values() []string {
+	return []string{
+		DBProxyStatusAvailable,
+		DBProxyStatusModifying,
+		DBProxyStatusIncompatibleNetwork,
+		DBProxyStatusInsufficientResourceLimits,
+		DBProxyStatusCreating,
+		DBProxyStatusDeleting,
+		DBProxyStatusSuspended,
+		DBProxyStatusSuspending,
+		DBProxyStatusReactivating,
+	}
+}
+
 const (
 	// EngineFamilyMysql is a EngineFamily enum value
 	EngineFamilyMysql = "MYSQL"
@@ -42054,6 +42137,14 @@ const (
 	EngineFamilyPostgresql = "POSTGRESQL"
 )
 
+// EngineFamily_Values returns all elements of the EngineFamily enum
+func EngineFamily_Values() []string {
+	return []string{
+		EngineFamilyMysql,
+		EngineFamilyPostgresql,
+	}
+}
+
 const (
 	// IAMAuthModeDisabled is a IAMAuthMode enum value
 	IAMAuthModeDisabled = "DISABLED"
@@ -42061,6 +42152,14 @@ const (
 	// IAMAuthModeRequired is a IAMAuthMode enum value
 	IAMAuthModeRequired = "REQUIRED"
 )
+
+// IAMAuthMode_Values returns all elements of the IAMAuthMode enum
+func IAMAuthMode_Values() []string {
+	return []string{
+		IAMAuthModeDisabled,
+		IAMAuthModeRequired,
+	}
+}
 
 const (
 	// SourceTypeDbInstance is a SourceType enum value
@@ -42082,6 +42181,18 @@ const (
 	SourceTypeDbClusterSnapshot = "db-cluster-snapshot"
 )
 
+// SourceType_Values returns all elements of the SourceType enum
+func SourceType_Values() []string {
+	return []string{
+		SourceTypeDbInstance,
+		SourceTypeDbParameterGroup,
+		SourceTypeDbSecurityGroup,
+		SourceTypeDbSnapshot,
+		SourceTypeDbCluster,
+		SourceTypeDbClusterSnapshot,
+	}
+}
+
 const (
 	// TargetHealthReasonUnreachable is a TargetHealthReason enum value
 	TargetHealthReasonUnreachable = "UNREACHABLE"
@@ -42096,6 +42207,16 @@ const (
 	TargetHealthReasonPendingProxyCapacity = "PENDING_PROXY_CAPACITY"
 )
 
+// TargetHealthReason_Values returns all elements of the TargetHealthReason enum
+func TargetHealthReason_Values() []string {
+	return []string{
+		TargetHealthReasonUnreachable,
+		TargetHealthReasonConnectionFailed,
+		TargetHealthReasonAuthFailure,
+		TargetHealthReasonPendingProxyCapacity,
+	}
+}
+
 const (
 	// TargetStateRegistering is a TargetState enum value
 	TargetStateRegistering = "REGISTERING"
@@ -42107,6 +42228,15 @@ const (
 	TargetStateUnavailable = "UNAVAILABLE"
 )
 
+// TargetState_Values returns all elements of the TargetState enum
+func TargetState_Values() []string {
+	return []string{
+		TargetStateRegistering,
+		TargetStateAvailable,
+		TargetStateUnavailable,
+	}
+}
+
 const (
 	// TargetTypeRdsInstance is a TargetType enum value
 	TargetTypeRdsInstance = "RDS_INSTANCE"
@@ -42117,6 +42247,15 @@ const (
 	// TargetTypeTrackedCluster is a TargetType enum value
 	TargetTypeTrackedCluster = "TRACKED_CLUSTER"
 )
+
+// TargetType_Values returns all elements of the TargetType enum
+func TargetType_Values() []string {
+	return []string{
+		TargetTypeRdsInstance,
+		TargetTypeRdsServerlessEndpoint,
+		TargetTypeTrackedCluster,
+	}
+}
 
 const (
 	// WriteForwardingStatusEnabled is a WriteForwardingStatus enum value
@@ -42134,3 +42273,14 @@ const (
 	// WriteForwardingStatusUnknown is a WriteForwardingStatus enum value
 	WriteForwardingStatusUnknown = "unknown"
 )
+
+// WriteForwardingStatus_Values returns all elements of the WriteForwardingStatus enum
+func WriteForwardingStatus_Values() []string {
+	return []string{
+		WriteForwardingStatusEnabled,
+		WriteForwardingStatusDisabled,
+		WriteForwardingStatusEnabling,
+		WriteForwardingStatusDisabling,
+		WriteForwardingStatusUnknown,
+	}
+}

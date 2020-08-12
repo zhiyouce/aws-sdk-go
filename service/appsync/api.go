@@ -5085,9 +5085,7 @@ type CreateFunctionInput struct {
 
 	// The Function request mapping template. Functions support only the 2018-05-29
 	// version of the request mapping template.
-	//
-	// RequestMappingTemplate is a required field
-	RequestMappingTemplate *string `locationName:"requestMappingTemplate" min:"1" type:"string" required:"true"`
+	RequestMappingTemplate *string `locationName:"requestMappingTemplate" min:"1" type:"string"`
 
 	// The Function response mapping template.
 	ResponseMappingTemplate *string `locationName:"responseMappingTemplate" min:"1" type:"string"`
@@ -5126,9 +5124,6 @@ func (s *CreateFunctionInput) Validate() error {
 	}
 	if s.Name != nil && len(*s.Name) < 1 {
 		invalidParams.Add(request.NewErrParamMinLen("Name", 1))
-	}
-	if s.RequestMappingTemplate == nil {
-		invalidParams.Add(request.NewErrParamRequired("RequestMappingTemplate"))
 	}
 	if s.RequestMappingTemplate != nil && len(*s.RequestMappingTemplate) < 1 {
 		invalidParams.Add(request.NewErrParamMinLen("RequestMappingTemplate", 1))
@@ -5403,9 +5398,7 @@ type CreateResolverInput struct {
 	// A resolver uses a request mapping template to convert a GraphQL expression
 	// into a format that a data source can understand. Mapping templates are written
 	// in Apache Velocity Template Language (VTL).
-	//
-	// RequestMappingTemplate is a required field
-	RequestMappingTemplate *string `locationName:"requestMappingTemplate" min:"1" type:"string" required:"true"`
+	RequestMappingTemplate *string `locationName:"requestMappingTemplate" min:"1" type:"string"`
 
 	// The mapping template to be used for responses from the data source.
 	ResponseMappingTemplate *string `locationName:"responseMappingTemplate" min:"1" type:"string"`
@@ -5446,9 +5439,6 @@ func (s *CreateResolverInput) Validate() error {
 	}
 	if s.FieldName != nil && len(*s.FieldName) < 1 {
 		invalidParams.Add(request.NewErrParamMinLen("FieldName", 1))
-	}
-	if s.RequestMappingTemplate == nil {
-		invalidParams.Add(request.NewErrParamRequired("RequestMappingTemplate"))
 	}
 	if s.RequestMappingTemplate != nil && len(*s.RequestMappingTemplate) < 1 {
 		invalidParams.Add(request.NewErrParamMinLen("RequestMappingTemplate", 1))
@@ -9685,9 +9675,7 @@ type UpdateFunctionInput struct {
 
 	// The Function request mapping template. Functions support only the 2018-05-29
 	// version of the request mapping template.
-	//
-	// RequestMappingTemplate is a required field
-	RequestMappingTemplate *string `locationName:"requestMappingTemplate" min:"1" type:"string" required:"true"`
+	RequestMappingTemplate *string `locationName:"requestMappingTemplate" min:"1" type:"string"`
 
 	// The Function request mapping template.
 	ResponseMappingTemplate *string `locationName:"responseMappingTemplate" min:"1" type:"string"`
@@ -9732,9 +9720,6 @@ func (s *UpdateFunctionInput) Validate() error {
 	}
 	if s.Name != nil && len(*s.Name) < 1 {
 		invalidParams.Add(request.NewErrParamMinLen("Name", 1))
-	}
-	if s.RequestMappingTemplate == nil {
-		invalidParams.Add(request.NewErrParamRequired("RequestMappingTemplate"))
 	}
 	if s.RequestMappingTemplate != nil && len(*s.RequestMappingTemplate) < 1 {
 		invalidParams.Add(request.NewErrParamMinLen("RequestMappingTemplate", 1))
@@ -10011,9 +9996,7 @@ type UpdateResolverInput struct {
 	PipelineConfig *PipelineConfig `locationName:"pipelineConfig" type:"structure"`
 
 	// The new request mapping template.
-	//
-	// RequestMappingTemplate is a required field
-	RequestMappingTemplate *string `locationName:"requestMappingTemplate" min:"1" type:"string" required:"true"`
+	RequestMappingTemplate *string `locationName:"requestMappingTemplate" min:"1" type:"string"`
 
 	// The new response mapping template.
 	ResponseMappingTemplate *string `locationName:"responseMappingTemplate" min:"1" type:"string"`
@@ -10054,9 +10037,6 @@ func (s *UpdateResolverInput) Validate() error {
 	}
 	if s.FieldName != nil && len(*s.FieldName) < 1 {
 		invalidParams.Add(request.NewErrParamMinLen("FieldName", 1))
-	}
-	if s.RequestMappingTemplate == nil {
-		invalidParams.Add(request.NewErrParamRequired("RequestMappingTemplate"))
 	}
 	if s.RequestMappingTemplate != nil && len(*s.RequestMappingTemplate) < 1 {
 		invalidParams.Add(request.NewErrParamMinLen("RequestMappingTemplate", 1))
@@ -10360,6 +10340,17 @@ const (
 	ApiCacheStatusFailed = "FAILED"
 )
 
+// ApiCacheStatus_Values returns all elements of the ApiCacheStatus enum
+func ApiCacheStatus_Values() []string {
+	return []string{
+		ApiCacheStatusAvailable,
+		ApiCacheStatusCreating,
+		ApiCacheStatusDeleting,
+		ApiCacheStatusModifying,
+		ApiCacheStatusFailed,
+	}
+}
+
 const (
 	// ApiCacheTypeT2Small is a ApiCacheType enum value
 	ApiCacheTypeT2Small = "T2_SMALL"
@@ -10407,6 +10398,27 @@ const (
 	ApiCacheTypeLarge12x = "LARGE_12X"
 )
 
+// ApiCacheType_Values returns all elements of the ApiCacheType enum
+func ApiCacheType_Values() []string {
+	return []string{
+		ApiCacheTypeT2Small,
+		ApiCacheTypeT2Medium,
+		ApiCacheTypeR4Large,
+		ApiCacheTypeR4Xlarge,
+		ApiCacheTypeR42xlarge,
+		ApiCacheTypeR44xlarge,
+		ApiCacheTypeR48xlarge,
+		ApiCacheTypeSmall,
+		ApiCacheTypeMedium,
+		ApiCacheTypeLarge,
+		ApiCacheTypeXlarge,
+		ApiCacheTypeLarge2x,
+		ApiCacheTypeLarge4x,
+		ApiCacheTypeLarge8x,
+		ApiCacheTypeLarge12x,
+	}
+}
+
 const (
 	// ApiCachingBehaviorFullRequestCaching is a ApiCachingBehavior enum value
 	ApiCachingBehaviorFullRequestCaching = "FULL_REQUEST_CACHING"
@@ -10414,6 +10426,14 @@ const (
 	// ApiCachingBehaviorPerResolverCaching is a ApiCachingBehavior enum value
 	ApiCachingBehaviorPerResolverCaching = "PER_RESOLVER_CACHING"
 )
+
+// ApiCachingBehavior_Values returns all elements of the ApiCachingBehavior enum
+func ApiCachingBehavior_Values() []string {
+	return []string{
+		ApiCachingBehaviorFullRequestCaching,
+		ApiCachingBehaviorPerResolverCaching,
+	}
+}
 
 const (
 	// AuthenticationTypeApiKey is a AuthenticationType enum value
@@ -10429,10 +10449,27 @@ const (
 	AuthenticationTypeOpenidConnect = "OPENID_CONNECT"
 )
 
+// AuthenticationType_Values returns all elements of the AuthenticationType enum
+func AuthenticationType_Values() []string {
+	return []string{
+		AuthenticationTypeApiKey,
+		AuthenticationTypeAwsIam,
+		AuthenticationTypeAmazonCognitoUserPools,
+		AuthenticationTypeOpenidConnect,
+	}
+}
+
 const (
 	// AuthorizationTypeAwsIam is a AuthorizationType enum value
 	AuthorizationTypeAwsIam = "AWS_IAM"
 )
+
+// AuthorizationType_Values returns all elements of the AuthorizationType enum
+func AuthorizationType_Values() []string {
+	return []string{
+		AuthorizationTypeAwsIam,
+	}
+}
 
 const (
 	// ConflictDetectionTypeVersion is a ConflictDetectionType enum value
@@ -10441,6 +10478,14 @@ const (
 	// ConflictDetectionTypeNone is a ConflictDetectionType enum value
 	ConflictDetectionTypeNone = "NONE"
 )
+
+// ConflictDetectionType_Values returns all elements of the ConflictDetectionType enum
+func ConflictDetectionType_Values() []string {
+	return []string{
+		ConflictDetectionTypeVersion,
+		ConflictDetectionTypeNone,
+	}
+}
 
 const (
 	// ConflictHandlerTypeOptimisticConcurrency is a ConflictHandlerType enum value
@@ -10455,6 +10500,16 @@ const (
 	// ConflictHandlerTypeNone is a ConflictHandlerType enum value
 	ConflictHandlerTypeNone = "NONE"
 )
+
+// ConflictHandlerType_Values returns all elements of the ConflictHandlerType enum
+func ConflictHandlerType_Values() []string {
+	return []string{
+		ConflictHandlerTypeOptimisticConcurrency,
+		ConflictHandlerTypeLambda,
+		ConflictHandlerTypeAutomerge,
+		ConflictHandlerTypeNone,
+	}
+}
 
 const (
 	// DataSourceTypeAwsLambda is a DataSourceType enum value
@@ -10476,6 +10531,18 @@ const (
 	DataSourceTypeRelationalDatabase = "RELATIONAL_DATABASE"
 )
 
+// DataSourceType_Values returns all elements of the DataSourceType enum
+func DataSourceType_Values() []string {
+	return []string{
+		DataSourceTypeAwsLambda,
+		DataSourceTypeAmazonDynamodb,
+		DataSourceTypeAmazonElasticsearch,
+		DataSourceTypeNone,
+		DataSourceTypeHttp,
+		DataSourceTypeRelationalDatabase,
+	}
+}
+
 const (
 	// DefaultActionAllow is a DefaultAction enum value
 	DefaultActionAllow = "ALLOW"
@@ -10483,6 +10550,14 @@ const (
 	// DefaultActionDeny is a DefaultAction enum value
 	DefaultActionDeny = "DENY"
 )
+
+// DefaultAction_Values returns all elements of the DefaultAction enum
+func DefaultAction_Values() []string {
+	return []string{
+		DefaultActionAllow,
+		DefaultActionDeny,
+	}
+}
 
 const (
 	// FieldLogLevelNone is a FieldLogLevel enum value
@@ -10495,6 +10570,15 @@ const (
 	FieldLogLevelAll = "ALL"
 )
 
+// FieldLogLevel_Values returns all elements of the FieldLogLevel enum
+func FieldLogLevel_Values() []string {
+	return []string{
+		FieldLogLevelNone,
+		FieldLogLevelError,
+		FieldLogLevelAll,
+	}
+}
+
 const (
 	// OutputTypeSdl is a OutputType enum value
 	OutputTypeSdl = "SDL"
@@ -10503,10 +10587,25 @@ const (
 	OutputTypeJson = "JSON"
 )
 
+// OutputType_Values returns all elements of the OutputType enum
+func OutputType_Values() []string {
+	return []string{
+		OutputTypeSdl,
+		OutputTypeJson,
+	}
+}
+
 const (
 	// RelationalDatabaseSourceTypeRdsHttpEndpoint is a RelationalDatabaseSourceType enum value
 	RelationalDatabaseSourceTypeRdsHttpEndpoint = "RDS_HTTP_ENDPOINT"
 )
+
+// RelationalDatabaseSourceType_Values returns all elements of the RelationalDatabaseSourceType enum
+func RelationalDatabaseSourceType_Values() []string {
+	return []string{
+		RelationalDatabaseSourceTypeRdsHttpEndpoint,
+	}
+}
 
 const (
 	// ResolverKindUnit is a ResolverKind enum value
@@ -10515,6 +10614,14 @@ const (
 	// ResolverKindPipeline is a ResolverKind enum value
 	ResolverKindPipeline = "PIPELINE"
 )
+
+// ResolverKind_Values returns all elements of the ResolverKind enum
+func ResolverKind_Values() []string {
+	return []string{
+		ResolverKindUnit,
+		ResolverKindPipeline,
+	}
+}
 
 const (
 	// SchemaStatusProcessing is a SchemaStatus enum value
@@ -10536,6 +10643,18 @@ const (
 	SchemaStatusNotApplicable = "NOT_APPLICABLE"
 )
 
+// SchemaStatus_Values returns all elements of the SchemaStatus enum
+func SchemaStatus_Values() []string {
+	return []string{
+		SchemaStatusProcessing,
+		SchemaStatusActive,
+		SchemaStatusDeleting,
+		SchemaStatusFailed,
+		SchemaStatusSuccess,
+		SchemaStatusNotApplicable,
+	}
+}
+
 const (
 	// TypeDefinitionFormatSdl is a TypeDefinitionFormat enum value
 	TypeDefinitionFormatSdl = "SDL"
@@ -10543,3 +10662,11 @@ const (
 	// TypeDefinitionFormatJson is a TypeDefinitionFormat enum value
 	TypeDefinitionFormatJson = "JSON"
 )
+
+// TypeDefinitionFormat_Values returns all elements of the TypeDefinitionFormat enum
+func TypeDefinitionFormat_Values() []string {
+	return []string{
+		TypeDefinitionFormatSdl,
+		TypeDefinitionFormatJson,
+	}
+}

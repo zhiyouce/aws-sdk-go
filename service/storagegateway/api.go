@@ -11964,6 +11964,10 @@ type DescribeGatewayInformationOutput struct {
 	// used to monitor events in the gateway.
 	CloudWatchLogGroupARN *string `type:"string"`
 
+	// Date after which this gateway will not receive software updates for new features
+	// and bug fixes.
+	DeprecationDate *string `min:"1" type:"string"`
+
 	// The ID of the Amazon EC2 instance that was used to launch the gateway.
 	Ec2InstanceId *string `type:"string"`
 
@@ -12013,6 +12017,9 @@ type DescribeGatewayInformationOutput struct {
 	// this field is not returned in the response.
 	NextUpdateAvailabilityDate *string `min:"1" type:"string"`
 
+	// Date after which this gateway will not receive software updates for new features.
+	SoftwareUpdatesEndDate *string `min:"1" type:"string"`
+
 	// A list of up to 50 tags assigned to the gateway, sorted alphabetically by
 	// key name. Each tag is a key-value pair. For a gateway with more than 10 tags
 	// assigned, you can view all tags using the ListTagsForResource API operation.
@@ -12036,6 +12043,12 @@ func (s DescribeGatewayInformationOutput) GoString() string {
 // SetCloudWatchLogGroupARN sets the CloudWatchLogGroupARN field's value.
 func (s *DescribeGatewayInformationOutput) SetCloudWatchLogGroupARN(v string) *DescribeGatewayInformationOutput {
 	s.CloudWatchLogGroupARN = &v
+	return s
+}
+
+// SetDeprecationDate sets the DeprecationDate field's value.
+func (s *DescribeGatewayInformationOutput) SetDeprecationDate(v string) *DescribeGatewayInformationOutput {
+	s.DeprecationDate = &v
 	return s
 }
 
@@ -12114,6 +12127,12 @@ func (s *DescribeGatewayInformationOutput) SetLastSoftwareUpdate(v string) *Desc
 // SetNextUpdateAvailabilityDate sets the NextUpdateAvailabilityDate field's value.
 func (s *DescribeGatewayInformationOutput) SetNextUpdateAvailabilityDate(v string) *DescribeGatewayInformationOutput {
 	s.NextUpdateAvailabilityDate = &v
+	return s
+}
+
+// SetSoftwareUpdatesEndDate sets the SoftwareUpdatesEndDate field's value.
+func (s *DescribeGatewayInformationOutput) SetSoftwareUpdatesEndDate(v string) *DescribeGatewayInformationOutput {
+	s.SoftwareUpdatesEndDate = &v
 	return s
 }
 
@@ -18980,6 +18999,19 @@ const (
 	ActiveDirectoryStatusUnknownError = "UNKNOWN_ERROR"
 )
 
+// ActiveDirectoryStatus_Values returns all elements of the ActiveDirectoryStatus enum
+func ActiveDirectoryStatus_Values() []string {
+	return []string{
+		ActiveDirectoryStatusAccessDenied,
+		ActiveDirectoryStatusDetached,
+		ActiveDirectoryStatusJoined,
+		ActiveDirectoryStatusJoining,
+		ActiveDirectoryStatusNetworkError,
+		ActiveDirectoryStatusTimeout,
+		ActiveDirectoryStatusUnknownError,
+	}
+}
+
 const (
 	// AvailabilityMonitorTestStatusComplete is a AvailabilityMonitorTestStatus enum value
 	AvailabilityMonitorTestStatusComplete = "COMPLETE"
@@ -18991,6 +19023,15 @@ const (
 	AvailabilityMonitorTestStatusPending = "PENDING"
 )
 
+// AvailabilityMonitorTestStatus_Values returns all elements of the AvailabilityMonitorTestStatus enum
+func AvailabilityMonitorTestStatus_Values() []string {
+	return []string{
+		AvailabilityMonitorTestStatusComplete,
+		AvailabilityMonitorTestStatusFailed,
+		AvailabilityMonitorTestStatusPending,
+	}
+}
+
 const (
 	// CaseSensitivityClientSpecified is a CaseSensitivity enum value
 	CaseSensitivityClientSpecified = "ClientSpecified"
@@ -18998,6 +19039,14 @@ const (
 	// CaseSensitivityCaseSensitive is a CaseSensitivity enum value
 	CaseSensitivityCaseSensitive = "CaseSensitive"
 )
+
+// CaseSensitivity_Values returns all elements of the CaseSensitivity enum
+func CaseSensitivity_Values() []string {
+	return []string{
+		CaseSensitivityClientSpecified,
+		CaseSensitivityCaseSensitive,
+	}
+}
 
 const (
 	// ErrorCodeActivationKeyExpired is a ErrorCode enum value
@@ -19187,6 +19236,74 @@ const (
 	ErrorCodeVolumeNotReady = "VolumeNotReady"
 )
 
+// ErrorCode_Values returns all elements of the ErrorCode enum
+func ErrorCode_Values() []string {
+	return []string{
+		ErrorCodeActivationKeyExpired,
+		ErrorCodeActivationKeyInvalid,
+		ErrorCodeActivationKeyNotFound,
+		ErrorCodeGatewayInternalError,
+		ErrorCodeGatewayNotConnected,
+		ErrorCodeGatewayNotFound,
+		ErrorCodeGatewayProxyNetworkConnectionBusy,
+		ErrorCodeAuthenticationFailure,
+		ErrorCodeBandwidthThrottleScheduleNotFound,
+		ErrorCodeBlocked,
+		ErrorCodeCannotExportSnapshot,
+		ErrorCodeChapCredentialNotFound,
+		ErrorCodeDiskAlreadyAllocated,
+		ErrorCodeDiskDoesNotExist,
+		ErrorCodeDiskSizeGreaterThanVolumeMaxSize,
+		ErrorCodeDiskSizeLessThanVolumeSize,
+		ErrorCodeDiskSizeNotGigAligned,
+		ErrorCodeDuplicateCertificateInfo,
+		ErrorCodeDuplicateSchedule,
+		ErrorCodeEndpointNotFound,
+		ErrorCodeIamnotSupported,
+		ErrorCodeInitiatorInvalid,
+		ErrorCodeInitiatorNotFound,
+		ErrorCodeInternalError,
+		ErrorCodeInvalidGateway,
+		ErrorCodeInvalidEndpoint,
+		ErrorCodeInvalidParameters,
+		ErrorCodeInvalidSchedule,
+		ErrorCodeLocalStorageLimitExceeded,
+		ErrorCodeLunAlreadyAllocated,
+		ErrorCodeLunInvalid,
+		ErrorCodeJoinDomainInProgress,
+		ErrorCodeMaximumContentLengthExceeded,
+		ErrorCodeMaximumTapeCartridgeCountExceeded,
+		ErrorCodeMaximumVolumeCountExceeded,
+		ErrorCodeNetworkConfigurationChanged,
+		ErrorCodeNoDisksAvailable,
+		ErrorCodeNotImplemented,
+		ErrorCodeNotSupported,
+		ErrorCodeOperationAborted,
+		ErrorCodeOutdatedGateway,
+		ErrorCodeParametersNotImplemented,
+		ErrorCodeRegionInvalid,
+		ErrorCodeRequestTimeout,
+		ErrorCodeServiceUnavailable,
+		ErrorCodeSnapshotDeleted,
+		ErrorCodeSnapshotIdInvalid,
+		ErrorCodeSnapshotInProgress,
+		ErrorCodeSnapshotNotFound,
+		ErrorCodeSnapshotScheduleNotFound,
+		ErrorCodeStagingAreaFull,
+		ErrorCodeStorageFailure,
+		ErrorCodeTapeCartridgeNotFound,
+		ErrorCodeTargetAlreadyExists,
+		ErrorCodeTargetInvalid,
+		ErrorCodeTargetNotFound,
+		ErrorCodeUnauthorizedOperation,
+		ErrorCodeVolumeAlreadyExists,
+		ErrorCodeVolumeIdInvalid,
+		ErrorCodeVolumeInUse,
+		ErrorCodeVolumeNotFound,
+		ErrorCodeVolumeNotReady,
+	}
+}
+
 // The type of the file share.
 const (
 	// FileShareTypeNfs is a FileShareType enum value
@@ -19195,6 +19312,14 @@ const (
 	// FileShareTypeSmb is a FileShareType enum value
 	FileShareTypeSmb = "SMB"
 )
+
+// FileShareType_Values returns all elements of the FileShareType enum
+func FileShareType_Values() []string {
+	return []string{
+		FileShareTypeNfs,
+		FileShareTypeSmb,
+	}
+}
 
 const (
 	// HostEnvironmentVmware is a HostEnvironment enum value
@@ -19212,6 +19337,17 @@ const (
 	// HostEnvironmentOther is a HostEnvironment enum value
 	HostEnvironmentOther = "OTHER"
 )
+
+// HostEnvironment_Values returns all elements of the HostEnvironment enum
+func HostEnvironment_Values() []string {
+	return []string{
+		HostEnvironmentVmware,
+		HostEnvironmentHyperV,
+		HostEnvironmentEc2,
+		HostEnvironmentKvm,
+		HostEnvironmentOther,
+	}
+}
 
 // A value that sets the access control list (ACL) permission for objects in
 // the S3 bucket that a file gateway puts objects into. The default value is
@@ -19239,6 +19375,19 @@ const (
 	ObjectACLAwsExecRead = "aws-exec-read"
 )
 
+// ObjectACL_Values returns all elements of the ObjectACL enum
+func ObjectACL_Values() []string {
+	return []string{
+		ObjectACLPrivate,
+		ObjectACLPublicRead,
+		ObjectACLPublicReadWrite,
+		ObjectACLAuthenticatedRead,
+		ObjectACLBucketOwnerRead,
+		ObjectACLBucketOwnerFullControl,
+		ObjectACLAwsExecRead,
+	}
+}
+
 const (
 	// SMBSecurityStrategyClientSpecified is a SMBSecurityStrategy enum value
 	SMBSecurityStrategyClientSpecified = "ClientSpecified"
@@ -19249,3 +19398,12 @@ const (
 	// SMBSecurityStrategyMandatoryEncryption is a SMBSecurityStrategy enum value
 	SMBSecurityStrategyMandatoryEncryption = "MandatoryEncryption"
 )
+
+// SMBSecurityStrategy_Values returns all elements of the SMBSecurityStrategy enum
+func SMBSecurityStrategy_Values() []string {
+	return []string{
+		SMBSecurityStrategyClientSpecified,
+		SMBSecurityStrategyMandatorySigning,
+		SMBSecurityStrategyMandatoryEncryption,
+	}
+}

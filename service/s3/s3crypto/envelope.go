@@ -34,11 +34,14 @@ type Envelope struct {
 	// CipherKey is the randomly generated cipher key.
 	CipherKey string `json:"x-amz-key-v2"`
 	// MaterialDesc is a description to distinguish from other envelopes.
-	MatDesc               string `json:"x-amz-matdesc"`
-	WrapAlg               string `json:"x-amz-wrap-alg"`
-	CEKAlg                string `json:"x-amz-cek-alg"`
-	TagLen                string `json:"x-amz-tag-len"`
-	UnencryptedMD5        string `json:"-"`
+	MatDesc string `json:"x-amz-matdesc"`
+	WrapAlg string `json:"x-amz-wrap-alg"`
+	CEKAlg  string `json:"x-amz-cek-alg"`
+	TagLen  string `json:"x-amz-tag-len"`
+
+	// deprecated: This MD5 hash is no longer populated
+	UnencryptedMD5 string `json:"-"`
+
 	UnencryptedContentLen string `json:"x-amz-unencrypted-content-length"`
 }
 
@@ -47,7 +50,8 @@ func (e *Envelope) UnmarshalJSON(value []byte) error {
 	type StrictEnvelope Envelope
 	type LaxEnvelope struct {
 		StrictEnvelope
-		TagLen json.RawMessage `json:"x-amz-tag-len"`
+		TagLen                json.RawMessage `json:"x-amz-tag-len"`
+		UnencryptedContentLen json.RawMessage `json:"x-amz-unencrypted-content-length"`
 	}
 
 	inner := LaxEnvelope{}
@@ -60,6 +64,11 @@ func (e *Envelope) UnmarshalJSON(value []byte) error {
 	e.TagLen, err = getJSONNumberAsString(inner.TagLen)
 	if err != nil {
 		return fmt.Errorf("failed to parse tag length: %v", err)
+	}
+
+	e.UnencryptedContentLen, err = getJSONNumberAsString(inner.UnencryptedContentLen)
+	if err != nil {
+		return fmt.Errorf("failed to parse unencrypted content length: %v", err)
 	}
 
 	return nil
