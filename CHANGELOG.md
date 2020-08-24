@@ -1,3 +1,120 @@
+Release v1.34.9 (2020-08-20)
+===
+
+### Service Client Updates
+* `service/apigatewayv2`: Updates service API and documentation
+  * Customers can now create Amazon API Gateway HTTP APIs that route requests to AWS AppConfig, Amazon EventBridge, Amazon Kinesis Data Streams, Amazon SQS, and AWS Step Functions.
+* `service/chime`: Updates service documentation
+  * Documentation updates for chime
+* `service/fsx`: Updates service documentation
+
+### SDK Enhancements
+* `private/protocol`: The SDK now supports the serialization of ISO8601 date-time formats with fractional seconds precision. ([#3489](https://github.com/aws/aws-sdk-go/pull/3489))
+
+Release v1.34.8 (2020-08-19)
+===
+
+### Service Client Updates
+* `service/ivs`: Updates service API, documentation, and paginators
+* `service/lakeformation`: Updates service API and documentation
+* `service/organizations`: Updates service documentation
+  * Minor documentation updates for AWS Organizations
+* `service/servicecatalog`: Updates service API and documentation
+  * Enhance SearchProvisionedProducts API to allow queries using productName and provisioningArtifactName. Added lastProvisioningRecordId and lastSuccessfulRecordId to Read ProvisionedProduct APIs
+* `service/storagegateway`: Updates service API and documentation
+  * Added WORM, tape retention lock, and custom pool features for virtual tapes.
+* `service/transcribe-streaming`: Updates service API and documentation
+
+Release v1.34.7 (2020-08-18)
+===
+
+### Service Client Updates
+* `service/codebuild`: Updates service documentation
+  * Documentation updates for codebuild
+* `service/cognito-idp`: Updates service API and documentation
+* `service/datasync`: Updates service API and documentation
+* `service/identitystore`: Adds new service
+* `service/securityhub`: Updates service API and documentation
+* `service/sesv2`: Updates service API, documentation, and paginators
+
+Release v1.34.6 (2020-08-17)
+===
+
+### Service Client Updates
+* `service/acm`: Updates service API
+  * ACM provides support for the new Private CA feature Cross-account CA sharing. ACM users can issue certificates signed by a private CA belonging to another account where the CA was shared with them.
+* `service/acm-pca`: Updates service API and documentation
+* `service/ecr`: Updates service API and documentation
+  * This feature adds support for pushing and pulling Open Container Initiative (OCI) artifacts.
+* `service/elasticloadbalancing`: Updates service documentation
+* `service/elasticloadbalancingv2`: Updates service documentation
+* `service/kinesis`: Updates service API and documentation
+  * Introducing ShardFilter for ListShards API to filter the shards using a position in the stream, and ChildShards support for GetRecords and SubscribeToShard API to discover children shards on shard end
+* `service/quicksight`: Updates service API, documentation, and paginators
+  * Amazon QuickSight now supports programmatic creation and management of analyses with new APIs.
+* `service/robomaker`: Updates service API, documentation, and paginators
+
+Release v1.34.5 (2020-08-14)
+===
+
+### Service Client Updates
+* `service/appstream`: Updates service API and documentation
+  * Adds support for the Desktop View feature
+* `service/braket`: Updates service API
+* `service/ec2`: Updates service API
+  * New C5ad instances featuring AMD's 2nd Generation EPYC processors, offering up to 96 vCPUs, 192 GiB of instance memory, 3.8 TB of NVMe based SSD instance storage, and 20 Gbps in Network bandwidth
+* `service/license-manager`: Updates service documentation
+* `service/sagemaker`: Updates service API and documentation
+  * Amazon SageMaker now supports 1) creating real-time inference endpoints using model container images from Docker registries in customers' VPC 2) AUC(Area under the curve) as AutoPilot objective metric
+
+Release v1.34.4 (2020-08-13)
+===
+
+### Service Client Updates
+* `service/appsync`: Updates service documentation
+* `service/braket`: Adds new service
+* `service/cognito-idp`: Updates service API and documentation
+* `service/ec2`: Updates service API and documentation
+  * Added MapCustomerOwnedIpOnLaunch and CustomerOwnedIpv4Pool to ModifySubnetAttribute to allow CoIP auto assign. Fields are returned in DescribeSubnets and DescribeNetworkInterfaces responses.
+* `service/eks`: Updates service API and documentation
+* `service/macie2`: Updates service documentation
+* `service/rds`: Updates service API and documentation
+  * This release allows customers to specify a replica mode when creating or modifying a Read Replica, for DB engines which support this feature.
+
+Release v1.34.3 (2020-08-12)
+===
+
+### Service Client Updates
+* `service/cloud9`: Updates service API and documentation
+  * Add ConnectionType input parameter to CreateEnvironmentEC2 endpoint. New parameter enables creation of environments with SSM connection.
+* `service/comprehend`: Updates service documentation
+* `service/ec2`: Updates service API and documentation
+  * Introduces support for IPv6-in-IPv4 IPsec tunnels. A user can now send traffic from their on-premise IPv6 network to AWS VPCs that have IPv6 support enabled.
+* `service/fsx`: Updates service API and documentation
+* `service/iot`: Updates service API, documentation, and paginators
+  * Audit finding suppressions: Device Defender enables customers to turn off non-compliant findings for specific resources on a per check basis.
+* `service/lambda`: Updates service API and examples
+  * Support for creating Lambda Functions using 'java8.al2' and 'provided.al2'
+* `service/transfer`: Updates service API, documentation, and paginators
+  * Adds security policies to control cryptographic algorithms advertised by your server, additional characters in usernames and length increase, and FIPS compliant endpoints in the US and Canada regions.
+* `service/workspaces`: Updates service API and documentation
+  * Adds optional EnableWorkDocs property to WorkspaceCreationProperties in the ModifyWorkspaceCreationProperties API
+
+### SDK Enhancements
+* `codegen`: Add XXX_Values functions for getting slice of API enums by type.
+  * Fixes [#3441](https://github.com/aws/aws-sdk-go/issues/3441) by adding a new XXX_Values function for each API enum type that returns a slice of enum values, e.g `DomainStatus_Values`.
+* `aws/request`: Update default retry to retry "use of closed network connection" errors ([#3476](https://github.com/aws/aws-sdk-go/pull/3476))
+  * Fixes [#3406](https://github.com/aws/aws-sdk-go/issues/3406)
+
+### SDK Bugs
+* `private/protocol/json/jsonutil`: Fixes a bug that truncated millisecond precision time in API response to seconds. ([#3474](https://github.com/aws/aws-sdk-go/pull/3474))
+  * Fixes [#3464](https://github.com/aws/aws-sdk-go/issues/3464)
+  * Fixes [#3410](https://github.com/aws/aws-sdk-go/issues/3410)
+* `codegen`: Export event stream constructor for easier mocking ([#3473](https://github.com/aws/aws-sdk-go/pull/3473))
+  * Fixes [#3412](https://github.com/aws/aws-sdk-go/issues/3412) by exporting the operation's EventStream type's constructor function so it can be used to fully initialize fully when mocking out behavior for API operations with event streams.
+* `service/ec2`: Fix max retries with client customizations ([#3465](https://github.com/aws/aws-sdk-go/pull/3465))
+  * Fixes [#3374](https://github.com/aws/aws-sdk-go/issues/3374) by correcting the EC2 API client's customization for ModifyNetworkInterfaceAttribute and AssignPrivateIpAddresses operations to use the aws.Config.MaxRetries value if set. Previously the API client's customizations would ignore MaxRetries specified in the SDK's aws.Config.MaxRetries field.
+
 Release v1.34.2 (2020-08-11)
 ===
 

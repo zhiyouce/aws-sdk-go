@@ -18557,6 +18557,14 @@
         "c5a.12xlarge",
         "c5a.16xlarge",
         "c5a.24xlarge",
+        "c5ad.large",
+        "c5ad.xlarge",
+        "c5ad.2xlarge",
+        "c5ad.4xlarge",
+        "c5ad.8xlarge",
+        "c5ad.12xlarge",
+        "c5ad.16xlarge",
+        "c5ad.24xlarge",
         "c5d.large",
         "c5d.xlarge",
         "c5d.2xlarge",
@@ -21180,7 +21188,9 @@
         "SubnetId":{
           "shape":"SubnetId",
           "locationName":"subnetId"
-        }
+        },
+        "MapCustomerOwnedIpOnLaunch":{"shape":"AttributeBooleanValue"},
+        "CustomerOwnedIpv4Pool":{"shape":"CoipPoolId"}
       }
     },
     "ModifyTrafficMirrorFilterNetworkServicesRequest":{
@@ -21558,6 +21568,7 @@
       "type":"structure",
       "members":{
         "TunnelInsideCidr":{"shape":"String"},
+        "TunnelInsideIpv6Cidr":{"shape":"String"},
         "PreSharedKey":{"shape":"String"},
         "Phase1LifetimeSeconds":{"shape":"Integer"},
         "Phase2LifetimeSeconds":{"shape":"Integer"},
@@ -22060,6 +22071,10 @@
         "PublicIp":{
           "shape":"String",
           "locationName":"publicIp"
+        },
+        "CustomerOwnedIp":{
+          "shape":"String",
+          "locationName":"customerOwnedIp"
         },
         "CarrierIp":{
           "shape":"String",
@@ -28914,6 +28929,13 @@
         "udp"
       ]
     },
+    "TunnelInsideIpVersion":{
+      "type":"string",
+      "enum":[
+        "ipv4",
+        "ipv6"
+      ]
+    },
     "TunnelOption":{
       "type":"structure",
       "members":{
@@ -28924,6 +28946,10 @@
         "TunnelInsideCidr":{
           "shape":"String",
           "locationName":"tunnelInsideCidr"
+        },
+        "TunnelInsideIpv6Cidr":{
+          "shape":"String",
+          "locationName":"tunnelInsideIpv6Cidr"
         },
         "PreSharedKey":{
           "shape":"String",
@@ -30389,6 +30415,10 @@
           "shape":"Boolean",
           "locationName":"staticRoutesOnly"
         },
+        "TunnelInsideIpVersion":{
+          "shape":"TunnelInsideIpVersion",
+          "locationName":"tunnelInsideIpVersion"
+        },
         "TunnelOptions":{
           "shape":"TunnelOptionsList",
           "locationName":"tunnelOptionSet"
@@ -30403,6 +30433,7 @@
           "shape":"Boolean",
           "locationName":"staticRoutesOnly"
         },
+        "TunnelInsideIpVersion":{"shape":"TunnelInsideIpVersion"},
         "TunnelOptions":{"shape":"VpnTunnelOptionsSpecificationsList"}
       }
     },
@@ -30506,6 +30537,7 @@
       "type":"structure",
       "members":{
         "TunnelInsideCidr":{"shape":"String"},
+        "TunnelInsideIpv6Cidr":{"shape":"String"},
         "PreSharedKey":{"shape":"String"},
         "Phase1LifetimeSeconds":{"shape":"Integer"},
         "Phase2LifetimeSeconds":{"shape":"Integer"},
