@@ -1,3 +1,40 @@
+Release v1.34.13 (2020-08-28)
+===
+
+### Service Client Updates
+* `service/cloudfront`: Updates service API and documentation
+  * You can now manage CloudFront's additional, real-time metrics with the CloudFront API.
+* `service/cur`: Updates service API and documentation
+  * This release add MONTHLY as the new supported TimeUnit for ReportDefinition.
+* `service/elasticmapreduce`: Updates service API, documentation, and paginators
+  * Amazon EMR adds support for ICMP, port -1, in Block Public Access Exceptions and API access for EMR Notebooks execution. You can now non-interactively execute EMR Notebooks and pass input parameters.
+* `service/route53`: Updates service documentation
+  * Documentation updates for Route 53
+
+### SDK Bugs
+*  `private/protocol`: Limit iso8601 fractional second precision to milliseconds ([#3507](https://github.com/aws/aws-sdk-go/pull/3507))
+  * Fixes [#3498](https://github.com/aws/aws-sdk-go/issues/3498)
+
+Release v1.34.12 (2020-08-27)
+===
+
+### Service Client Updates
+* `service/ec2`: Updates service API and documentation
+  * Introduces support to initiate Internet Key Exchange (IKE) negotiations for VPN connections from AWS. A user can now send the initial IKE message to their Customer Gateway (CGW) from VPN endpoints.
+* `service/gamelift`: Updates service API, documentation, and paginators
+  * GameLift FleetIQ as a standalone feature is now generally available. FleetIQ makes low-cost Spot instances viable for game hosting. Use GameLift FleetIQ with your EC2 Auto Scaling groups.
+* `service/mediaconvert`: Updates service API and documentation
+  * AWS Elemental MediaConvert SDK has added support for WebM DASH outputs as well as H.264 4:2:2 10-bit output in MOV and MP4.
+* `service/redshift`: Updates service documentation
+  * Documentation updates for Amazon Redshift.
+
+Release v1.34.11 (2020-08-26)
+===
+
+### Service Client Updates
+* `service/appflow`: Adds new service
+* `service/route53resolver`: Updates service API, documentation, and paginators
+
 Release v1.34.10 (2020-08-24)
 ===
 
