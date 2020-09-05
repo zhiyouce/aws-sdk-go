@@ -1,3 +1,59 @@
+Release v1.34.18 (2020-09-04)
+===
+
+### Service Client Updates
+* `service/ssm`: Updates service documentation
+  * Documentation-only updates for AWS Systems Manager
+* `service/workspaces`: Updates service API and documentation
+  * Adding support for Microsoft Office 2016 and Microsoft Office 2019 in BYOL Images
+* `service/xray`: Updates service API and documentation
+  * Enhancing CreateGroup, UpdateGroup, GetGroup and GetGroups APIs to support configuring X-Ray Insights
+
+Release v1.34.17 (2020-09-03)
+===
+
+### Service Client Updates
+* `service/guardduty`: Updates service API and documentation
+  * GuardDuty findings triggered by failed events now include the error code name within the AwsApiCallAction section.
+* `service/kendra`: Updates service API and documentation
+  * Amazon Kendra now returns confidence scores for both 'answer' and 'question and answer' query responses.
+* `service/mediapackage`: Updates service API and documentation
+  * Enables inserting a UTCTiming XML tag in the output manifest of a DASH endpoint which a media player will use to help with time synchronization.
+* `service/states`: Updates service API and documentation
+  * This release of the AWS Step Functions SDK introduces support for payloads up to 256KB for Standard and Express workflows
+
+Release v1.34.16 (2020-09-02)
+===
+
+### Service Client Updates
+* `service/ec2`: Updates service API and documentation
+  * This release adds a new transit gateway attachment state and resource type.
+* `service/macie2`: Updates service API and documentation
+
+Release v1.34.15 (2020-09-01)
+===
+
+### Service Client Updates
+* `service/codeguru-reviewer`: Updates service API and documentation
+* `service/securityhub`: Updates service API and documentation
+
+Release v1.34.14 (2020-08-31)
+===
+
+### Service Client Updates
+* `service/backup`: Updates service documentation
+* `service/cloudfront`: Updates service API and documentation
+  * CloudFront now supports real-time logging for CloudFront distributions. CloudFront real-time logs are more detailed, configurable, and are available in real time.
+* `service/ec2`: Updates service API and documentation
+  * Amazon EC2 and Spot Fleet now support modification of launch template configs for a running fleet enabling instance type, instance weight, AZ, and AMI updates without losing the current fleet ID.
+* `service/sqs`: Updates service documentation
+  * Documentation updates for SQS.
+
+### SDK Bugs
+* `aws/ec2metadata`: Add support for EC2 IMDS endpoint from environment variable ([#3504](https://github.com/aws/aws-sdk-go/pull/3504))
+  * Adds support for specifying a custom EC2 IMDS endpoint from the environment variable, `AWS_EC2_METADATA_SERVICE_ENDPOINT`.
+  * The `aws/session#Options` struct also has a new field, `EC2IMDSEndpoint`. This field can be used to configure the custom endpoint of the EC2 IMDS client. The option only applies to EC2 IMDS clients created after the Session with `EC2IMDSEndpoint` is specified.
+
 Release v1.34.13 (2020-08-28)
 ===
 
