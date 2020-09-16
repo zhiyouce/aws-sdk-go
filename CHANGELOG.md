@@ -1,3 +1,34 @@
+Release v1.34.24 (2020-09-15)
+===
+
+### Service Client Updates
+* `service/budgets`: Updates service API, documentation, and paginators
+  * Documentation updates for Daily Cost and Usage budgets
+* `service/ec2`: Updates service API
+  * T4g instances are powered by AWS Graviton2 processors
+* `service/kafka`: Updates service API, documentation, and paginators
+* `service/kendra`: Updates service API and documentation
+  * Amazon Kendra now returns confidence scores for 'document' query responses.
+* `service/medialive`: Updates service API and documentation
+  * AWS Elemental MediaLive now supports CDI (Cloud Digital Interface) inputs which enable uncompressed video from applications on Elastic Cloud Compute (EC2), AWS Media Services, and from AWS partners
+* `service/organizations`: Updates service API and documentation
+  * AWS Organizations now enables you to add tags to the AWS accounts, organizational units, organization root, and policies in your organization.
+* `service/sagemaker`: Updates service API and documentation
+  * Sagemaker Ground Truth: Added support for a new Streaming feature which helps to continuously feed data and receive labels in real time. This release adds a new input and output SNS data channel.
+* `service/transcribe`: Updates service API and documentation
+
+Release v1.34.23 (2020-09-14)
+===
+
+### Service Client Updates
+* `service/docdb`: Updates service API, documentation, and paginators
+  * Updated API documentation and added paginators for DescribeCertificates, DescribeDBClusterParameterGroups, DescribeDBClusterParameters, DescribeDBClusterSnapshots and DescribePendingMaintenanceActions
+* `service/ec2`: Updates service API
+  * This release adds support for the T4G instance family to the EC2 ModifyDefaultCreditSpecification and GetDefaultCreditSpecification APIs.
+* `service/managedblockchain`: Updates service API and documentation
+* `service/states`: Updates service API and documentation
+  * This release of the AWS Step Functions SDK introduces support for AWS X-Ray.
+
 Release v1.34.22 (2020-09-11)
 ===
 
