@@ -1,3 +1,42 @@
+Release v1.34.27 (2020-09-18)
+===
+
+### Service Client Updates
+* `service/codestar-connections`: Updates service API
+* `service/medialive`: Updates service API and documentation
+  * AWS Elemental MediaLive now supports batch operations, which allow users to start, stop, and delete multiple MediaLive resources with a single request.
+* `service/sso-admin`: Updates service documentation
+
+Release v1.34.26 (2020-09-17)
+===
+
+### Service Client Updates
+* `service/apigateway`: Updates service API and documentation
+  * Adds support for mutual TLS authentication for public regional REST Apis
+* `service/apigatewayv2`: Updates service API and documentation
+  * Adds support for mutual TLS authentication and disableAPIExecuteEndpoint for public regional HTTP Apis
+* `service/cloudfront`: Updates service documentation
+  * Documentation updates for CloudFront
+* `service/comprehend`: Updates service API and documentation
+* `service/es`: Updates service API and documentation
+  * Adds support for data plane audit logging in Amazon Elasticsearch Service.
+* `service/kendra`: Updates service API and documentation
+  * Amazon Kendra now supports additional file formats and metadata for FAQs.
+* `service/transcribe-streaming`: Updates service API and documentation
+
+Release v1.34.25 (2020-09-16)
+===
+
+### Service Client Updates
+* `service/connect`: Updates service API, documentation, and paginators
+* `service/dlm`: Updates service API and documentation
+* `service/greengrass`: Updates service API and documentation
+  * This release includes the ability to set run-time configuration for a Greengrass core. The Telemetry feature, also included in this release, can be configured via run-time configuration per core.
+* `service/servicecatalog`: Updates service API and documentation
+  * Enhance DescribeProvisionedProduct API to allow useProvisionedProduct Name as Input, so customer can provide ProvisionedProduct Name instead of ProvisionedProduct Id to describe a ProvisionedProduct.
+* `service/ssm`: Updates service documentation
+  * The ComplianceItemEntry Status description was updated to address Windows patches that aren't applicable.
+
 Release v1.34.24 (2020-09-15)
 ===
 
