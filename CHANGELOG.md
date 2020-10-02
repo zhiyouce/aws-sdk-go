@@ -1,3 +1,128 @@
+Release v1.35.1 (2020-10-01)
+===
+
+### Service Client Updates
+* `service/appsync`: Updates service API and documentation
+* `service/elasticmapreduce`: Updates service documentation
+  * Documentation updates for elasticmapreduce
+* `service/glue`: Updates service API and documentation
+  * Adding additional optional map parameter to get-plan api
+* `service/kafka`: Updates service API and documentation
+* `service/quicksight`: Updates service API
+  * QuickSight now supports connecting to AWS Timestream data source
+* `service/wafv2`: Updates service API and documentation
+
+Release v1.35.0 (2020-09-30)
+===
+
+### Service Client Updates
+* `service/application-autoscaling`: Updates service API and documentation
+* `service/datasync`: Updates service API and documentation
+* `service/directconnect`: Updates service documentation
+  * Documentation updates for AWS Direct Connect.
+* `service/elasticmapreduce`: Updates service API and documentation
+  * Amazon EMR customers can now use EC2 placement group to influence the placement of master nodes in a high-availability (HA) cluster across distinct underlying hardware to improve cluster availability.
+* `service/imagebuilder`: Updates service API and documentation
+* `service/iot`: Updates service API and documentation
+  * AWS IoT Rules Engine adds Timestream action. The Timestream rule action lets you stream time-series data from IoT sensors and applications to Amazon Timestream databases for time series analysis.
+* `service/mediaconnect`: Updates service API, documentation, and paginators
+* `service/pinpoint`: Updates service API and documentation
+  * Amazon Pinpoint - Features - Customers can start a journey based on an event being triggered by an endpoint or user.
+* `service/s3`: Updates service API, documentation, and examples
+  * Amazon S3 on Outposts expands object storage to on-premises AWS Outposts environments, enabling you to store and retrieve objects using S3 APIs and features.
+* `service/s3outposts`: Adds new service
+* `service/securityhub`: Updates service API and documentation
+
+### SDK Features
+* `service/s3`: Adds support for outposts access point ARNs.
+* `service/s3control`: Adds support for S3 on outposts access point and S3 on outposts bucket ARNs.
+
+Release v1.34.34 (2020-09-29)
+===
+
+### Service Client Updates
+* `service/connect`: Updates service documentation
+* `service/ec2`: Updates service documentation
+  * This release adds support for Client to Client routing for AWS Client VPN.
+* `service/schemas`: Updates service API and documentation
+* `service/ssm`: Updates service documentation
+  * Simple update to description of ComplianceItemStatus.
+* `service/timestream-query`: Adds new service
+* `service/timestream-write`: Adds new service
+
+Release v1.34.33 (2020-09-28)
+===
+
+### Service Client Updates
+* `service/application-autoscaling`: Updates service API and documentation
+* `service/rds`: Updates service API and documentation
+  * This release adds the InsufficientAvailableIPsInSubnetFault error for RDS Proxy.
+
+Release v1.34.32 (2020-09-25)
+===
+
+### Service Client Updates
+* `service/batch`: Updates service API and documentation
+  * Support custom logging, executionRole, secrets, and linuxParameters (initProcessEnabled, maxSwap, swappiness, sharedMemorySize, and tmpfs). Also, add new context keys for awslogs.
+* `service/config`: Updates service API
+* `service/docdb`: Updates service documentation
+  * Documentation updates for docdb
+* `service/ec2`: Updates service API and documentation
+  * This release supports returning additional information about local gateway resources, such as the local gateway route table.
+* `service/frauddetector`: Updates service API and documentation
+* `service/sts`: Updates service API and documentation
+  * Documentation update for AssumeRole error
+
+Release v1.34.31 (2020-09-24)
+===
+
+### Service Client Updates
+* `service/amplify`: Updates service API and documentation
+* `service/eks`: Updates service API and documentation
+* `service/savingsplans`: Updates service API and documentation
+* `service/synthetics`: Updates service API and documentation
+* `service/textract`: Updates service API and documentation
+* `service/transcribe`: Updates service API and documentation
+
+Release v1.34.30 (2020-09-23)
+===
+
+### Service Client Updates
+* `service/backup`: Updates service API and documentation
+* `service/ce`: Updates service API and documentation
+* `service/quicksight`: Updates service API and documentation
+  * Added Sheet information to DescribeDashboard, DescribeTemplate and DescribeAnalysis API response.
+* `service/translate`: Updates service API and documentation
+
+### SDK Enhancements
+* `service/s3/s3manager`:  Prefer using allocated slices from pool over allocating new ones. ([#3534](https://github.com/aws/aws-sdk-go/pull/3534))
+
+Release v1.34.29 (2020-09-22)
+===
+
+### Service Client Updates
+* `service/comprehend`: Updates service API and documentation
+* `service/lex-models`: Updates service API and documentation
+* `service/streams.dynamodb`: Updates service API and documentation
+* `service/workmail`: Updates service API, documentation, and paginators
+  * Adding support for Mailbox Export APIs
+
+Release v1.34.28 (2020-09-21)
+===
+
+### Service Client Updates
+* `service/eventbridge`: Updates service API and documentation
+* `service/events`: Updates service API and documentation
+  * Add support for Redshift Data API Targets
+* `service/glue`: Updates service API and documentation
+  * Adding support to update multiple partitions of a table in a single request
+* `service/iotsitewise`: Updates service API and documentation
+* `service/rds`: Updates service documentation
+  * Documentation updates for the RDS DescribeExportTasks API
+* `service/resource-groups`: Updates service documentation and paginators
+* `service/resourcegroupstaggingapi`: Updates service documentation
+  * Documentation updates for the Resource Groups Tagging API.
+
 Release v1.34.27 (2020-09-18)
 ===
 
