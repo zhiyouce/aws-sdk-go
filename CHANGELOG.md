@@ -1,3 +1,31 @@
+Release v1.35.3 (2020-10-05)
+===
+
+### Service Client Updates
+* `service/dynamodb`: Updates service API and documentation
+  * This release adds a new ReplicaStatus REGION DISABLED for the Table description. This state indicates that the AWS Region for the replica is inaccessible because the AWS Region is disabled.
+* `service/glue`: Updates service API and documentation
+  * AWS Glue crawlers now support Amazon DocumentDB (with MongoDB compatibility) and MongoDB collections. You can choose to crawl the entire data set or only a small sample to reduce crawl time.
+* `service/mediaconvert`: Updates service API and documentation
+  * AWS Elemental MediaConvert SDK has added support for AVC-I and VC3 encoding in the MXF OP1a container, Nielsen non-linear watermarking, and InSync FrameFormer frame rate conversion.
+* `service/sagemaker`: Updates service API and documentation
+  * This release adds support for launching Amazon SageMaker Studio in your VPC. Use AppNetworkAccessType in CreateDomain API to disable access to public internet and restrict the network traffic to VPC.
+* `service/streams.dynamodb`: Updates service documentation
+
+Release v1.35.2 (2020-10-02)
+===
+
+### Service Client Updates
+* `service/batch`: Updates service API, documentation, and examples
+  * Support tagging for Batch resources (compute environment, job queue, job definition and job) and tag based access control on Batch APIs
+* `service/elasticloadbalancingv2`: Updates service API and documentation
+* `service/personalize-events`: Updates service API and documentation
+* `service/rds`: Updates service API and documentation
+  * Adds the NCHAR Character Set ID parameter to the CreateDbInstance API for RDS Oracle.
+* `service/s3`: Updates service API and documentation
+  * Amazon S3 Object Ownership is a new S3 feature that enables bucket owners to automatically assume ownership of objects that are uploaded to their buckets by other AWS Accounts.
+* `service/servicediscovery`: Updates service API and documentation
+
 Release v1.35.1 (2020-10-01)
 ===
 
