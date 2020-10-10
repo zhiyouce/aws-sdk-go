@@ -1,3 +1,61 @@
+Release v1.35.7 (2020-10-09)
+===
+
+### Service Client Updates
+* `service/amplify`: Updates service API and documentation
+* `service/eks`: Updates service API
+* `service/medialive`: Updates service API and documentation
+  * WAV audio output. Extracting ancillary captions in MP4 file inputs. Priority on channels feeding a multiplex (higher priority channels will tend to have higher video quality).
+* `service/servicecatalog`: Updates service API, documentation, and paginators
+  * This new API takes either a ProvisonedProductId or a ProvisionedProductName, along with a list of 1 or more output keys and responds with the (key,value) pairs of those outputs.
+* `service/snowball`: Updates service API and documentation
+  * We added new APIs to allow customers to better manage their device shipping. You can check if your shipping label expired, generate a new label, and tell us that you received or shipped your job.
+
+Release v1.35.6 (2020-10-08)
+===
+
+### Service Client Updates
+* `service/ce`: Updates service API and documentation
+* `service/ec2`: Updates service API and documentation
+  * AWS EC2 RevokeSecurityGroupIngress and RevokeSecurityGroupEgress APIs will return IpPermissions which do not match with any existing IpPermissions for security groups in default VPC and EC2-Classic.
+* `service/eventbridge`: Updates service API and documentation
+* `service/events`: Updates service API and documentation
+  * Amazon EventBridge (formerly called CloudWatch Events) adds support for target Dead-letter Queues and custom retry policies.
+* `service/rds`: Updates service API and documentation
+  * Supports a new parameter to set the max allocated storage in gigabytes for restore database instance from S3 and restore database instance to a point in time APIs.
+* `service/rekognition`: Updates service API and documentation
+  * This release provides location information for the manifest validation files.
+* `service/sagemaker`: Updates service API and documentation
+  * This release enables Sagemaker customers to convert Tensorflow and PyTorch models to CoreML (ML Model) format.
+* `service/sns`: Updates service documentation
+  * Documentation updates for SNS.
+
+Release v1.35.5 (2020-10-07)
+===
+
+### Service Client Updates
+* `service/ce`: Updates service API and documentation
+* `service/compute-optimizer`: Updates service API and documentation
+* `service/elasticache`: Updates service API, documentation, and paginators
+  * This release introduces User and UserGroup to allow customers to have access control list of the Redis resources for AWS ElastiCache. This release also adds support for Outposts  for AWS ElastiCache.
+* `service/mediapackage`: Updates service API and documentation
+  * AWS Elemental MediaPackage provides access logs that capture detailed information about requests sent to a customer's MediaPackage channel.
+
+### SDK Bugs
+* `aws/credentials`: Monotonic clock readings will now be cleared when setting credential expiry time. ([#3573](https://github.com/aws/aws-sdk-go/pull/3573))
+  * Prevents potential issues when the host system is hibernated / slept and the monotonic clock readings don't match the wall-clock time.
+
+Release v1.35.4 (2020-10-06)
+===
+
+### Service Client Updates
+* `service/dms`: Updates service API and documentation
+  * Added new S3 endpoint settings to allow partitioning CDC data by date for S3 as target. Exposed some Extra Connection Attributes as endpoint settings for relational databases as target.
+* `service/ec2`: Updates service API and documentation
+  * This release supports returning additional information about local gateway virtual interfaces, and virtual interface groups.
+* `service/kinesisanalyticsv2`: Updates service API and documentation
+* `service/marketplace-catalog`: Updates service API and documentation
+
 Release v1.35.3 (2020-10-05)
 ===
 
