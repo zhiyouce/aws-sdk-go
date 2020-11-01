@@ -1,3 +1,64 @@
+Release v1.35.19 (2020-10-30)
+===
+
+### Service Client Updates
+* `service/braket`: Updates service API and documentation
+* `service/dms`: Updates service API and documentation
+  * Adding DocDbSettings to support DocumentDB as a source.
+* `service/elasticache`: Updates service documentation
+  * Documentation updates for AWS ElastiCache
+* `service/imagebuilder`: Updates service API and documentation
+* `service/macie2`: Updates service API and documentation
+* `service/medialive`: Updates service API and documentation
+  * Support for HLS discontinuity tags in the child manifests. Support for incomplete segment behavior in the media output. Support for automatic input failover condition settings.
+* `service/sns`: Updates service documentation
+  * Documentation updates for Amazon SNS
+
+Release v1.35.18 (2020-10-29)
+===
+
+### Service Client Updates
+* `service/apigateway`: Updates service API and documentation
+  * Support disabling the default execute-api endpoint for REST APIs.
+* `service/codeartifact`: Updates service API and documentation
+* `service/ec2`: Updates service API and documentation
+  * Support for Appliance mode on Transit Gateway that simplifies deployment of stateful network appliances. Added support for AWS Client VPN Self-Service Portal.
+* `service/elasticloadbalancingv2`: Updates service API and documentation
+* `service/marketplacecommerceanalytics`: Updates service documentation
+  * Documentation updates for marketplacecommerceanalytics to specify four data sets which are deprecated.
+* `service/sesv2`: Updates service API, documentation, and paginators
+* `service/storagegateway`: Updates service API and documentation
+  * Adding support for access based enumeration on SMB file shares, file share visibility on SMB file shares, and file upload notifications for all file shares
+
+Release v1.35.17 (2020-10-28)
+===
+
+### Service Client Updates
+* `service/ec2`: Updates service API and documentation
+  * AWS Nitro Enclaves general availability. Added support to RunInstances for creating enclave-enabled EC2 instances. New APIs to associate an ACM certificate with an IAM role, for enclave consumption.
+* `service/iot`: Updates service API and documentation
+  * This release adds support for GG-Managed Job Namespace
+* `service/workmail`: Updates service documentation
+  * Documentation update for Amazon WorkMail
+
+Release v1.35.16 (2020-10-27)
+===
+
+### Service Client Updates
+* `service/glue`: Updates service API and documentation
+  * AWS Glue machine learning transforms now support encryption-at-rest for labels and trained models.
+
+Release v1.35.15 (2020-10-26)
+===
+
+### Service Client Updates
+* `service/kendra`: Updates service API and documentation
+  * Amazon Kendra now supports indexing data from Confluence Server.
+* `service/neptune`: Updates service API, documentation, and paginators
+  * This feature enables custom endpoints for Amazon Neptune clusters. Custom endpoints simplify connection management when clusters contain instances with different capacities and configuration settings.
+* `service/sagemaker`: Updates service API, documentation, and paginators
+  * This release enables customers to bring custom images for use with SageMaker Studio notebooks.
+
 Release v1.35.14 (2020-10-23)
 ===
 
