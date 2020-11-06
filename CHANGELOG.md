@@ -1,3 +1,56 @@
+Release v1.35.22 (2020-11-05)
+===
+
+### Service Client Updates
+* `service/appmesh`: Updates service API, documentation, paginators, and examples
+* `service/dynamodb`: Updates service API and documentation
+  * This release adds a new ReplicaStatus INACCESSIBLE_ENCRYPTION_CREDENTIALS for the Table description, indicating when a key used to encrypt a regional replica table is not accessible.
+* `service/ec2`: Updates service API and documentation
+  * Documentation updates for EC2.
+* `service/es`: Updates service API and documentation
+  * Amazon Elasticsearch Service now provides the ability to define a custom endpoint for your domain and link an SSL certificate from ACM, making it easier to refer to Kibana and the domain endpoint.
+* `service/eventbridge`: Updates service API and documentation
+* `service/events`: Updates service API and documentation
+  * With this release, customers can now reprocess past events by storing the events published on event bus in an encrypted archive.
+* `service/frauddetector`: Updates service API and documentation
+* `service/kendra`: Updates service API and documentation
+  * Amazon Kendra now supports providing user context in your query requests, Tokens can be JSON or JWT format. This release also introduces support for Confluence cloud datasources.
+* `service/lambda`: Updates service API and documentation
+  * Support Amazon MQ as an Event Source.
+* `service/rds`: Updates service API and documentation
+  * Supports a new parameter to set the max allocated storage in gigabytes for the CreateDBInstanceReadReplica API.
+
+Release v1.35.21 (2020-11-04)
+===
+
+### Service Client Updates
+* `service/autoscaling`: Updates service API and documentation
+  * Capacity Rebalance helps you manage and maintain workload availability during Spot interruptions by proactively augmenting your Auto Scaling group with a new instance before interrupting an old one.
+* `service/ec2`: Updates service API and documentation
+  * Added support for Client Connect Handler for AWS Client VPN. Fleet supports launching replacement instances in response to Capacity Rebalance recommendation.
+* `service/es`: Updates service API and documentation
+  * Amazon Elasticsearch Service now supports native SAML authentication that seamlessly integrates with the customers' existing SAML 2.0 Identity Provider (IdP).
+* `service/iot`: Updates service API, documentation, and paginators
+  * Updated API documentation and added paginator for AWS Iot Registry ListThingPrincipals API.
+* `service/meteringmarketplace`: Updates service API and documentation
+  * Adding Vendor Tagging Support in MeterUsage and BatchMeterUsage API.
+* `service/monitoring`: Updates service documentation
+  * Documentation updates for monitoring
+* `service/mq`: Updates service API and documentation
+  * Amazon MQ introduces support for RabbitMQ, a popular message-broker with native support for AMQP 0.9.1. You can now create fully-managed RabbitMQ brokers in the cloud.
+* `service/servicecatalog`: Updates service API and documentation
+  * Service Catalog API ListPortfolioAccess can now support a maximum PageSize of 100.
+* `service/transcribe-streaming`: Updates service API
+* `service/xray`: Updates service API, documentation, and paginators
+  * Releasing new APIs GetInsightSummaries, GetInsightEvents, GetInsight, GetInsightImpactGraph and updating GetTimeSeriesServiceStatistics API for AWS X-Ray Insights feature
+
+Release v1.35.20 (2020-11-02)
+===
+
+### Service Client Updates
+* `service/ec2`: Updates service API and documentation
+  * This release adds support for the following features: 1. P4d instances based on NVIDIA A100 GPUs.  2. NetworkCardIndex attribute to support multiple network cards.
+
 Release v1.35.19 (2020-10-30)
 ===
 
