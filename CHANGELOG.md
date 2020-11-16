@@ -1,3 +1,74 @@
+Release v1.35.28 (2020-11-13)
+===
+
+### Service Client Updates
+* `service/elasticloadbalancingv2`: Updates service API and documentation
+* `service/shield`: Updates service API, documentation, and paginators
+  * This release adds APIs for two new features: 1) Allow customers to bundle resources into protection groups and treat as a single unit. 2) Provide per-account event summaries to all AWS customers.
+* `service/textract`: Updates service API and documentation
+
+Release v1.35.27 (2020-11-12)
+===
+
+### Service Client Updates
+* `service/iot`: Updates service API and documentation
+  * This release adds a batchMode parameter to the IotEvents, IotAnalytics, and Firehose actions which allows customers to send an array of messages to the corresponding services
+* `service/lex-models`: Updates service API
+* `service/lightsail`: Updates service API and documentation
+  * This release adds support for Amazon Lightsail container services. You can now create a Lightsail container service, and deploy Docker images to it.
+* `service/personalize-runtime`: Updates service API and documentation
+* `service/polly`: Updates service API and documentation
+  * Amazon Polly adds new Australian English female voice - Olivia. Olivia is available as Neural voice only.
+* `service/robomaker`: Updates service API and documentation
+* `service/servicecatalog-appregistry`: Adds new service
+
+Release v1.35.26 (2020-11-11)
+===
+
+### Service Client Updates
+* `service/amplify`: Updates service API and documentation
+* `service/databrew`: Adds new service
+* `service/forecast`: Updates service API and documentation
+* `service/mediaconvert`: Updates service API and documentation
+  * AWS Elemental MediaConvert SDK has added support for Automated ABR encoding and improved the reliability of embedded captions in accelerated outputs.
+* `service/quicksight`: Updates service API and documentation
+  * QuickSight now supports Column-level security and connecting to Oracle data source.
+* `service/servicecatalog`: Updates service API and documentation
+  * Adding support to remove a Provisioned Product launch role via UpdateProvisionedProductProperties
+
+Release v1.35.25 (2020-11-10)
+===
+
+### Service Client Updates
+* `service/autoscaling`: Updates service documentation
+  * Documentation updates and corrections for Amazon EC2 Auto Scaling API Reference and SDKs.
+* `service/ec2`: Updates service API and documentation
+  * This release adds support for Gateway Load Balancer VPC endpoints and VPC endpoint services
+* `service/elasticloadbalancingv2`: Updates service API and documentation
+* `service/ssm`: Updates service API and documentation
+  * Add SessionId as a filter for DescribeSessions API
+
+Release v1.35.24 (2020-11-09)
+===
+
+### Service Client Updates
+* `service/datasync`: Updates service API and documentation
+* `service/dynamodb`: Updates service API, documentation, and paginators
+  * This release adds supports for exporting Amazon DynamoDB table data to Amazon S3 to perform analytics at any scale.
+* `service/ecs`: Updates service API and documentation
+  * This release provides native support for specifying Amazon FSx for Windows File Server file systems as volumes in your Amazon ECS task definitions.
+* `service/es`: Updates service API, documentation, and paginators
+  * Adding support for package versioning in Amazon Elasticsearch Service
+* `service/fsx`: Updates service API, documentation, paginators, and examples
+* `service/iotanalytics`: Updates service API and documentation
+* `service/macie2`: Updates service API and documentation
+* `service/s3`: Updates service API, documentation, and examples
+  * S3 Intelligent-Tiering adds support for Archive and Deep Archive Access tiers; S3 Replication adds replication metrics and failure notifications, brings feature parity for delete marker replication
+* `service/ssm`: Updates service API and documentation
+  * add a new filter to allow customer to filter automation executions by using resource-group which used for execute automation
+* `service/storagegateway`: Updates service API, documentation, and paginators
+  * Added bandwidth rate limit schedule for Tape and Volume Gateways
+
 Release v1.35.23 (2020-11-06)
 ===
 

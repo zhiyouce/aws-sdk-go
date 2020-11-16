@@ -43188,6 +43188,8 @@ type SessionFilter struct {
 	//    with that status. Status values you can specify include: Connected Connecting
 	//    Disconnected Terminated Terminating Failed
 	//
+	//    * SessionId: Specify a session ID to return details about the session.
+	//
 	// Value is a required field
 	Value *string `locationName:"value" min:"1" type:"string" required:"true"`
 }
@@ -47704,6 +47706,9 @@ const (
 
 	// AutomationExecutionFilterKeyTagKey is a AutomationExecutionFilterKey enum value
 	AutomationExecutionFilterKeyTagKey = "TagKey"
+
+	// AutomationExecutionFilterKeyTargetResourceGroup is a AutomationExecutionFilterKey enum value
+	AutomationExecutionFilterKeyTargetResourceGroup = "TargetResourceGroup"
 )
 
 // AutomationExecutionFilterKey_Values returns all elements of the AutomationExecutionFilterKey enum
@@ -47718,6 +47723,7 @@ func AutomationExecutionFilterKey_Values() []string {
 		AutomationExecutionFilterKeyStartTimeAfter,
 		AutomationExecutionFilterKeyAutomationType,
 		AutomationExecutionFilterKeyTagKey,
+		AutomationExecutionFilterKeyTargetResourceGroup,
 	}
 }
 
@@ -49197,6 +49203,9 @@ const (
 
 	// SessionFilterKeyStatus is a SessionFilterKey enum value
 	SessionFilterKeyStatus = "Status"
+
+	// SessionFilterKeySessionId is a SessionFilterKey enum value
+	SessionFilterKeySessionId = "SessionId"
 )
 
 // SessionFilterKey_Values returns all elements of the SessionFilterKey enum
@@ -49207,6 +49216,7 @@ func SessionFilterKey_Values() []string {
 		SessionFilterKeyTarget,
 		SessionFilterKeyOwner,
 		SessionFilterKeyStatus,
+		SessionFilterKeySessionId,
 	}
 }
 
