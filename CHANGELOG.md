@@ -1,3 +1,135 @@
+Release v1.35.35 (2020-11-24)
+===
+
+### Service Client Updates
+* `service/appflow`: Updates service API and documentation
+* `service/batch`: Updates service API and documentation
+  * Add Ec2Configuration in ComputeEnvironment.ComputeResources. Use in CreateComputeEnvironment API to enable AmazonLinux2 support.
+* `service/cloudformation`: Updates service API and documentation
+  * Adds support for the new Modules feature for CloudFormation. A module encapsulates one or more resources and their respective configurations for reuse across your organization.
+* `service/cloudtrail`: Updates service API and documentation
+  * CloudTrail now includes advanced event selectors, which give you finer-grained control over the events that are logged to your trail.
+* `service/codebuild`: Updates service API and documentation
+  * Adding GetReportGroupTrend API for Test Reports.
+* `service/cognito-idp`: Updates service API and documentation
+* `service/comprehend`: Updates service API, documentation, and paginators
+* `service/elasticbeanstalk`: Updates service API and documentation
+  * Updates the Integer constraint of DescribeEnvironmentManagedActionHistory's MaxItems parameter to [1, 100].
+* `service/fsx`: Updates service API and documentation
+* `service/gamelift`: Updates service API and documentation
+  * GameLift FlexMatch is now available as a standalone matchmaking solution. FlexMatch now provides customizable matchmaking for games hosted peer-to-peer, on-premises, or on cloud compute primitives.
+* `service/iotsitewise`: Updates service API and documentation
+* `service/lex-models`: Updates service API
+* `service/mediaconvert`: Updates service API and documentation
+  * AWS Elemental MediaConvert SDK has added support for Vorbis and Opus audio in OGG/OGA containers.
+* `service/mwaa`: Adds new service
+* `service/quicksight`: Updates service API and documentation
+  * Support for embedding without user registration. New enum EmbeddingIdentityType. A potential breaking change. Affects code that refers IdentityType enum type directly instead of literal string value.
+* `service/states`: Updates service API and documentation
+  * This release of the AWS Step Functions SDK introduces support for Synchronous Express Workflows
+* `service/timestream-write`: Updates service API and documentation
+* `service/transcribe-streaming`: Updates service API and documentation
+
+Release v1.35.34 (2020-11-23)
+===
+
+### Service Client Updates
+* `service/application-insights`: Updates service API and documentation
+* `service/autoscaling`: Updates service documentation
+  * Documentation updates and corrections for Amazon EC2 Auto Scaling API Reference and SDKs.
+* `service/codeartifact`: Updates service API and documentation
+* `service/codestar-connections`: Updates service API and documentation
+* `service/dynamodb`: Updates service API and documentation
+  * With this release, you can capture data changes in any Amazon DynamoDB table as an Amazon Kinesis data stream. You also can use PartiQL (SQL-compatible language) to manipulate data in DynamoDB tables.
+* `service/ec2`: Updates service API and documentation
+  * This release adds support for Multiple Private DNS names to DescribeVpcEndpointServices response.
+* `service/ecs`: Updates service API and documentation
+  * This release adds support for updating capacity providers, specifying custom instance warmup periods for capacity providers, and using deployment circuit breaker for your ECS Services.
+* `service/elasticache`: Updates service documentation
+  * Documentation updates for elasticache
+* `service/elasticmapreduce`: Updates service API, documentation, and paginators
+  * Add API support for EMR Studio, a new notebook-first IDE for data scientists and data engineers with single sign-on, Jupyter notebooks, automated infrastructure provisioning, and job diagnosis.
+* `service/forecast`: Updates service API, documentation, and paginators
+* `service/glue`: Updates service API and documentation
+  * Feature1 - Glue crawler adds data lineage configuration option. Feature2 - AWS Glue Data Catalog adds APIs for PartitionIndex creation and deletion as part of Enhancement Partition Management feature.
+* `service/iot`: Updates service API and documentation
+  * This release enables users to identify different file types in the over-the-air update (OTA) functionality using fileType parameter for CreateOTAUpdate API
+* `service/kafka`: Updates service API and documentation
+* `service/lambda`: Updates service API, documentation, and paginators
+  * This release includes support for new feature: Code Signing for AWS Lambda. This adds new resources and APIs to configure Lambda functions to accept and verify signed code artifacts at deployment.
+* `service/license-manager`: Updates service API and documentation
+* `service/outposts`: Updates service API and documentation
+* `service/securityhub`: Updates service API, documentation, and paginators
+* `service/signer`: Updates service API and documentation
+  * AWS Signer is launching code-signing for AWS Lambda. Now customers can cryptographically sign Lambda code to ensure trust, integrity, and functionality.
+* `service/sso-admin`: Updates service API and documentation
+* `service/timestream-query`: Updates service API, documentation, and paginators
+* `service/translate`: Updates service API, documentation, and paginators
+
+Release v1.35.33 (2020-11-20)
+===
+
+### Service Client Updates
+* `service/appmesh`: Updates service API
+* `service/chime`: Updates service API, documentation, and paginators
+  * The Amazon Chime SDK for messaging provides the building blocks needed to build chat and other real-time collaboration features.
+* `service/cloudhsmv2`: Updates service API and documentation
+  * Added managed backup retention, a feature that enables customers to retain backups for a configurable period after which CloudHSM service will automatically delete them.
+* `service/codeguru-reviewer`: Updates service API and documentation
+* `service/cognito-identity`: Updates service API and paginators
+* `service/connect`: Updates service API, documentation, and paginators
+* `service/kafka`: Updates service API and documentation
+* `service/macie2`: Updates service API and documentation
+* `service/s3`: Updates service API, documentation, and examples
+  * Add new documentation regarding automatically generated Content-MD5 headers when using the SDK or CLI.
+* `service/servicecatalog-appregistry`: Updates service API and documentation
+
+Release v1.35.32 (2020-11-19)
+===
+
+### Service Client Updates
+* `service/autoscaling`: Updates service API and documentation
+  * You can now create Auto Scaling groups with multiple launch templates using a mixed instances policy, making it easy to deploy an AMI with an architecture that is different from the rest of the group.
+* `service/ce`: Updates service API and documentation
+* `service/ds`: Updates service API and documentation
+  * Adding multi-region replication feature for AWS Managed Microsoft AD
+* `service/eventbridge`: Updates service API and documentation
+* `service/events`: Updates service API and documentation
+  * EventBridge now supports Resource-based policy authorization on event buses. This enables cross-account PutEvents API calls, creating cross-account rules, and simplifies permission management.
+* `service/glue`: Updates service API, documentation, and paginators
+  * Adding support for Glue Schema Registry. The AWS Glue Schema Registry is a new feature that allows you to centrally discover, control, and evolve data stream schemas.
+* `service/kinesisanalyticsv2`: Updates service API and documentation
+* `service/lambda`: Updates service API and documentation
+  * Added the starting position and starting position timestamp to ESM Configuration. Now customers will be able to view these fields for their ESM.
+* `service/lex-models`: Updates service API and documentation
+* `service/medialive`: Updates service API and documentation
+  * The AWS Elemental MediaLive APIs and SDKs now support the ability to see the software update status on Link devices
+* `service/redshift`: Updates service API, documentation, and paginators
+  * Amazon Redshift support for returning ClusterNamespaceArn in describeClusters
+* `service/runtime.lex`: Updates service API and documentation
+
+Release v1.35.31 (2020-11-18)
+===
+
+### Service Client Updates
+* `service/backup`: Updates service API and documentation
+* `service/cloudformation`: Updates service API and documentation
+  * This release adds ChangeSets support for Nested Stacks. ChangeSets offer a preview of how proposed changes to a stack might impact existing resources or create new ones.
+* `service/codebuild`: Updates service API and documentation
+  * AWS CodeBuild - Adding Status field for Report Group
+* `service/ec2`: Updates service documentation
+  * EC2 Fleet adds support of DeleteFleets API for instant type fleets. Now you can delete an instant type fleet and terminate all associated instances with a single API call.
+* `service/elasticache`: Updates service documentation
+  * Adding Memcached 1.6 to parameter family
+* `service/outposts`: Updates service API
+* `service/s3control`: Updates service API and documentation
+  * AWS S3 Storage Lens provides visibility into your storage usage and activity trends at the organization or account level, with aggregations by Region, storage class, bucket, and prefix.
+
+### SDK Enhancements
+* Update golang.org/x/net dependency [#3638](https://github.com/aws/aws-sdk-go/pull/3638)
+  * Updates the SDK's dependency on golang.org/x/net module to update the transitive golang.org/x/text module dependency to the latest version of v0.3.3.
+  * Fixes [#3457](https://github.com/aws/aws-sdk-go/issues/3457)
+
 Release v1.35.30 (2020-11-17)
 ===
 
