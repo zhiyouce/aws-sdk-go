@@ -1,3 +1,54 @@
+Release v1.36.6 (2020-12-10)
+===
+
+### Service Client Updates
+* `service/ec2`: Updates service API, documentation, and paginators
+  * TGW connect simplifies connectivity of SD-WAN appliances; IGMP support for TGW multicast; VPC Reachability Analyzer for VPC resources connectivity analysis.
+* `service/kendra`: Updates service API and documentation
+  * Amazon Kendra now supports adding synonyms to an index through the new Thesaurus resource.
+* `service/networkmanager`: Updates service API, documentation, and paginators
+
+Release v1.36.5 (2020-12-09)
+===
+
+### Service Client Updates
+* `service/ec2`: Updates service API
+  * This release adds support for G4ad instances powered by AMD Radeon Pro V520 GPUs and AMD 2nd Generation EPYC processors
+* `service/globalaccelerator`: Updates service API, documentation, and paginators
+* `service/redshift`: Updates service API and documentation
+  * Add support for availability zone relocation feature.
+
+### SDK Enhancements
+* `aws/session`: Add support for client TLS certs on HTTP client ([#3654](https://github.com/aws/aws-sdk-go/pull/3654))
+    * Adds support for the SDK to automatically modify the HTTP client to include TLS configuration of custom Client TLS certificate.
+
+Release v1.36.4 (2020-12-08)
+===
+
+### Service Client Updates
+* `service/auditmanager`: Adds new service
+* `service/ecr`: Updates service API and documentation
+  * This release adds support for configuring cross-region and cross-account replication of your Amazon ECR images.
+* `service/emr-containers`: Adds new service
+* `service/forecast`: Updates service API and documentation
+* `service/healthlake`: Adds new service
+* `service/kendra`: Updates service API and documentation
+  * 1. Amazon Kendra connector for Google Drive repositories 2. Amazon Kendra's relevance ranking models are regularly tuned for each customer by capturing end-user search patterns and feedback.
+* `service/quicksight`: Updates service API and documentation
+  * Added new parameters for join optimization.
+* `service/runtime.sagemaker`: Updates service API and documentation
+* `service/sagemaker`: Updates service API, documentation, and paginators
+  * This feature helps you monitor model performance characteristics such as accuracy, identify undesired bias in your ML models, and explain model decisions better with explainability drift detection.
+* `service/sagemaker-edge`: Adds new service
+
+Release v1.36.3 (2020-12-07)
+===
+
+### Service Client Updates
+* `service/dms`: Updates service API and documentation
+  * Added PreserveTransaction setting to preserve order of CDC for S3 as target. Added CsvNoSupValue setting to replace empty value for columns not included in the supplemental log for S3 as target.
+* `service/servicecatalog-appregistry`: Updates service API and documentation
+
 Release v1.36.2 (2020-12-04)
 ===
 
