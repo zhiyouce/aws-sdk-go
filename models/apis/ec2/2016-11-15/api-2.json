@@ -19874,6 +19874,7 @@
         "c5n.4xlarge",
         "c5n.9xlarge",
         "c5n.18xlarge",
+        "c5n.metal",
         "c6g.metal",
         "c6g.medium",
         "c6g.large",
@@ -19892,6 +19893,14 @@
         "c6gd.8xlarge",
         "c6gd.12xlarge",
         "c6gd.16xlarge",
+        "c6gn.medium",
+        "c6gn.large",
+        "c6gn.xlarge",
+        "c6gn.2xlarge",
+        "c6gn.4xlarge",
+        "c6gn.8xlarge",
+        "c6gn.12xlarge",
+        "c6gn.16xlarge",
         "cc1.4xlarge",
         "cc2.8xlarge",
         "g2.2xlarge",
@@ -22782,7 +22791,8 @@
         "Size":{"shape":"Integer"},
         "VolumeType":{"shape":"VolumeType"},
         "Iops":{"shape":"Integer"},
-        "Throughput":{"shape":"Integer"}
+        "Throughput":{"shape":"Integer"},
+        "MultiAttachEnabled":{"shape":"Boolean"}
       }
     },
     "ModifyVolumeResult":{
@@ -31830,6 +31840,10 @@
           "shape":"Integer",
           "locationName":"targetThroughput"
         },
+        "TargetMultiAttachEnabled":{
+          "shape":"Boolean",
+          "locationName":"targetMultiAttachEnabled"
+        },
         "OriginalSize":{
           "shape":"Integer",
           "locationName":"originalSize"
@@ -31845,6 +31859,10 @@
         "OriginalThroughput":{
           "shape":"Integer",
           "locationName":"originalThroughput"
+        },
+        "OriginalMultiAttachEnabled":{
+          "shape":"Boolean",
+          "locationName":"originalMultiAttachEnabled"
         },
         "Progress":{
           "shape":"Long",
