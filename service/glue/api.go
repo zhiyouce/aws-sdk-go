@@ -18602,6 +18602,43 @@ func (s *ColumnError) SetError(v *ErrorDetail) *ColumnError {
 	return s
 }
 
+// A structure containing the column name and column importance score for a
+// column.
+//
+// Column importance helps you understand how columns contribute to your model,
+// by identifying which columns in your records are more important than others.
+type ColumnImportance struct {
+	_ struct{} `type:"structure"`
+
+	// The name of a column.
+	ColumnName *string `min:"1" type:"string"`
+
+	// The column importance score for the column, as a decimal.
+	Importance *float64 `type:"double"`
+}
+
+// String returns the string representation
+func (s ColumnImportance) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s ColumnImportance) GoString() string {
+	return s.String()
+}
+
+// SetColumnName sets the ColumnName field's value.
+func (s *ColumnImportance) SetColumnName(v string) *ColumnImportance {
+	s.ColumnName = &v
+	return s
+}
+
+// SetImportance sets the Importance field's value.
+func (s *ColumnImportance) SetImportance(v float64) *ColumnImportance {
+	s.Importance = &v
+	return s
+}
+
 // Represents the generated column-level statistics for a table or partition.
 type ColumnStatistics struct {
 	_ struct{} `type:"structure"`
@@ -19303,6 +19340,15 @@ type Connection struct {
 	//    * KAFKA_SKIP_CUSTOM_CERT_VALIDATION - Whether to skip the validation of
 	//    the CA cert file or not. AWS Glue validates for three algorithms: SHA256withRSA,
 	//    SHA384withRSA and SHA512withRSA. Default value is "false".
+	//
+	//    * SECRET_ID - The secret ID used for the secret manager of credentials.
+	//
+	//    * CONNECTOR_URL - The connector URL for a MARKETPLACE or CUSTOM connection.
+	//
+	//    * CONNECTOR_TYPE - The connector type for a MARKETPLACE or CUSTOM connection.
+	//
+	//    * CONNECTOR_CLASS_NAME - The connector class name for a MARKETPLACE or
+	//    CUSTOM connection.
 	ConnectionProperties map[string]*string `type:"map"`
 
 	// The type of the connection. Currently, SFTP is not supported.
@@ -19415,6 +19461,14 @@ type ConnectionInput struct {
 	//
 	//    * NETWORK - Designates a network connection to a data source within an
 	//    Amazon Virtual Private Cloud environment (Amazon VPC).
+	//
+	//    * MARKETPLACE - Uses configuration settings contained in a connector purchased
+	//    from AWS Marketplace to read from and write to data stores that are not
+	//    natively supported by AWS Glue.
+	//
+	//    * CUSTOM - Uses configuration settings contained in a custom connector
+	//    to read from and write to data stores that are not natively supported
+	//    by AWS Glue.
 	//
 	// SFTP is not supported.
 	//
@@ -26460,6 +26514,10 @@ type FindMatchesMetrics struct {
 	// in Wikipedia.
 	AreaUnderPRCurve *float64 `type:"double"`
 
+	// A list of ColumnImportance structures containing column importance metrics,
+	// sorted in order of descending importance.
+	ColumnImportances []*ColumnImportance `type:"list"`
+
 	// The confusion matrix shows you what your transform is predicting accurately
 	// and what types of errors it is making.
 	//
@@ -26504,6 +26562,12 @@ func (s FindMatchesMetrics) GoString() string {
 // SetAreaUnderPRCurve sets the AreaUnderPRCurve field's value.
 func (s *FindMatchesMetrics) SetAreaUnderPRCurve(v float64) *FindMatchesMetrics {
 	s.AreaUnderPRCurve = &v
+	return s
+}
+
+// SetColumnImportances sets the ColumnImportances field's value.
+func (s *FindMatchesMetrics) SetColumnImportances(v []*ColumnImportance) *FindMatchesMetrics {
+	s.ColumnImportances = v
 	return s
 }
 
@@ -37821,13 +37885,18 @@ func (s *SchemaColumn) SetName(v string) *SchemaColumn {
 	return s
 }
 
+// The unique ID of the schema in the AWS Glue schema registry.
 type SchemaId struct {
 	_ struct{} `type:"structure"`
 
+	// The name of the schema registry that contains the schema.
 	RegistryName *string `min:"1" type:"string"`
 
+	// The Amazon Resource Name (ARN) of the schema. One of SchemaArn or SchemaName
+	// has to be provided.
 	SchemaArn *string `min:"1" type:"string"`
 
+	// The name of the schema. One of SchemaArn or SchemaName has to be provided.
 	SchemaName *string `min:"1" type:"string"`
 }
 
@@ -38114,11 +38183,14 @@ func (s *SchemaVersionListItem) SetVersionNumber(v int64) *SchemaVersionListItem
 	return s
 }
 
+// A structure containing the schema version information.
 type SchemaVersionNumber struct {
 	_ struct{} `type:"structure"`
 
+	// The latest version available for the schema.
 	LatestVersion *bool `type:"boolean"`
 
+	// The version number of the schema.
 	VersionNumber *int64 `min:"1" type:"long"`
 }
 
@@ -44448,6 +44520,18 @@ const (
 
 	// ConnectionPropertyKeyKafkaSkipCustomCertValidation is a ConnectionPropertyKey enum value
 	ConnectionPropertyKeyKafkaSkipCustomCertValidation = "KAFKA_SKIP_CUSTOM_CERT_VALIDATION"
+
+	// ConnectionPropertyKeySecretId is a ConnectionPropertyKey enum value
+	ConnectionPropertyKeySecretId = "SECRET_ID"
+
+	// ConnectionPropertyKeyConnectorUrl is a ConnectionPropertyKey enum value
+	ConnectionPropertyKeyConnectorUrl = "CONNECTOR_URL"
+
+	// ConnectionPropertyKeyConnectorType is a ConnectionPropertyKey enum value
+	ConnectionPropertyKeyConnectorType = "CONNECTOR_TYPE"
+
+	// ConnectionPropertyKeyConnectorClassName is a ConnectionPropertyKey enum value
+	ConnectionPropertyKeyConnectorClassName = "CONNECTOR_CLASS_NAME"
 )
 
 // ConnectionPropertyKey_Values returns all elements of the ConnectionPropertyKey enum
@@ -44474,6 +44558,10 @@ func ConnectionPropertyKey_Values() []string {
 		ConnectionPropertyKeyKafkaSslEnabled,
 		ConnectionPropertyKeyKafkaCustomCert,
 		ConnectionPropertyKeyKafkaSkipCustomCertValidation,
+		ConnectionPropertyKeySecretId,
+		ConnectionPropertyKeyConnectorUrl,
+		ConnectionPropertyKeyConnectorType,
+		ConnectionPropertyKeyConnectorClassName,
 	}
 }
 
@@ -44492,6 +44580,12 @@ const (
 
 	// ConnectionTypeNetwork is a ConnectionType enum value
 	ConnectionTypeNetwork = "NETWORK"
+
+	// ConnectionTypeMarketplace is a ConnectionType enum value
+	ConnectionTypeMarketplace = "MARKETPLACE"
+
+	// ConnectionTypeCustom is a ConnectionType enum value
+	ConnectionTypeCustom = "CUSTOM"
 )
 
 // ConnectionType_Values returns all elements of the ConnectionType enum
@@ -44502,6 +44596,8 @@ func ConnectionType_Values() []string {
 		ConnectionTypeMongodb,
 		ConnectionTypeKafka,
 		ConnectionTypeNetwork,
+		ConnectionTypeMarketplace,
+		ConnectionTypeCustom,
 	}
 }
 

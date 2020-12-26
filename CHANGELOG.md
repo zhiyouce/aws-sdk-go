@@ -1,3 +1,53 @@
+Release v1.36.15 (2020-12-23)
+===
+
+### Service Client Updates
+* `service/compute-optimizer`: Updates service API and documentation
+* `service/dms`: Updates service API and documentation
+  * AWS DMS launches support for AWS Secrets Manager to manage Oracle ASM Database credentials
+* `service/resource-groups`: Updates service API, documentation, and paginators
+
+Release v1.36.14 (2020-12-22)
+===
+
+### Service Client Updates
+* `service/ce`: Updates service API and documentation
+* `service/connect`: Updates service API, documentation, and paginators
+* `service/elasticache`: Updates service documentation
+  * Documentation updates for elasticache
+* `service/glue`: Updates service API and documentation
+  * AWS Glue Find Matches machine learning transforms now support column importance scores.
+* `service/iotwireless`: Updates service API and documentation
+* `service/rds`: Updates service API and documentation
+  * Adds customer-owned IP address (CoIP) support to Amazon RDS on AWS Outposts.
+* `service/ssm`: Updates service API and documentation
+  * SSM Maintenance Window support for registering/updating maintenance window tasks without targets.
+
+Release v1.36.13 (2020-12-21)
+===
+
+### Service Client Updates
+* `service/apigateway`: Updates service documentation
+  * Documentation updates for Amazon API Gateway.
+* `service/batch`: Updates service documentation
+  * Documentation updates for batch
+* `service/config`: Updates service API, documentation, and paginators
+* `service/connectparticipant`: Updates service API and documentation
+* `service/dms`: Updates service API and documentation
+  * AWS DMS launches support for AWS Secrets Manager to manage source and target database credentials.
+* `service/ec2`: Updates service API and documentation
+  * This release adds Tag On Create feature support for the AllocateAddress API.
+* `service/glue`: Updates service API and documentation
+  * Add 4 connection properties: SECRET_ID, CONNECTOR_URL, CONNECTOR_TYPE, CONNECTOR_CLASS_NAME. Add two connection types: MARKETPLACE, CUSTOM
+* `service/managedblockchain`: Updates service API and documentation
+* `service/outposts`: Updates service API and documentation
+* `service/qldb-session`: Updates service API and documentation
+* `service/s3`: Updates service API and examples
+  * Format GetObject's Expires header to be an http-date instead of iso8601
+* `service/securityhub`: Updates service documentation
+* `service/service-quotas`: Updates service API and documentation
+* `service/servicecatalog-appregistry`: Updates service API and documentation
+
 Release v1.36.12 (2020-12-18)
 ===
 
