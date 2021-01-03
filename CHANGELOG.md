@@ -1,3 +1,26 @@
+Release v1.36.19 (2020-12-31)
+===
+
+### Service Client Updates
+* `service/servicecatalog`: Updates service API and documentation
+  * Enhanced Service Catalog DescribeProvisioningParameters API to return new parameter constraints, i.e., MinLength, MaxLength, MinValue, MaxValue, ConstraintDescription and AllowedPattern
+
+Release v1.36.18 (2020-12-30)
+===
+
+### Service Client Updates
+* `service/elasticache`: Updates service documentation
+  * Documentation updates for elasticache
+* `service/macie2`: Updates service documentation
+
+Release v1.36.17 (2020-12-29)
+===
+
+### Service Client Updates
+* `service/acm-pca`: Updates service API and documentation
+* `service/apigatewayv2`: Updates service API and documentation
+  * Amazon API Gateway now supports data mapping for HTTP APIs which allows customers to modify HTTP Request before sending it to their integration and HTTP Response before sending it to the invoker.
+
 Release v1.36.16 (2020-12-28)
 ===
 
