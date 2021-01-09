@@ -1,3 +1,38 @@
+Release v1.36.23 (2021-01-07)
+===
+
+### Service Client Updates
+* `service/codepipeline`: Updates service API and documentation
+  * Adding cancelled status and summary for executions aborted by pipeline updates.
+* `service/devops-guru`: Updates service API and documentation
+* `service/mediaconvert`: Updates service API and documentation
+  * AWS Elemental MediaConvert SDK has added support for I-Frame-only HLS manifest generation in CMAF outputs.
+
+Release v1.36.22 (2021-01-06)
+===
+
+### Service Client Updates
+* `service/autoscaling`: Updates service documentation
+  * This update increases the number of instance types that can be added to the overrides within an mixed instances group configuration.
+* `service/autoscaling-plans`: Updates service documentation
+* `service/transfer`: Updates service API and documentation
+  * This release adds support for Amazon EFS, so customers can transfer files over SFTP, FTPS and FTP in and out of Amazon S3 as well as Amazon EFS.
+
+Release v1.36.21 (2021-01-05)
+===
+
+### Service Client Updates
+* `service/application-autoscaling`: Updates service documentation
+* `service/ce`: Updates service API and documentation
+
+Release v1.36.20 (2021-01-04)
+===
+
+### Service Client Updates
+* `service/cloudsearch`: Updates service API
+  * This release adds support for new Amazon CloudSearch instances.
+* `service/healthlake`: Updates service API and documentation
+
 Release v1.36.19 (2020-12-31)
 ===
 
