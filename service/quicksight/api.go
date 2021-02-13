@@ -7700,6 +7700,12 @@ func (c *QuickSight) ListThemeVersionsRequest(input *ListThemeVersionsInput) (re
 		Name:       opListThemeVersions,
 		HTTPMethod: "GET",
 		HTTPPath:   "/accounts/{AwsAccountId}/themes/{ThemeId}/versions",
+		Paginator: &request.Paginator{
+			InputTokens:     []string{"NextToken"},
+			OutputTokens:    []string{"NextToken"},
+			LimitToken:      "MaxResults",
+			TruncationToken: "",
+		},
 	}
 
 	if input == nil {
@@ -7773,6 +7779,58 @@ func (c *QuickSight) ListThemeVersionsWithContext(ctx aws.Context, input *ListTh
 	return out, req.Send()
 }
 
+// ListThemeVersionsPages iterates over the pages of a ListThemeVersions operation,
+// calling the "fn" function with the response data for each page. To stop
+// iterating, return false from the fn function.
+//
+// See ListThemeVersions method for more information on how to use this operation.
+//
+// Note: This operation can generate multiple requests to a service.
+//
+//    // Example iterating over at most 3 pages of a ListThemeVersions operation.
+//    pageNum := 0
+//    err := client.ListThemeVersionsPages(params,
+//        func(page *quicksight.ListThemeVersionsOutput, lastPage bool) bool {
+//            pageNum++
+//            fmt.Println(page)
+//            return pageNum <= 3
+//        })
+//
+func (c *QuickSight) ListThemeVersionsPages(input *ListThemeVersionsInput, fn func(*ListThemeVersionsOutput, bool) bool) error {
+	return c.ListThemeVersionsPagesWithContext(aws.BackgroundContext(), input, fn)
+}
+
+// ListThemeVersionsPagesWithContext same as ListThemeVersionsPages except
+// it takes a Context and allows setting request options on the pages.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *QuickSight) ListThemeVersionsPagesWithContext(ctx aws.Context, input *ListThemeVersionsInput, fn func(*ListThemeVersionsOutput, bool) bool, opts ...request.Option) error {
+	p := request.Pagination{
+		NewRequest: func() (*request.Request, error) {
+			var inCpy *ListThemeVersionsInput
+			if input != nil {
+				tmp := *input
+				inCpy = &tmp
+			}
+			req, _ := c.ListThemeVersionsRequest(inCpy)
+			req.SetContext(ctx)
+			req.ApplyOptions(opts...)
+			return req, nil
+		},
+	}
+
+	for p.Next() {
+		if !fn(p.Page().(*ListThemeVersionsOutput), !p.HasNextPage()) {
+			break
+		}
+	}
+
+	return p.Err()
+}
+
 const opListThemes = "ListThemes"
 
 // ListThemesRequest generates a "aws/request.Request" representing the
@@ -7804,6 +7862,12 @@ func (c *QuickSight) ListThemesRequest(input *ListThemesInput) (req *request.Req
 		Name:       opListThemes,
 		HTTPMethod: "GET",
 		HTTPPath:   "/accounts/{AwsAccountId}/themes",
+		Paginator: &request.Paginator{
+			InputTokens:     []string{"NextToken"},
+			OutputTokens:    []string{"NextToken"},
+			LimitToken:      "MaxResults",
+			TruncationToken: "",
+		},
 	}
 
 	if input == nil {
@@ -7875,6 +7939,58 @@ func (c *QuickSight) ListThemesWithContext(ctx aws.Context, input *ListThemesInp
 	req.SetContext(ctx)
 	req.ApplyOptions(opts...)
 	return out, req.Send()
+}
+
+// ListThemesPages iterates over the pages of a ListThemes operation,
+// calling the "fn" function with the response data for each page. To stop
+// iterating, return false from the fn function.
+//
+// See ListThemes method for more information on how to use this operation.
+//
+// Note: This operation can generate multiple requests to a service.
+//
+//    // Example iterating over at most 3 pages of a ListThemes operation.
+//    pageNum := 0
+//    err := client.ListThemesPages(params,
+//        func(page *quicksight.ListThemesOutput, lastPage bool) bool {
+//            pageNum++
+//            fmt.Println(page)
+//            return pageNum <= 3
+//        })
+//
+func (c *QuickSight) ListThemesPages(input *ListThemesInput, fn func(*ListThemesOutput, bool) bool) error {
+	return c.ListThemesPagesWithContext(aws.BackgroundContext(), input, fn)
+}
+
+// ListThemesPagesWithContext same as ListThemesPages except
+// it takes a Context and allows setting request options on the pages.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *QuickSight) ListThemesPagesWithContext(ctx aws.Context, input *ListThemesInput, fn func(*ListThemesOutput, bool) bool, opts ...request.Option) error {
+	p := request.Pagination{
+		NewRequest: func() (*request.Request, error) {
+			var inCpy *ListThemesInput
+			if input != nil {
+				tmp := *input
+				inCpy = &tmp
+			}
+			req, _ := c.ListThemesRequest(inCpy)
+			req.SetContext(ctx)
+			req.ApplyOptions(opts...)
+			return req, nil
+		},
+	}
+
+	for p.Next() {
+		if !fn(p.Page().(*ListThemesOutput), !p.HasNextPage()) {
+			break
+		}
+	}
+
+	return p.Err()
 }
 
 const opListUserGroups = "ListUserGroups"
@@ -13081,6 +13197,9 @@ type CreateDataSetInput struct {
 	// DataSetId is a required field
 	DataSetId *string `type:"string" required:"true"`
 
+	// The folder that contains fields and nested subfolders for your dataset.
+	FieldFolders map[string]*FieldFolder `type:"map"`
+
 	// Indicates whether you want to import the data into SPICE.
 	//
 	// ImportMode is a required field
@@ -13256,6 +13375,12 @@ func (s *CreateDataSetInput) SetColumnLevelPermissionRules(v []*ColumnLevelPermi
 // SetDataSetId sets the DataSetId field's value.
 func (s *CreateDataSetInput) SetDataSetId(v string) *CreateDataSetInput {
 	s.DataSetId = &v
+	return s
+}
+
+// SetFieldFolders sets the FieldFolders field's value.
+func (s *CreateDataSetInput) SetFieldFolders(v map[string]*FieldFolder) *CreateDataSetInput {
+	s.FieldFolders = v
 	return s
 }
 
@@ -15963,6 +16088,9 @@ type DataSet struct {
 	// The ID of the dataset.
 	DataSetId *string `type:"string"`
 
+	// The folder that contains fields and nested subfolders for your dataset.
+	FieldFolders map[string]*FieldFolder `type:"map"`
+
 	// A value that indicates whether you want to import the data into SPICE.
 	ImportMode *string `type:"string" enum:"DataSetImportMode"`
 
@@ -16030,6 +16158,12 @@ func (s *DataSet) SetCreatedTime(v time.Time) *DataSet {
 // SetDataSetId sets the DataSetId field's value.
 func (s *DataSet) SetDataSetId(v string) *DataSet {
 	s.DataSetId = &v
+	return s
+}
+
+// SetFieldFolders sets the FieldFolders field's value.
+func (s *DataSet) SetFieldFolders(v map[string]*FieldFolder) *DataSet {
+	s.FieldFolders = v
 	return s
 }
 
@@ -21186,6 +21320,39 @@ func (s ExportToCSVOption) GoString() string {
 // SetAvailabilityStatus sets the AvailabilityStatus field's value.
 func (s *ExportToCSVOption) SetAvailabilityStatus(v string) *ExportToCSVOption {
 	s.AvailabilityStatus = &v
+	return s
+}
+
+// A FieldFolder element is a folder that contains fields and nested subfolders.
+type FieldFolder struct {
+	_ struct{} `type:"structure"`
+
+	// A folder has a list of columns. A column can only be in one folder.
+	Columns []*string `locationName:"columns" type:"list"`
+
+	// The description for a field folder.
+	Description *string `locationName:"description" type:"string"`
+}
+
+// String returns the string representation
+func (s FieldFolder) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s FieldFolder) GoString() string {
+	return s.String()
+}
+
+// SetColumns sets the Columns field's value.
+func (s *FieldFolder) SetColumns(v []*string) *FieldFolder {
+	s.Columns = v
+	return s
+}
+
+// SetDescription sets the Description field's value.
+func (s *FieldFolder) SetDescription(v string) *FieldFolder {
+	s.Description = &v
 	return s
 }
 
@@ -27274,7 +27441,7 @@ type SearchAnalysesInput struct {
 	// The structure for the search filters that you want to apply to your search.
 	//
 	// Filters is a required field
-	Filters []*AnalysisSearchFilter `type:"list" required:"true"`
+	Filters []*AnalysisSearchFilter `min:"1" type:"list" required:"true"`
 
 	// The maximum number of results to return.
 	MaxResults *int64 `min:"1" type:"integer"`
@@ -27304,6 +27471,9 @@ func (s *SearchAnalysesInput) Validate() error {
 	}
 	if s.Filters == nil {
 		invalidParams.Add(request.NewErrParamRequired("Filters"))
+	}
+	if s.Filters != nil && len(s.Filters) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("Filters", 1))
 	}
 	if s.MaxResults != nil && *s.MaxResults < 1 {
 		invalidParams.Add(request.NewErrParamMinValue("MaxResults", 1))
@@ -27404,7 +27574,7 @@ type SearchDashboardsInput struct {
 	// } ]
 	//
 	// Filters is a required field
-	Filters []*DashboardSearchFilter `type:"list" required:"true"`
+	Filters []*DashboardSearchFilter `min:"1" type:"list" required:"true"`
 
 	// The maximum number of results to be returned per request.
 	MaxResults *int64 `min:"1" type:"integer"`
@@ -27434,6 +27604,9 @@ func (s *SearchDashboardsInput) Validate() error {
 	}
 	if s.Filters == nil {
 		invalidParams.Add(request.NewErrParamRequired("Filters"))
+	}
+	if s.Filters != nil && len(s.Filters) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("Filters", 1))
 	}
 	if s.MaxResults != nil && *s.MaxResults < 1 {
 		invalidParams.Add(request.NewErrParamMinValue("MaxResults", 1))
@@ -31059,6 +31232,9 @@ type UpdateDataSetInput struct {
 	// DataSetId is a required field
 	DataSetId *string `location:"uri" locationName:"DataSetId" type:"string" required:"true"`
 
+	// The folder that contains fields and nested subfolders for your dataset.
+	FieldFolders map[string]*FieldFolder `type:"map"`
+
 	// Indicates whether you want to import the data into SPICE.
 	//
 	// ImportMode is a required field
@@ -31204,6 +31380,12 @@ func (s *UpdateDataSetInput) SetColumnLevelPermissionRules(v []*ColumnLevelPermi
 // SetDataSetId sets the DataSetId field's value.
 func (s *UpdateDataSetInput) SetDataSetId(v string) *UpdateDataSetInput {
 	s.DataSetId = &v
+	return s
+}
+
+// SetFieldFolders sets the FieldFolders field's value.
+func (s *UpdateDataSetInput) SetFieldFolders(v map[string]*FieldFolder) *UpdateDataSetInput {
+	s.FieldFolders = v
 	return s
 }
 

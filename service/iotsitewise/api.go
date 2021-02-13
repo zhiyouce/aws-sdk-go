@@ -12829,6 +12829,51 @@ func (s *GroupIdentity) SetId(v string) *GroupIdentity {
 	return s
 }
 
+// Contains information about an AWS Identity and Access Management (IAM) role.
+// For more information, see IAM roles (https://docs.aws.amazon.com/IAM/latest/UserGuide/id_roles.html)
+// in the IAM User Guide.
+type IAMRoleIdentity struct {
+	_ struct{} `type:"structure"`
+
+	// The ARN of the IAM role. For more information, see IAM ARNs (https://docs.aws.amazon.com/IAM/latest/UserGuide/reference_identifiers.htmll#identifiers-arns)
+	// in the IAM User Guide.
+	//
+	// Arn is a required field
+	Arn *string `locationName:"arn" min:"1" type:"string" required:"true"`
+}
+
+// String returns the string representation
+func (s IAMRoleIdentity) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s IAMRoleIdentity) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *IAMRoleIdentity) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "IAMRoleIdentity"}
+	if s.Arn == nil {
+		invalidParams.Add(request.NewErrParamRequired("Arn"))
+	}
+	if s.Arn != nil && len(*s.Arn) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("Arn", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetArn sets the Arn field's value.
+func (s *IAMRoleIdentity) SetArn(v string) *IAMRoleIdentity {
+	s.Arn = &v
+	return s
+}
+
 // Contains information about an AWS Identity and Access Management (IAM) user.
 type IAMUserIdentity struct {
 	_ struct{} `type:"structure"`
@@ -12887,6 +12932,9 @@ type Identity struct {
 	// An AWS SSO group identity.
 	Group *GroupIdentity `locationName:"group" type:"structure"`
 
+	// An IAM role identity.
+	IamRole *IAMRoleIdentity `locationName:"iamRole" type:"structure"`
+
 	// An IAM user identity.
 	IamUser *IAMUserIdentity `locationName:"iamUser" type:"structure"`
 
@@ -12912,6 +12960,11 @@ func (s *Identity) Validate() error {
 			invalidParams.AddNested("Group", err.(request.ErrInvalidParams))
 		}
 	}
+	if s.IamRole != nil {
+		if err := s.IamRole.Validate(); err != nil {
+			invalidParams.AddNested("IamRole", err.(request.ErrInvalidParams))
+		}
+	}
 	if s.IamUser != nil {
 		if err := s.IamUser.Validate(); err != nil {
 			invalidParams.AddNested("IamUser", err.(request.ErrInvalidParams))
@@ -12932,6 +12985,12 @@ func (s *Identity) Validate() error {
 // SetGroup sets the Group field's value.
 func (s *Identity) SetGroup(v *GroupIdentity) *Identity {
 	s.Group = v
+	return s
+}
+
+// SetIamRole sets the IamRole field's value.
+func (s *Identity) SetIamRole(v *IAMRoleIdentity) *Identity {
+	s.IamRole = v
 	return s
 }
 
@@ -14455,8 +14514,8 @@ func (s *LoggingOptions) SetLevel(v string) *LoggingOptions {
 	return s
 }
 
-// Contains an asset measurement property. This structure is empty. For more
-// information, see Measurements (https://docs.aws.amazon.com/iot-sitewise/latest/userguide/asset-properties.html#measurements)
+// Contains an asset measurement property. For more information, see Measurements
+// (https://docs.aws.amazon.com/iot-sitewise/latest/userguide/asset-properties.html#measurements)
 // in the AWS IoT SiteWise User Guide.
 type Measurement struct {
 	_ struct{} `type:"structure"`

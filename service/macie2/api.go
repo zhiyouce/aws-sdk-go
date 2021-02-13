@@ -683,7 +683,7 @@ func (c *Macie2) CreateMemberRequest(input *CreateMemberInput) (req *request.Req
 
 // CreateMember API operation for Amazon Macie 2.
 //
-// Associates an account with an Amazon Macie master account.
+// Associates an account with an Amazon Macie administrator account.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -1313,7 +1313,8 @@ func (c *Macie2) DeleteMemberRequest(input *DeleteMemberInput) (req *request.Req
 
 // DeleteMember API operation for Amazon Macie 2.
 //
-// Deletes the association between an Amazon Macie master account and an account.
+// Deletes the association between an Amazon Macie administrator account and
+// an account.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -1955,6 +1956,111 @@ func (c *Macie2) DisableOrganizationAdminAccountWithContext(ctx aws.Context, inp
 	return out, req.Send()
 }
 
+const opDisassociateFromAdministratorAccount = "DisassociateFromAdministratorAccount"
+
+// DisassociateFromAdministratorAccountRequest generates a "aws/request.Request" representing the
+// client's request for the DisassociateFromAdministratorAccount operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See DisassociateFromAdministratorAccount for more information on using the DisassociateFromAdministratorAccount
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the DisassociateFromAdministratorAccountRequest method.
+//    req, resp := client.DisassociateFromAdministratorAccountRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/macie2-2020-01-01/DisassociateFromAdministratorAccount
+func (c *Macie2) DisassociateFromAdministratorAccountRequest(input *DisassociateFromAdministratorAccountInput) (req *request.Request, output *DisassociateFromAdministratorAccountOutput) {
+	op := &request.Operation{
+		Name:       opDisassociateFromAdministratorAccount,
+		HTTPMethod: "POST",
+		HTTPPath:   "/administrator/disassociate",
+	}
+
+	if input == nil {
+		input = &DisassociateFromAdministratorAccountInput{}
+	}
+
+	output = &DisassociateFromAdministratorAccountOutput{}
+	req = c.newRequest(op, input, output)
+	req.Handlers.Unmarshal.Swap(restjson.UnmarshalHandler.Name, protocol.UnmarshalDiscardBodyHandler)
+	return
+}
+
+// DisassociateFromAdministratorAccount API operation for Amazon Macie 2.
+//
+// Disassociates a member account from its Amazon Macie administrator account.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon Macie 2's
+// API operation DisassociateFromAdministratorAccount for usage and error information.
+//
+// Returned Error Types:
+//   * ValidationException
+//   Provides information about an error that occurred due to a syntax error in
+//   a request.
+//
+//   * InternalServerException
+//   Provides information about an error that occurred due to an unknown internal
+//   server error, exception, or failure.
+//
+//   * ServiceQuotaExceededException
+//   Provides information about an error that occurred due to one or more service
+//   quotas for an account.
+//
+//   * AccessDeniedException
+//   Provides information about an error that occurred due to insufficient access
+//   to a specified resource.
+//
+//   * ResourceNotFoundException
+//   Provides information about an error that occurred because a specified resource
+//   wasn't found.
+//
+//   * ThrottlingException
+//   Provides information about an error that occurred because too many requests
+//   were sent during a certain amount of time.
+//
+//   * ConflictException
+//   Provides information about an error that occurred due to a versioning conflict
+//   for a specified resource.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/macie2-2020-01-01/DisassociateFromAdministratorAccount
+func (c *Macie2) DisassociateFromAdministratorAccount(input *DisassociateFromAdministratorAccountInput) (*DisassociateFromAdministratorAccountOutput, error) {
+	req, out := c.DisassociateFromAdministratorAccountRequest(input)
+	return out, req.Send()
+}
+
+// DisassociateFromAdministratorAccountWithContext is the same as DisassociateFromAdministratorAccount with the addition of
+// the ability to pass a context and additional request options.
+//
+// See DisassociateFromAdministratorAccount for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *Macie2) DisassociateFromAdministratorAccountWithContext(ctx aws.Context, input *DisassociateFromAdministratorAccountInput, opts ...request.Option) (*DisassociateFromAdministratorAccountOutput, error) {
+	req, out := c.DisassociateFromAdministratorAccountRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
 const opDisassociateFromMasterAccount = "DisassociateFromMasterAccount"
 
 // DisassociateFromMasterAccountRequest generates a "aws/request.Request" representing the
@@ -2000,7 +2106,9 @@ func (c *Macie2) DisassociateFromMasterAccountRequest(input *DisassociateFromMas
 
 // DisassociateFromMasterAccount API operation for Amazon Macie 2.
 //
-// Disassociates a member account from its Amazon Macie master account.
+// (Deprecated) Disassociates a member account from its Amazon Macie administrator
+// account. This operation has been replaced by the DisassociateFromAdministratorAccount
+// operation.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -2105,7 +2213,7 @@ func (c *Macie2) DisassociateMemberRequest(input *DisassociateMemberInput) (req 
 
 // DisassociateMember API operation for Amazon Macie 2.
 //
-// Disassociates an Amazon Macie master account from a member account.
+// Disassociates an Amazon Macie administrator account from a member account.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -2372,6 +2480,111 @@ func (c *Macie2) EnableOrganizationAdminAccount(input *EnableOrganizationAdminAc
 // for more information on using Contexts.
 func (c *Macie2) EnableOrganizationAdminAccountWithContext(ctx aws.Context, input *EnableOrganizationAdminAccountInput, opts ...request.Option) (*EnableOrganizationAdminAccountOutput, error) {
 	req, out := c.EnableOrganizationAdminAccountRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+const opGetAdministratorAccount = "GetAdministratorAccount"
+
+// GetAdministratorAccountRequest generates a "aws/request.Request" representing the
+// client's request for the GetAdministratorAccount operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See GetAdministratorAccount for more information on using the GetAdministratorAccount
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the GetAdministratorAccountRequest method.
+//    req, resp := client.GetAdministratorAccountRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/macie2-2020-01-01/GetAdministratorAccount
+func (c *Macie2) GetAdministratorAccountRequest(input *GetAdministratorAccountInput) (req *request.Request, output *GetAdministratorAccountOutput) {
+	op := &request.Operation{
+		Name:       opGetAdministratorAccount,
+		HTTPMethod: "GET",
+		HTTPPath:   "/administrator",
+	}
+
+	if input == nil {
+		input = &GetAdministratorAccountInput{}
+	}
+
+	output = &GetAdministratorAccountOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// GetAdministratorAccount API operation for Amazon Macie 2.
+//
+// Retrieves information about the Amazon Macie administrator account for an
+// account.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon Macie 2's
+// API operation GetAdministratorAccount for usage and error information.
+//
+// Returned Error Types:
+//   * ValidationException
+//   Provides information about an error that occurred due to a syntax error in
+//   a request.
+//
+//   * InternalServerException
+//   Provides information about an error that occurred due to an unknown internal
+//   server error, exception, or failure.
+//
+//   * ServiceQuotaExceededException
+//   Provides information about an error that occurred due to one or more service
+//   quotas for an account.
+//
+//   * AccessDeniedException
+//   Provides information about an error that occurred due to insufficient access
+//   to a specified resource.
+//
+//   * ResourceNotFoundException
+//   Provides information about an error that occurred because a specified resource
+//   wasn't found.
+//
+//   * ThrottlingException
+//   Provides information about an error that occurred because too many requests
+//   were sent during a certain amount of time.
+//
+//   * ConflictException
+//   Provides information about an error that occurred due to a versioning conflict
+//   for a specified resource.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/macie2-2020-01-01/GetAdministratorAccount
+func (c *Macie2) GetAdministratorAccount(input *GetAdministratorAccountInput) (*GetAdministratorAccountOutput, error) {
+	req, out := c.GetAdministratorAccountRequest(input)
+	return out, req.Send()
+}
+
+// GetAdministratorAccountWithContext is the same as GetAdministratorAccount with the addition of
+// the ability to pass a context and additional request options.
+//
+// See GetAdministratorAccount for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *Macie2) GetAdministratorAccountWithContext(ctx aws.Context, input *GetAdministratorAccountInput, opts ...request.Option) (*GetAdministratorAccountOutput, error) {
+	req, out := c.GetAdministratorAccountRequest(input)
 	req.SetContext(ctx)
 	req.ApplyOptions(opts...)
 	return out, req.Send()
@@ -3256,7 +3469,9 @@ func (c *Macie2) GetMasterAccountRequest(input *GetMasterAccountInput) (req *req
 
 // GetMasterAccount API operation for Amazon Macie 2.
 //
-// Retrieves information about the Amazon Macie master account for an account.
+// (Deprecated) Retrieves information about the Amazon Macie administrator account
+// for an account. This operation has been replaced by the GetAdministratorAccount
+// operation.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -3360,8 +3575,8 @@ func (c *Macie2) GetMemberRequest(input *GetMemberInput) (req *request.Request, 
 
 // GetMember API operation for Amazon Macie 2.
 //
-// Retrieves information about a member account that's associated with an Amazon
-// Macie master account.
+// Retrieves information about an account that's associated with an Amazon Macie
+// administrator account.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -4550,7 +4765,7 @@ func (c *Macie2) ListMembersRequest(input *ListMembersInput) (req *request.Reque
 // ListMembers API operation for Amazon Macie 2.
 //
 // Retrieves information about the accounts that are associated with an Amazon
-// Macie master account.
+// Macie administrator account.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -5622,7 +5837,7 @@ func (c *Macie2) UpdateMemberSessionRequest(input *UpdateMemberSessionInput) (re
 
 // UpdateMemberSession API operation for Amazon Macie 2.
 //
-// Enables an Amazon Macie master account to suspend or re-enable a member account.
+// Enables an Amazon Macie administrator to suspend or re-enable a member account.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -5787,15 +6002,21 @@ func (c *Macie2) UpdateOrganizationConfigurationWithContext(ctx aws.Context, inp
 	return out, req.Send()
 }
 
-// Specifies an Amazon Macie membership invitation to accept.
+// Specifies an Amazon Macie membership invitation to accept. In the request,
+// you have to specify the ID for the AWS account that sent the invitation.
+// Otherwise, a validation error occurs. To specify this ID, we recommend that
+// you use the administratorAccountId property instead of the masterAccount
+// property. The masterAccount property has been deprecated and is retained
+// only for backward compatibility.
 type AcceptInvitationInput struct {
 	_ struct{} `type:"structure"`
+
+	AdministratorAccountId *string `locationName:"administratorAccountId" type:"string"`
 
 	// InvitationId is a required field
 	InvitationId *string `locationName:"invitationId" type:"string" required:"true"`
 
-	// MasterAccount is a required field
-	MasterAccount *string `locationName:"masterAccount" type:"string" required:"true"`
+	MasterAccount *string `locationName:"masterAccount" type:"string"`
 }
 
 // String returns the string representation
@@ -5814,14 +6035,17 @@ func (s *AcceptInvitationInput) Validate() error {
 	if s.InvitationId == nil {
 		invalidParams.Add(request.NewErrParamRequired("InvitationId"))
 	}
-	if s.MasterAccount == nil {
-		invalidParams.Add(request.NewErrParamRequired("MasterAccount"))
-	}
 
 	if invalidParams.Len() > 0 {
 		return invalidParams
 	}
 	return nil
+}
+
+// SetAdministratorAccountId sets the AdministratorAccountId field's value.
+func (s *AcceptInvitationInput) SetAdministratorAccountId(v string) *AcceptInvitationInput {
+	s.AdministratorAccountId = &v
+	return s
 }
 
 // SetInvitationId sets the InvitationId field's value.
@@ -5939,7 +6163,7 @@ func (s *AccessDeniedException) RequestID() string {
 	return s.RespMetadata.RequestID
 }
 
-// Specifies details for an account to associate with an Amazon Macie master
+// Specifies details for an account to associate with an Amazon Macie administrator
 // account.
 type AccountDetail struct {
 	_ struct{} `type:"structure"`
@@ -5989,16 +6213,16 @@ func (s *AccountDetail) SetEmail(v string) *AccountDetail {
 	return s
 }
 
-// Provides information about account-level permissions settings that apply
+// Provides information about the account-level permissions settings that apply
 // to an S3 bucket.
 type AccountLevelPermissions struct {
 	_ struct{} `type:"structure"`
 
 	// Provides information about the block public access settings for an S3 bucket.
 	// These settings can apply to a bucket at the account level or bucket level.
-	// For detailed information about each setting, see Using Amazon S3 block public
-	// access (https://docs.aws.amazon.com/AmazonS3/latest/dev/access-control-block-public-access.html)
-	// in the Amazon Simple Storage Service Developer Guide.
+	// For detailed information about each setting, see Blocking public access to
+	// your Amazon S3 storage (https://docs.aws.amazon.com/AmazonS3/latest/userguide/access-control-block-public-access.html)
+	// in the Amazon Simple Storage Service User Guide.
 	BlockPublicAccess *BlockPublicAccess `locationName:"blockPublicAccess" type:"structure"`
 }
 
@@ -6026,7 +6250,7 @@ type AdminAccount struct {
 	AccountId *string `locationName:"accountId" type:"string"`
 
 	// The current status of an account as the delegated Amazon Macie administrator
-	// account for an AWS organization.
+	// account for an AWS organization. Possible values are:
 	Status *string `locationName:"status" type:"string" enum:"AdminStatus"`
 }
 
@@ -6336,9 +6560,9 @@ func (s *BatchGetCustomDataIdentifiersOutput) SetNotFoundIdentifierIds(v []*stri
 
 // Provides information about the block public access settings for an S3 bucket.
 // These settings can apply to a bucket at the account level or bucket level.
-// For detailed information about each setting, see Using Amazon S3 block public
-// access (https://docs.aws.amazon.com/AmazonS3/latest/dev/access-control-block-public-access.html)
-// in the Amazon Simple Storage Service Developer Guide.
+// For detailed information about each setting, see Blocking public access to
+// your Amazon S3 storage (https://docs.aws.amazon.com/AmazonS3/latest/userguide/access-control-block-public-access.html)
+// in the Amazon Simple Storage Service User Guide.
 type BlockPublicAccess struct {
 	_ struct{} `type:"structure"`
 
@@ -6434,7 +6658,7 @@ func (s *BucketCountByEffectivePermission) SetUnknown(v int64) *BucketCountByEff
 }
 
 // Provides information about the number of S3 buckets that use certain types
-// of server-side encryption or don't encrypt objects by default.
+// of server-side encryption by default or don't encrypt new objects by default.
 type BucketCountByEncryptionType struct {
 	_ struct{} `type:"structure"`
 
@@ -6604,9 +6828,9 @@ type BucketLevelPermissions struct {
 
 	// Provides information about the block public access settings for an S3 bucket.
 	// These settings can apply to a bucket at the account level or bucket level.
-	// For detailed information about each setting, see Using Amazon S3 block public
-	// access (https://docs.aws.amazon.com/AmazonS3/latest/dev/access-control-block-public-access.html)
-	// in the Amazon Simple Storage Service Developer Guide.
+	// For detailed information about each setting, see Blocking public access to
+	// your Amazon S3 storage (https://docs.aws.amazon.com/AmazonS3/latest/userguide/access-control-block-public-access.html)
+	// in the Amazon Simple Storage Service User Guide.
 	BlockPublicAccess *BlockPublicAccess `locationName:"blockPublicAccess" type:"structure"`
 
 	// Provides information about the permissions settings of a bucket policy for
@@ -6682,6 +6906,12 @@ type BucketMetadata struct {
 	// in an S3 bucket are replicated to S3 buckets for other AWS accounts and,
 	// if so, which accounts.
 	ReplicationDetails *ReplicationDetails `locationName:"replicationDetails" type:"structure"`
+
+	// Provides information about the default server-side encryption settings for
+	// an S3 bucket. For detailed information about these settings, see Setting
+	// default server-side encryption behavior for Amazon S3 buckets (https://docs.aws.amazon.com/AmazonS3/latest/userguide/bucket-encryption.html)
+	// in the Amazon Simple Storage Service User Guide.
+	ServerSideEncryption *BucketServerSideEncryption `locationName:"serverSideEncryption" type:"structure"`
 
 	SharedAccess *string `locationName:"sharedAccess" type:"string" enum:"SharedAccess"`
 
@@ -6794,6 +7024,12 @@ func (s *BucketMetadata) SetReplicationDetails(v *ReplicationDetails) *BucketMet
 	return s
 }
 
+// SetServerSideEncryption sets the ServerSideEncryption field's value.
+func (s *BucketMetadata) SetServerSideEncryption(v *BucketServerSideEncryption) *BucketMetadata {
+	s.ServerSideEncryption = v
+	return s
+}
+
 // SetSharedAccess sets the SharedAccess field's value.
 func (s *BucketMetadata) SetSharedAccess(v string) *BucketMetadata {
 	s.SharedAccess = &v
@@ -6841,7 +7077,7 @@ func (s *BucketMetadata) SetVersioning(v bool) *BucketMetadata {
 type BucketPermissionConfiguration struct {
 	_ struct{} `type:"structure"`
 
-	// Provides information about account-level permissions settings that apply
+	// Provides information about the account-level permissions settings that apply
 	// to an S3 bucket.
 	AccountLevelPermissions *AccountLevelPermissions `locationName:"accountLevelPermissions" type:"structure"`
 
@@ -6935,6 +7171,40 @@ func (s *BucketPublicAccess) SetEffectivePermission(v string) *BucketPublicAcces
 // SetPermissionConfiguration sets the PermissionConfiguration field's value.
 func (s *BucketPublicAccess) SetPermissionConfiguration(v *BucketPermissionConfiguration) *BucketPublicAccess {
 	s.PermissionConfiguration = v
+	return s
+}
+
+// Provides information about the default server-side encryption settings for
+// an S3 bucket. For detailed information about these settings, see Setting
+// default server-side encryption behavior for Amazon S3 buckets (https://docs.aws.amazon.com/AmazonS3/latest/userguide/bucket-encryption.html)
+// in the Amazon Simple Storage Service User Guide.
+type BucketServerSideEncryption struct {
+	_ struct{} `type:"structure"`
+
+	KmsMasterKeyId *string `locationName:"kmsMasterKeyId" type:"string"`
+
+	Type *string `locationName:"type" type:"string" enum:"Type"`
+}
+
+// String returns the string representation
+func (s BucketServerSideEncryption) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s BucketServerSideEncryption) GoString() string {
+	return s.String()
+}
+
+// SetKmsMasterKeyId sets the KmsMasterKeyId field's value.
+func (s *BucketServerSideEncryption) SetKmsMasterKeyId(v string) *BucketServerSideEncryption {
+	s.KmsMasterKeyId = &v
+	return s
+}
+
+// SetType sets the Type field's value.
+func (s *BucketServerSideEncryption) SetType(v string) *BucketServerSideEncryption {
+	s.Type = &v
 	return s
 }
 
@@ -7329,6 +7599,11 @@ func (s *CreateClassificationJobInput) Validate() error {
 	}
 	if s.S3JobDefinition == nil {
 		invalidParams.Add(request.NewErrParamRequired("S3JobDefinition"))
+	}
+	if s.S3JobDefinition != nil {
+		if err := s.S3JobDefinition.Validate(); err != nil {
+			invalidParams.AddNested("S3JobDefinition", err.(request.ErrInvalidParams))
+		}
 	}
 
 	if invalidParams.Len() > 0 {
@@ -7750,11 +8025,12 @@ func (s *CreateInvitationsOutput) SetUnprocessedAccounts(v []*UnprocessedAccount
 	return s
 }
 
-// Specifies an account to associate with an Amazon Macie master account.
+// Specifies an AWS account to associate with an Amazon Macie administrator
+// account.
 type CreateMemberInput struct {
 	_ struct{} `type:"structure"`
 
-	// Specifies details for an account to associate with an Amazon Macie master
+	// Specifies details for an account to associate with an Amazon Macie administrator
 	// account.
 	//
 	// Account is a required field
@@ -7807,7 +8083,7 @@ func (s *CreateMemberInput) SetTags(v map[string]*string) *CreateMemberInput {
 }
 
 // Provides information about a request to associate an account with an Amazon
-// Macie master account.
+// Macie administrator account.
 type CreateMemberOutput struct {
 	_ struct{} `type:"structure"`
 
@@ -8853,6 +9129,34 @@ func (s DisableOrganizationAdminAccountOutput) GoString() string {
 	return s.String()
 }
 
+type DisassociateFromAdministratorAccountInput struct {
+	_ struct{} `type:"structure"`
+}
+
+// String returns the string representation
+func (s DisassociateFromAdministratorAccountInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s DisassociateFromAdministratorAccountInput) GoString() string {
+	return s.String()
+}
+
+type DisassociateFromAdministratorAccountOutput struct {
+	_ struct{} `type:"structure"`
+}
+
+// String returns the string representation
+func (s DisassociateFromAdministratorAccountOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s DisassociateFromAdministratorAccountOutput) GoString() string {
+	return s.String()
+}
+
 type DisassociateFromMasterAccountInput struct {
 	_ struct{} `type:"structure"`
 }
@@ -8958,8 +9262,8 @@ func (s *DomainDetails) SetDomainName(v string) *DomainDetails {
 	return s
 }
 
-// Enables Amazon Macie and specifies the configuration settings for an Amazon
-// Macie account.
+// Enables Amazon Macie and specifies the configuration settings for a Macie
+// account.
 type EnableMacieInput struct {
 	_ struct{} `type:"structure"`
 
@@ -9512,6 +9816,47 @@ func (s *FindingsFilterListItem) SetTags(v map[string]*string) *FindingsFilterLi
 	return s
 }
 
+type GetAdministratorAccountInput struct {
+	_ struct{} `type:"structure"`
+}
+
+// String returns the string representation
+func (s GetAdministratorAccountInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s GetAdministratorAccountInput) GoString() string {
+	return s.String()
+}
+
+// Provides information about the Amazon Macie administrator account for an
+// account. If the accounts are associated by a Macie membership invitation,
+// the response also provides information about that invitation.
+type GetAdministratorAccountOutput struct {
+	_ struct{} `type:"structure"`
+
+	// Provides information about an Amazon Macie membership invitation that was
+	// received by an account.
+	Administrator *Invitation `locationName:"administrator" type:"structure"`
+}
+
+// String returns the string representation
+func (s GetAdministratorAccountOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s GetAdministratorAccountOutput) GoString() string {
+	return s.String()
+}
+
+// SetAdministrator sets the Administrator field's value.
+func (s *GetAdministratorAccountOutput) SetAdministrator(v *Invitation) *GetAdministratorAccountOutput {
+	s.Administrator = v
+	return s
+}
+
 // Specifies the account that owns the S3 buckets to retrieve aggregated statistical
 // data for.
 type GetBucketStatisticsInput struct {
@@ -9548,7 +9893,7 @@ type GetBucketStatisticsOutput struct {
 	BucketCountByEffectivePermission *BucketCountByEffectivePermission `locationName:"bucketCountByEffectivePermission" type:"structure"`
 
 	// Provides information about the number of S3 buckets that use certain types
-	// of server-side encryption or don't encrypt objects by default.
+	// of server-side encryption by default or don't encrypt new objects by default.
 	BucketCountByEncryptionType *BucketCountByEncryptionType `locationName:"bucketCountByEncryptionType" type:"structure"`
 
 	// Provides information about the number of S3 buckets that are shared with
@@ -10262,9 +10607,9 @@ func (s GetMasterAccountInput) GoString() string {
 	return s.String()
 }
 
-// Provides information about the Amazon Macie master account for an account.
-// If the accounts are associated by a Macie membership invitation, the response
-// also provides information about that invitation.
+// (Deprecated) Provides information about the Amazon Macie administrator account
+// for an account. If the accounts are associated by a Macie membership invitation,
+// the response also provides information about that invitation.
 type GetMasterAccountOutput struct {
 	_ struct{} `type:"structure"`
 
@@ -10329,11 +10674,13 @@ func (s *GetMemberInput) SetId(v string) *GetMemberInput {
 }
 
 // Provides information about an account that's associated with an Amazon Macie
-// master account.
+// administrator account.
 type GetMemberOutput struct {
 	_ struct{} `type:"structure"`
 
 	AccountId *string `locationName:"accountId" type:"string"`
+
+	AdministratorAccountId *string `locationName:"administratorAccountId" type:"string"`
 
 	Arn *string `locationName:"arn" type:"string"`
 
@@ -10344,7 +10691,7 @@ type GetMemberOutput struct {
 	MasterAccountId *string `locationName:"masterAccountId" type:"string"`
 
 	// The current status of the relationship between an account and an associated
-	// Amazon Macie master account (inviter account). Possible values are:
+	// Amazon Macie administrator account (inviter account). Possible values are:
 	RelationshipStatus *string `locationName:"relationshipStatus" type:"string" enum:"RelationshipStatus"`
 
 	// A string-to-string map of key-value pairs that specifies the tags (keys and
@@ -10368,6 +10715,12 @@ func (s GetMemberOutput) GoString() string {
 // SetAccountId sets the AccountId field's value.
 func (s *GetMemberOutput) SetAccountId(v string) *GetMemberOutput {
 	s.AccountId = &v
+	return s
+}
+
+// SetAdministratorAccountId sets the AdministratorAccountId field's value.
+func (s *GetMemberOutput) SetAdministratorAccountId(v string) *GetMemberOutput {
+	s.AdministratorAccountId = &v
 	return s
 }
 
@@ -10414,7 +10767,8 @@ func (s *GetMemberOutput) SetUpdatedAt(v time.Time) *GetMemberOutput {
 }
 
 // Specifies criteria for filtering, sorting, and paginating the results of
-// a query for quotas and aggregated usage data for one or more accounts.
+// a query for quotas and aggregated usage data for one or more Amazon Macie
+// accounts.
 type GetUsageStatisticsInput struct {
 	_ struct{} `type:"structure"`
 
@@ -10424,9 +10778,13 @@ type GetUsageStatisticsInput struct {
 
 	NextToken *string `locationName:"nextToken" type:"string"`
 
-	// Specifies criteria for sorting the results of a query for account quotas
-	// and usage data.
+	// Specifies criteria for sorting the results of a query for Amazon Macie account
+	// quotas and usage data.
 	SortBy *UsageStatisticsSortBy `locationName:"sortBy" type:"structure"`
+
+	// An inclusive time period that Amazon Macie usage data applies to. Possible
+	// values are:
+	TimeRange *string `locationName:"timeRange" type:"string" enum:"TimeRange"`
 }
 
 // String returns the string representation
@@ -10463,14 +10821,24 @@ func (s *GetUsageStatisticsInput) SetSortBy(v *UsageStatisticsSortBy) *GetUsageS
 	return s
 }
 
+// SetTimeRange sets the TimeRange field's value.
+func (s *GetUsageStatisticsInput) SetTimeRange(v string) *GetUsageStatisticsInput {
+	s.TimeRange = &v
+	return s
+}
+
 // Provides the results of a query that retrieved quotas and aggregated usage
-// data for one or more accounts.
+// data for one or more Amazon Macie accounts.
 type GetUsageStatisticsOutput struct {
 	_ struct{} `type:"structure"`
 
 	NextToken *string `locationName:"nextToken" type:"string"`
 
 	Records []*UsageRecord `locationName:"records" type:"list"`
+
+	// An inclusive time period that Amazon Macie usage data applies to. Possible
+	// values are:
+	TimeRange *string `locationName:"timeRange" type:"string" enum:"TimeRange"`
 }
 
 // String returns the string representation
@@ -10495,8 +10863,16 @@ func (s *GetUsageStatisticsOutput) SetRecords(v []*UsageRecord) *GetUsageStatist
 	return s
 }
 
+// SetTimeRange sets the TimeRange field's value.
+func (s *GetUsageStatisticsOutput) SetTimeRange(v string) *GetUsageStatisticsOutput {
+	s.TimeRange = &v
+	return s
+}
+
 type GetUsageTotalsInput struct {
 	_ struct{} `type:"structure"`
+
+	TimeRange *string `location:"querystring" locationName:"timeRange" type:"string"`
 }
 
 // String returns the string representation
@@ -10509,10 +10885,20 @@ func (s GetUsageTotalsInput) GoString() string {
 	return s.String()
 }
 
+// SetTimeRange sets the TimeRange field's value.
+func (s *GetUsageTotalsInput) SetTimeRange(v string) *GetUsageTotalsInput {
+	s.TimeRange = &v
+	return s
+}
+
 // Provides the results of a query that retrieved aggregated usage data for
-// an account during the past 30 days.
+// an Amazon Macie account.
 type GetUsageTotalsOutput struct {
 	_ struct{} `type:"structure"`
+
+	// An inclusive time period that Amazon Macie usage data applies to. Possible
+	// values are:
+	TimeRange *string `locationName:"timeRange" type:"string" enum:"TimeRange"`
 
 	UsageTotals []*UsageTotal `locationName:"usageTotals" type:"list"`
 }
@@ -10525,6 +10911,12 @@ func (s GetUsageTotalsOutput) String() string {
 // GoString returns the string representation
 func (s GetUsageTotalsOutput) GoString() string {
 	return s.String()
+}
+
+// SetTimeRange sets the TimeRange field's value.
+func (s *GetUsageTotalsOutput) SetTimeRange(v string) *GetUsageTotalsOutput {
+	s.TimeRange = &v
+	return s
 }
 
 // SetUsageTotals sets the UsageTotals field's value.
@@ -10682,7 +11074,7 @@ type Invitation struct {
 	InvitedAt *time.Time `locationName:"invitedAt" type:"timestamp" timestampFormat:"iso8601"`
 
 	// The current status of the relationship between an account and an associated
-	// Amazon Macie master account (inviter account). Possible values are:
+	// Amazon Macie administrator account (inviter account). Possible values are:
 	RelationshipStatus *string `locationName:"relationshipStatus" type:"string" enum:"RelationshipStatus"`
 }
 
@@ -11568,8 +11960,8 @@ func (s *ListInvitationsInput) SetNextToken(v string) *ListInvitationsInput {
 	return s
 }
 
-// Provides information about all the Amazon Macie membership invitations that
-// were received by an account.
+// Provides information about the Amazon Macie membership invitations that were
+// received by an account.
 type ListInvitationsOutput struct {
 	_ struct{} `type:"structure"`
 
@@ -11760,7 +12152,7 @@ func (s *ListMembersInput) SetOnlyAssociated(v string) *ListMembersInput {
 }
 
 // Provides information about the accounts that are associated with an Amazon
-// Macie master account.
+// Macie administrator account.
 type ListMembersOutput struct {
 	_ struct{} `type:"structure"`
 
@@ -11934,11 +12326,13 @@ func (s *ListTagsForResourceOutput) SetTags(v map[string]*string) *ListTagsForRe
 }
 
 // Provides information about an account that's associated with an Amazon Macie
-// master account.
+// administrator account.
 type Member struct {
 	_ struct{} `type:"structure"`
 
 	AccountId *string `locationName:"accountId" type:"string"`
+
+	AdministratorAccountId *string `locationName:"administratorAccountId" type:"string"`
 
 	Arn *string `locationName:"arn" type:"string"`
 
@@ -11949,7 +12343,7 @@ type Member struct {
 	MasterAccountId *string `locationName:"masterAccountId" type:"string"`
 
 	// The current status of the relationship between an account and an associated
-	// Amazon Macie master account (inviter account). Possible values are:
+	// Amazon Macie administrator account (inviter account). Possible values are:
 	RelationshipStatus *string `locationName:"relationshipStatus" type:"string" enum:"RelationshipStatus"`
 
 	// A string-to-string map of key-value pairs that specifies the tags (keys and
@@ -11973,6 +12367,12 @@ func (s Member) GoString() string {
 // SetAccountId sets the AccountId field's value.
 func (s *Member) SetAccountId(v string) *Member {
 	s.AccountId = &v
+	return s
+}
+
+// SetAdministratorAccountId sets the AdministratorAccountId field's value.
+func (s *Member) SetAdministratorAccountId(v string) *Member {
+	s.AdministratorAccountId = &v
 	return s
 }
 
@@ -12645,9 +13045,11 @@ func (s *S3Bucket) SetTags(v []*KeyValuePair) *S3Bucket {
 type S3BucketDefinitionForJob struct {
 	_ struct{} `type:"structure"`
 
-	AccountId *string `locationName:"accountId" type:"string"`
+	// AccountId is a required field
+	AccountId *string `locationName:"accountId" type:"string" required:"true"`
 
-	Buckets []*string `locationName:"buckets" type:"list"`
+	// Buckets is a required field
+	Buckets []*string `locationName:"buckets" type:"list" required:"true"`
 }
 
 // String returns the string representation
@@ -12658,6 +13060,22 @@ func (s S3BucketDefinitionForJob) String() string {
 // GoString returns the string representation
 func (s S3BucketDefinitionForJob) GoString() string {
 	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *S3BucketDefinitionForJob) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "S3BucketDefinitionForJob"}
+	if s.AccountId == nil {
+		invalidParams.Add(request.NewErrParamRequired("AccountId"))
+	}
+	if s.Buckets == nil {
+		invalidParams.Add(request.NewErrParamRequired("Buckets"))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
 }
 
 // SetAccountId sets the AccountId field's value.
@@ -12783,6 +13201,26 @@ func (s S3JobDefinition) String() string {
 // GoString returns the string representation
 func (s S3JobDefinition) GoString() string {
 	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *S3JobDefinition) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "S3JobDefinition"}
+	if s.BucketDefinitions != nil {
+		for i, v := range s.BucketDefinitions {
+			if v == nil {
+				continue
+			}
+			if err := v.Validate(); err != nil {
+				invalidParams.AddNested(fmt.Sprintf("%s[%v]", "BucketDefinitions", i), err.(request.ErrInvalidParams))
+			}
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
 }
 
 // SetBucketDefinitions sets the BucketDefinitions field's value.
@@ -13033,7 +13471,7 @@ func (s *ServerSideEncryption) SetKmsMasterKeyId(v string) *ServerSideEncryption
 	return s
 }
 
-// Specifies a current quota for an account.
+// Specifies a current quota for an Amazon Macie account.
 type ServiceLimit struct {
 	_ struct{} `type:"structure"`
 
@@ -13704,7 +14142,7 @@ type UnprocessedAccount struct {
 
 	AccountId *string `locationName:"accountId" type:"string"`
 
-	// The source of an error, issue, or delay. Possible values are:
+	// The source of an issue or delay. Possible values are:
 	ErrorCode *string `locationName:"errorCode" type:"string" enum:"ErrorCode"`
 
 	ErrorMessage *string `locationName:"errorMessage" type:"string"`
@@ -14110,7 +14548,7 @@ func (s UpdateMemberSessionOutput) GoString() string {
 	return s.String()
 }
 
-// Specifies whether Amazon Macie is enabled automatically for accounts that
+// Specifies whether to enable Amazon Macie automatically for accounts that
 // are added to an AWS organization.
 type UpdateOrganizationConfigurationInput struct {
 	_ struct{} `type:"structure"`
@@ -14163,21 +14601,21 @@ func (s UpdateOrganizationConfigurationOutput) GoString() string {
 }
 
 // Provides data for a specific usage metric and the corresponding quota for
-// an account. The value for the metric is an aggregated value that reports
-// usage during the past 30 days.
+// an Amazon Macie account.
 type UsageByAccount struct {
 	_ struct{} `type:"structure"`
 
-	// The type of currency that data for a usage metric is reported in. Possible
-	// values are:
+	// The type of currency that the data for an Amazon Macie usage metric is reported
+	// in. Possible values are:
 	Currency *string `locationName:"currency" type:"string" enum:"Currency"`
 
 	EstimatedCost *string `locationName:"estimatedCost" type:"string"`
 
-	// Specifies a current quota for an account.
+	// Specifies a current quota for an Amazon Macie account.
 	ServiceLimit *ServiceLimit `locationName:"serviceLimit" type:"structure"`
 
-	// The name of a usage metric for an account. Possible values are:
+	// The name of an Amazon Macie usage metric for an account. Possible values
+	// are:
 	Type *string `locationName:"type" type:"string" enum:"UsageType"`
 }
 
@@ -14215,7 +14653,7 @@ func (s *UsageByAccount) SetType(v string) *UsageByAccount {
 	return s
 }
 
-// Provides quota and aggregated usage data for an account.
+// Provides quota and aggregated usage data for an Amazon Macie account.
 type UsageRecord struct {
 	_ struct{} `type:"structure"`
 
@@ -14254,17 +14692,17 @@ func (s *UsageRecord) SetUsage(v []*UsageByAccount) *UsageRecord {
 	return s
 }
 
-// Specifies a condition for filtering the results of a query for account quotas
-// and usage data.
+// Specifies a condition for filtering the results of a query for the quotas
+// and usage data that applies to one or more Amazon Macie accounts.
 type UsageStatisticsFilter struct {
 	_ struct{} `type:"structure"`
 
 	// The operator to use in a condition that filters the results of a query for
-	// account quotas and usage data. Valid values are:
+	// Amazon Macie account quotas and usage data. Valid values are:
 	Comparator *string `locationName:"comparator" type:"string" enum:"UsageStatisticsFilterComparator"`
 
-	// The field to use in a condition that filters the results of a query for account
-	// quotas and usage data. Valid values are:
+	// The field to use in a condition that filters the results of a query for Amazon
+	// Macie account quotas and usage data. Valid values are:
 	Key *string `locationName:"key" type:"string" enum:"UsageStatisticsFilterKey"`
 
 	Values []*string `locationName:"values" type:"list"`
@@ -14298,13 +14736,13 @@ func (s *UsageStatisticsFilter) SetValues(v []*string) *UsageStatisticsFilter {
 	return s
 }
 
-// Specifies criteria for sorting the results of a query for account quotas
-// and usage data.
+// Specifies criteria for sorting the results of a query for Amazon Macie account
+// quotas and usage data.
 type UsageStatisticsSortBy struct {
 	_ struct{} `type:"structure"`
 
-	// The field to use to sort the results of a query for account quotas and usage
-	// data. Valid values are:
+	// The field to use to sort the results of a query for Amazon Macie account
+	// quotas and usage data. Valid values are:
 	Key *string `locationName:"key" type:"string" enum:"UsageStatisticsSortKey"`
 
 	OrderBy *string `locationName:"orderBy" type:"string" enum:"OrderBy"`
@@ -14332,18 +14770,21 @@ func (s *UsageStatisticsSortBy) SetOrderBy(v string) *UsageStatisticsSortBy {
 	return s
 }
 
-// Provides aggregated data for a usage metric. The value for the metric reports
-// usage data for an account during the past 30 days.
+// Provides aggregated data for an Amazon Macie usage metric. The value for
+// the metric reports estimated usage data for an account for the preceding
+// 30 days or the current calendar month to date, depending on the time period
+// (timeRange) specified in the request.
 type UsageTotal struct {
 	_ struct{} `type:"structure"`
 
-	// The type of currency that data for a usage metric is reported in. Possible
-	// values are:
+	// The type of currency that the data for an Amazon Macie usage metric is reported
+	// in. Possible values are:
 	Currency *string `locationName:"currency" type:"string" enum:"Currency"`
 
 	EstimatedCost *string `locationName:"estimatedCost" type:"string"`
 
-	// The name of a usage metric for an account. Possible values are:
+	// The name of an Amazon Macie usage metric for an account. Possible values
+	// are:
 	Type *string `locationName:"type" type:"string" enum:"UsageType"`
 }
 
@@ -14634,7 +15075,7 @@ func (s *WeeklySchedule) SetDayOfWeek(v string) *WeeklySchedule {
 }
 
 // The current status of an account as the delegated Amazon Macie administrator
-// account for an AWS organization.
+// account for an AWS organization. Possible values are:
 const (
 	// AdminStatusEnabled is a AdminStatus enum value
 	AdminStatusEnabled = "ENABLED"
@@ -14651,8 +15092,8 @@ func AdminStatus_Values() []string {
 	}
 }
 
-// The type of currency that data for a usage metric is reported in. Possible
-// values are:
+// The type of currency that the data for an Amazon Macie usage metric is reported
+// in. Possible values are:
 const (
 	// CurrencyUsd is a Currency enum value
 	CurrencyUsd = "USD"
@@ -14747,7 +15188,7 @@ func EncryptionType_Values() []string {
 	}
 }
 
-// The source of an error, issue, or delay. Possible values are:
+// The source of an issue or delay. Possible values are:
 const (
 	// ErrorCodeClientError is a ErrorCode enum value
 	ErrorCodeClientError = "ClientError"
@@ -14992,6 +15433,9 @@ const (
 
 	// JobComparatorContains is a JobComparator enum value
 	JobComparatorContains = "CONTAINS"
+
+	// JobComparatorStartsWith is a JobComparator enum value
+	JobComparatorStartsWith = "STARTS_WITH"
 )
 
 // JobComparator_Values returns all elements of the JobComparator enum
@@ -15004,6 +15448,7 @@ func JobComparator_Values() []string {
 		JobComparatorLte,
 		JobComparatorNe,
 		JobComparatorContains,
+		JobComparatorStartsWith,
 	}
 }
 
@@ -15160,7 +15605,7 @@ func OrderBy_Values() []string {
 }
 
 // The current status of the relationship between an account and an associated
-// Amazon Macie master account (inviter account). Possible values are:
+// Amazon Macie administrator account (inviter account). Possible values are:
 const (
 	// RelationshipStatusEnabled is a RelationshipStatus enum value
 	RelationshipStatusEnabled = "Enabled"
@@ -15226,6 +15671,9 @@ const (
 
 	// ScopeFilterKeyTag is a ScopeFilterKey enum value
 	ScopeFilterKeyTag = "TAG"
+
+	// ScopeFilterKeyObjectKey is a ScopeFilterKey enum value
+	ScopeFilterKeyObjectKey = "OBJECT_KEY"
 )
 
 // ScopeFilterKey_Values returns all elements of the ScopeFilterKey enum
@@ -15236,6 +15684,7 @@ func ScopeFilterKey_Values() []string {
 		ScopeFilterKeyObjectLastModifiedDate,
 		ScopeFilterKeyObjectSize,
 		ScopeFilterKeyTag,
+		ScopeFilterKeyObjectKey,
 	}
 }
 
@@ -15361,6 +15810,44 @@ func TagTarget_Values() []string {
 	}
 }
 
+// An inclusive time period that Amazon Macie usage data applies to. Possible
+// values are:
+const (
+	// TimeRangeMonthToDate is a TimeRange enum value
+	TimeRangeMonthToDate = "MONTH_TO_DATE"
+
+	// TimeRangePast30Days is a TimeRange enum value
+	TimeRangePast30Days = "PAST_30_DAYS"
+)
+
+// TimeRange_Values returns all elements of the TimeRange enum
+func TimeRange_Values() []string {
+	return []string{
+		TimeRangeMonthToDate,
+		TimeRangePast30Days,
+	}
+}
+
+const (
+	// TypeNone is a Type enum value
+	TypeNone = "NONE"
+
+	// TypeAes256 is a Type enum value
+	TypeAes256 = "AES256"
+
+	// TypeAwsKms is a Type enum value
+	TypeAwsKms = "aws:kms"
+)
+
+// Type_Values returns all elements of the Type enum
+func Type_Values() []string {
+	return []string{
+		TypeNone,
+		TypeAes256,
+		TypeAwsKms,
+	}
+}
+
 const (
 	// UnitTerabytes is a Unit enum value
 	UnitTerabytes = "TERABYTES"
@@ -15374,7 +15861,7 @@ func Unit_Values() []string {
 }
 
 // The operator to use in a condition that filters the results of a query for
-// account quotas and usage data. Valid values are:
+// Amazon Macie account quotas and usage data. Valid values are:
 const (
 	// UsageStatisticsFilterComparatorGt is a UsageStatisticsFilterComparator enum value
 	UsageStatisticsFilterComparatorGt = "GT"
@@ -15411,8 +15898,8 @@ func UsageStatisticsFilterComparator_Values() []string {
 	}
 }
 
-// The field to use in a condition that filters the results of a query for account
-// quotas and usage data. Valid values are:
+// The field to use in a condition that filters the results of a query for Amazon
+// Macie account quotas and usage data. Valid values are:
 const (
 	// UsageStatisticsFilterKeyAccountId is a UsageStatisticsFilterKey enum value
 	UsageStatisticsFilterKeyAccountId = "accountId"
@@ -15437,8 +15924,8 @@ func UsageStatisticsFilterKey_Values() []string {
 	}
 }
 
-// The field to use to sort the results of a query for account quotas and usage
-// data. Valid values are:
+// The field to use to sort the results of a query for Amazon Macie account
+// quotas and usage data. Valid values are:
 const (
 	// UsageStatisticsSortKeyAccountId is a UsageStatisticsSortKey enum value
 	UsageStatisticsSortKeyAccountId = "accountId"
@@ -15463,7 +15950,8 @@ func UsageStatisticsSortKey_Values() []string {
 	}
 }
 
-// The name of a usage metric for an account. Possible values are:
+// The name of an Amazon Macie usage metric for an account. Possible values
+// are:
 const (
 	// UsageTypeDataInventoryEvaluation is a UsageType enum value
 	UsageTypeDataInventoryEvaluation = "DATA_INVENTORY_EVALUATION"

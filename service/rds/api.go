@@ -9715,6 +9715,112 @@ func (c *RDS) FailoverDBClusterWithContext(ctx aws.Context, input *FailoverDBClu
 	return out, req.Send()
 }
 
+const opFailoverGlobalCluster = "FailoverGlobalCluster"
+
+// FailoverGlobalClusterRequest generates a "aws/request.Request" representing the
+// client's request for the FailoverGlobalCluster operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See FailoverGlobalCluster for more information on using the FailoverGlobalCluster
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the FailoverGlobalClusterRequest method.
+//    req, resp := client.FailoverGlobalClusterRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/rds-2014-10-31/FailoverGlobalCluster
+func (c *RDS) FailoverGlobalClusterRequest(input *FailoverGlobalClusterInput) (req *request.Request, output *FailoverGlobalClusterOutput) {
+	op := &request.Operation{
+		Name:       opFailoverGlobalCluster,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
+	}
+
+	if input == nil {
+		input = &FailoverGlobalClusterInput{}
+	}
+
+	output = &FailoverGlobalClusterOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// FailoverGlobalCluster API operation for Amazon Relational Database Service.
+//
+// Initiates the failover process for an Aurora global database (GlobalCluster).
+//
+// A failover for an Aurora global database promotes one of secondary read-only
+// DB clusters to be the primary DB cluster and demotes the primary DB cluster
+// to being a secondary (read-only) DB cluster. In other words, the role of
+// the current primary DB cluster and the selected (target) DB cluster are switched.
+// The selected secondary DB cluster assumes full read/write capabilities for
+// the Aurora global database.
+//
+// For more information about failing over an Amazon Aurora global database,
+// see Managed planned failover for Amazon Aurora global databases (https://docs.aws.amazon.com/AmazonRDS/latest/AuroraUserGuide/aurora-global-database-disaster-recovery.managed-failover)
+// in the Amazon Aurora User Guide.
+//
+// This action applies to GlobalCluster (Aurora global databases) only. Use
+// this action only on healthy Aurora global databases with running Aurora DB
+// clusters and no Region-wide outages, to test disaster recovery scenarios
+// or to reconfigure your Aurora global database topology.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon Relational Database Service's
+// API operation FailoverGlobalCluster for usage and error information.
+//
+// Returned Error Codes:
+//   * ErrCodeGlobalClusterNotFoundFault "GlobalClusterNotFoundFault"
+//   The GlobalClusterIdentifier doesn't refer to an existing global database
+//   cluster.
+//
+//   * ErrCodeInvalidGlobalClusterStateFault "InvalidGlobalClusterStateFault"
+//   The global cluster is in an invalid state and can't perform the requested
+//   operation.
+//
+//   * ErrCodeInvalidDBClusterStateFault "InvalidDBClusterStateFault"
+//   The requested operation can't be performed while the cluster is in this state.
+//
+//   * ErrCodeDBClusterNotFoundFault "DBClusterNotFoundFault"
+//   DBClusterIdentifier doesn't refer to an existing DB cluster.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/rds-2014-10-31/FailoverGlobalCluster
+func (c *RDS) FailoverGlobalCluster(input *FailoverGlobalClusterInput) (*FailoverGlobalClusterOutput, error) {
+	req, out := c.FailoverGlobalClusterRequest(input)
+	return out, req.Send()
+}
+
+// FailoverGlobalClusterWithContext is the same as FailoverGlobalCluster with the addition of
+// the ability to pass a context and additional request options.
+//
+// See FailoverGlobalCluster for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *RDS) FailoverGlobalClusterWithContext(ctx aws.Context, input *FailoverGlobalClusterInput, opts ...request.Option) (*FailoverGlobalClusterOutput, error) {
+	req, out := c.FailoverGlobalClusterRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
 const opImportInstallationMedia = "ImportInstallationMedia"
 
 // ImportInstallationMediaRequest generates a "aws/request.Request" representing the
@@ -16068,13 +16174,6 @@ type CopyDBClusterParameterGroupInput struct {
 	//
 	//    * Must specify a valid DB cluster parameter group.
 	//
-	//    * If the source DB cluster parameter group is in the same AWS Region as
-	//    the copy, specify a valid DB parameter group identifier, for example my-db-cluster-param-group,
-	//    or a valid ARN.
-	//
-	//    * If the source DB parameter group is in a different AWS Region than the
-	//    copy, specify a valid DB cluster parameter group ARN, for example arn:aws:rds:us-east-1:123456789012:cluster-pg:custom-cluster-group1.
-	//
 	// SourceDBClusterParameterGroupIdentifier is a required field
 	SourceDBClusterParameterGroupIdentifier *string `type:"string" required:"true"`
 
@@ -16412,9 +16511,6 @@ type CopyDBParameterGroupInput struct {
 	// Constraints:
 	//
 	//    * Must specify a valid DB parameter group.
-	//
-	//    * Must specify a valid DB parameter group identifier, for example my-db-param-group,
-	//    or a valid ARN.
 	//
 	// SourceDBParameterGroupIdentifier is a required field
 	SourceDBParameterGroupIdentifier *string `type:"string" required:"true"`
@@ -17326,11 +17422,17 @@ type CreateDBClusterInput struct {
 	// Possible values are postgresql and upgrade.
 	EnableCloudwatchLogsExports []*string `type:"list"`
 
-	// A value that indicates whether to enable write operations to be forwarded
-	// from this cluster to the primary cluster in an Aurora global database. The
-	// resulting changes are replicated back to this cluster. This parameter only
-	// applies to DB clusters that are secondary clusters in an Aurora global database.
-	// By default, Aurora disallows write operations for secondary clusters.
+	// A value that indicates whether to enable this DB cluster to forward write
+	// operations to the primary cluster of an Aurora global database (GlobalCluster).
+	// By default, write operations are not allowed on Aurora DB clusters that are
+	// secondary clusters in an Aurora global database.
+	//
+	// You can set this value only on Aurora DB clusters that are members of an
+	// Aurora global database. With this parameter enabled, a secondary cluster
+	// can forward writes to the current primary cluster and the resulting changes
+	// are replicated back to this cluster. For the primary DB cluster of an Aurora
+	// global database, this value is used immediately if the primary is demoted
+	// by the FailoverGlobalCluster API operation, but it does nothing until then.
 	EnableGlobalWriteForwarding *bool `type:"boolean"`
 
 	// A value that indicates whether to enable the HTTP endpoint for an Aurora
@@ -17359,7 +17461,7 @@ type CreateDBClusterInput struct {
 	// Engine is a required field
 	Engine *string `type:"string" required:"true"`
 
-	// The DB engine mode of the DB cluster, either provisioned serverless, parallelquery,
+	// The DB engine mode of the DB cluster, either provisioned, serverless, parallelquery,
 	// global, or multimaster.
 	//
 	// The parallelquery engine mode isn't required for Aurora MySQL version 1.23
@@ -18240,7 +18342,8 @@ type CreateDBInstanceInput struct {
 	// PostgreSQL
 	//
 	// The name of the database to create when the DB instance is created. If this
-	// parameter isn't specified, no database is created in the DB instance.
+	// parameter isn't specified, a database named postgres is created in the DB
+	// instance.
 	//
 	// Constraints:
 	//
@@ -18267,17 +18370,33 @@ type CreateDBInstanceInput struct {
 	//
 	// Not applicable. Must be null.
 	//
-	// Amazon Aurora
+	// Amazon Aurora MySQL
 	//
-	// The name of the database to create when the primary instance of the DB cluster
-	// is created. If this parameter isn't specified, no database is created in
-	// the DB instance.
+	// The name of the database to create when the primary DB instance of the Aurora
+	// MySQL DB cluster is created. If this parameter isn't specified for an Aurora
+	// MySQL DB cluster, no database is created in the DB cluster.
 	//
 	// Constraints:
 	//
-	//    * Must contain 1 to 64 letters or numbers.
+	//    * It must contain 1 to 64 alphanumeric characters.
 	//
-	//    * Can't be a word reserved by the specified database engine
+	//    * It can't be a word reserved by the database engine.
+	//
+	// Amazon Aurora PostgreSQL
+	//
+	// The name of the database to create when the primary DB instance of the Aurora
+	// PostgreSQL DB cluster is created. If this parameter isn't specified for an
+	// Aurora PostgreSQL DB cluster, a database named postgres is created in the
+	// DB cluster.
+	//
+	// Constraints:
+	//
+	//    * It must contain 1 to 63 alphanumeric characters.
+	//
+	//    * It must begin with a letter or an underscore. Subsequent characters
+	//    can be letters, underscores, or digits (0 to 9).
+	//
+	//    * It can't be a word reserved by the database engine.
 	DBName *string `type:"string"`
 
 	// The name of the DB parameter group to associate with this DB instance. If
@@ -18596,6 +18715,11 @@ type CreateDBInstanceInput struct {
 
 	// The upper limit to which Amazon RDS can automatically scale the storage of
 	// the DB instance.
+	//
+	// For more information about this setting, including limitations that apply
+	// to it, see Managing capacity automatically with Amazon RDS storage autoscaling
+	// (https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/USER_PIOPS.StorageTypes.html#USER_PIOPS.Autoscaling)
+	// in the Amazon RDS User Guide.
 	MaxAllocatedStorage *int64 `type:"integer"`
 
 	// The interval, in seconds, between points when Enhanced Monitoring metrics
@@ -19312,6 +19436,11 @@ type CreateDBInstanceReadReplicaInput struct {
 
 	// The upper limit to which Amazon RDS can automatically scale the storage of
 	// the DB instance.
+	//
+	// For more information about this setting, including limitations that apply
+	// to it, see Managing capacity automatically with Amazon RDS storage autoscaling
+	// (https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/USER_PIOPS.StorageTypes.html#USER_PIOPS.Autoscaling)
+	// in the Amazon RDS User Guide.
 	MaxAllocatedStorage *int64 `type:"integer"`
 
 	// The interval, in seconds, between points when Enhanced Monitoring metrics
@@ -20652,6 +20781,30 @@ type CreateOptionGroupInput struct {
 	// Specifies the name of the engine that this option group should be associated
 	// with.
 	//
+	// Valid Values:
+	//
+	//    * mariadb
+	//
+	//    * mysql
+	//
+	//    * oracle-ee
+	//
+	//    * oracle-se2
+	//
+	//    * oracle-se1
+	//
+	//    * oracle-se
+	//
+	//    * postgres
+	//
+	//    * sqlserver-ee
+	//
+	//    * sqlserver-se
+	//
+	//    * sqlserver-ex
+	//
+	//    * sqlserver-web
+	//
 	// EngineName is a required field
 	EngineName *string `type:"string" required:"true"`
 
@@ -21816,8 +21969,11 @@ type DBClusterSnapshot struct {
 	// Specifies the identifier for the DB cluster snapshot.
 	DBClusterSnapshotIdentifier *string `type:"string"`
 
-	// Specifies the name of the database engine.
+	// Specifies the name of the database engine for this DB cluster snapshot.
 	Engine *string `type:"string"`
+
+	// Provides the engine mode of the database engine for this DB cluster snapshot.
+	EngineMode *string `type:"string"`
 
 	// Provides the version of the database engine for this DB cluster snapshot.
 	EngineVersion *string `type:"string"`
@@ -21836,7 +21992,7 @@ type DBClusterSnapshot struct {
 	// Provides the license model information for this DB cluster snapshot.
 	LicenseModel *string `type:"string"`
 
-	// Provides the master username for the DB cluster snapshot.
+	// Provides the master username for this DB cluster snapshot.
 	MasterUsername *string `type:"string"`
 
 	// Specifies the percentage of the estimated data that has been transferred.
@@ -21921,6 +22077,12 @@ func (s *DBClusterSnapshot) SetDBClusterSnapshotIdentifier(v string) *DBClusterS
 // SetEngine sets the Engine field's value.
 func (s *DBClusterSnapshot) SetEngine(v string) *DBClusterSnapshot {
 	s.Engine = &v
+	return s
+}
+
+// SetEngineMode sets the EngineMode field's value.
+func (s *DBClusterSnapshot) SetEngineMode(v string) *DBClusterSnapshot {
+	s.EngineMode = &v
 	return s
 }
 
@@ -27013,6 +27175,36 @@ type DescribeDBEngineVersionsInput struct {
 	DefaultOnly *bool `type:"boolean"`
 
 	// The database engine to return.
+	//
+	// Valid Values:
+	//
+	//    * aurora (for MySQL 5.6-compatible Aurora)
+	//
+	//    * aurora-mysql (for MySQL 5.7-compatible Aurora)
+	//
+	//    * aurora-postgresql
+	//
+	//    * mariadb
+	//
+	//    * mysql
+	//
+	//    * oracle-ee
+	//
+	//    * oracle-se2
+	//
+	//    * oracle-se1
+	//
+	//    * oracle-se
+	//
+	//    * postgres
+	//
+	//    * sqlserver-ee
+	//
+	//    * sqlserver-se
+	//
+	//    * sqlserver-ex
+	//
+	//    * sqlserver-web
 	Engine *string `type:"string"`
 
 	// The database engine version to return.
@@ -29798,6 +29990,30 @@ type DescribeOptionGroupOptionsInput struct {
 
 	// A required parameter. Options available for the given engine name are described.
 	//
+	// Valid Values:
+	//
+	//    * mariadb
+	//
+	//    * mysql
+	//
+	//    * oracle-ee
+	//
+	//    * oracle-se2
+	//
+	//    * oracle-se1
+	//
+	//    * oracle-se
+	//
+	//    * postgres
+	//
+	//    * sqlserver-ee
+	//
+	//    * sqlserver-se
+	//
+	//    * sqlserver-ex
+	//
+	//    * sqlserver-web
+	//
 	// EngineName is a required field
 	EngineName *string `type:"string" required:"true"`
 
@@ -29925,6 +30141,30 @@ type DescribeOptionGroupsInput struct {
 
 	// Filters the list of option groups to only include groups associated with
 	// a specific database engine.
+	//
+	// Valid Values:
+	//
+	//    * mariadb
+	//
+	//    * mysql
+	//
+	//    * oracle-ee
+	//
+	//    * oracle-se2
+	//
+	//    * oracle-se1
+	//
+	//    * oracle-se
+	//
+	//    * postgres
+	//
+	//    * sqlserver-ee
+	//
+	//    * sqlserver-se
+	//
+	//    * sqlserver-ex
+	//
+	//    * sqlserver-web
 	EngineName *string `type:"string"`
 
 	// This parameter isn't currently supported.
@@ -30070,6 +30310,36 @@ type DescribeOrderableDBInstanceOptionsInput struct {
 	DBInstanceClass *string `type:"string"`
 
 	// The name of the engine to retrieve DB instance options for.
+	//
+	// Valid Values:
+	//
+	//    * aurora (for MySQL 5.6-compatible Aurora)
+	//
+	//    * aurora-mysql (for MySQL 5.7-compatible Aurora)
+	//
+	//    * aurora-postgresql
+	//
+	//    * mariadb
+	//
+	//    * mysql
+	//
+	//    * oracle-ee
+	//
+	//    * oracle-se2
+	//
+	//    * oracle-se1
+	//
+	//    * oracle-se
+	//
+	//    * postgres
+	//
+	//    * sqlserver-ee
+	//
+	//    * sqlserver-se
+	//
+	//    * sqlserver-ex
+	//
+	//    * sqlserver-web
 	//
 	// Engine is a required field
 	Engine *string `type:"string" required:"true"`
@@ -31752,6 +32022,159 @@ func (s *FailoverDBClusterOutput) SetDBCluster(v *DBCluster) *FailoverDBClusterO
 	return s
 }
 
+type FailoverGlobalClusterInput struct {
+	_ struct{} `type:"structure"`
+
+	// Identifier of the Aurora global database (GlobalCluster) that should be failed
+	// over. The identifier is the unique key assigned by the user when the Aurora
+	// global database was created. In other words, it's the name of the Aurora
+	// global database that you want to fail over.
+	//
+	// Constraints:
+	//
+	//    * Must match the identifier of an existing GlobalCluster (Aurora global
+	//    database).
+	//
+	// GlobalClusterIdentifier is a required field
+	GlobalClusterIdentifier *string `min:"1" type:"string" required:"true"`
+
+	// Identifier of the secondary Aurora DB cluster that you want to promote to
+	// primary for the Aurora global database (GlobalCluster.) Use the Amazon Resource
+	// Name (ARN) for the identifier so that Aurora can locate the cluster in its
+	// AWS Region.
+	//
+	// TargetDbClusterIdentifier is a required field
+	TargetDbClusterIdentifier *string `min:"1" type:"string" required:"true"`
+}
+
+// String returns the string representation
+func (s FailoverGlobalClusterInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s FailoverGlobalClusterInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *FailoverGlobalClusterInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "FailoverGlobalClusterInput"}
+	if s.GlobalClusterIdentifier == nil {
+		invalidParams.Add(request.NewErrParamRequired("GlobalClusterIdentifier"))
+	}
+	if s.GlobalClusterIdentifier != nil && len(*s.GlobalClusterIdentifier) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("GlobalClusterIdentifier", 1))
+	}
+	if s.TargetDbClusterIdentifier == nil {
+		invalidParams.Add(request.NewErrParamRequired("TargetDbClusterIdentifier"))
+	}
+	if s.TargetDbClusterIdentifier != nil && len(*s.TargetDbClusterIdentifier) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("TargetDbClusterIdentifier", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetGlobalClusterIdentifier sets the GlobalClusterIdentifier field's value.
+func (s *FailoverGlobalClusterInput) SetGlobalClusterIdentifier(v string) *FailoverGlobalClusterInput {
+	s.GlobalClusterIdentifier = &v
+	return s
+}
+
+// SetTargetDbClusterIdentifier sets the TargetDbClusterIdentifier field's value.
+func (s *FailoverGlobalClusterInput) SetTargetDbClusterIdentifier(v string) *FailoverGlobalClusterInput {
+	s.TargetDbClusterIdentifier = &v
+	return s
+}
+
+type FailoverGlobalClusterOutput struct {
+	_ struct{} `type:"structure"`
+
+	// A data type representing an Aurora global database.
+	GlobalCluster *GlobalCluster `type:"structure"`
+}
+
+// String returns the string representation
+func (s FailoverGlobalClusterOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s FailoverGlobalClusterOutput) GoString() string {
+	return s.String()
+}
+
+// SetGlobalCluster sets the GlobalCluster field's value.
+func (s *FailoverGlobalClusterOutput) SetGlobalCluster(v *GlobalCluster) *FailoverGlobalClusterOutput {
+	s.GlobalCluster = v
+	return s
+}
+
+// Contains the state of scheduled or in-process failover operations on an Aurora
+// global database (GlobalCluster). This Data type is empty unless a failover
+// operation is scheduled or is currently underway on the Aurora global database.
+type FailoverState struct {
+	_ struct{} `type:"structure"`
+
+	// The Amazon Resource Name (ARN) of the Aurora DB cluster that is currently
+	// being demoted, and which is associated with this state.
+	FromDbClusterArn *string `type:"string"`
+
+	// The current status of the Aurora global database (GlobalCluster). Possible
+	// values are as follows:
+	//
+	//    * pending – A request to fail over the Aurora global database (GlobalCluster)
+	//    has been received by the service. The GlobalCluster's primary DB cluster
+	//    and the specified secondary DB cluster are being verified before the failover
+	//    process can start.
+	//
+	//    * failing-over – This status covers the range of Aurora internal operations
+	//    that take place during the failover process, such as demoting the primary
+	//    Aurora DB cluster, promoting the secondary Aurora DB, and synchronizing
+	//    replicas.
+	//
+	//    * cancelling – The request to fail over the Aurora global database (GlobalCluster)
+	//    was cancelled and the primary Aurora DB cluster and the selected secondary
+	//    Aurora DB cluster are returning to their previous states.
+	Status *string `type:"string" enum:"FailoverStatus"`
+
+	// The Amazon Resource Name (ARN) of the Aurora DB cluster that is currently
+	// being promoted, and which is associated with this state.
+	ToDbClusterArn *string `type:"string"`
+}
+
+// String returns the string representation
+func (s FailoverState) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s FailoverState) GoString() string {
+	return s.String()
+}
+
+// SetFromDbClusterArn sets the FromDbClusterArn field's value.
+func (s *FailoverState) SetFromDbClusterArn(v string) *FailoverState {
+	s.FromDbClusterArn = &v
+	return s
+}
+
+// SetStatus sets the Status field's value.
+func (s *FailoverState) SetStatus(v string) *FailoverState {
+	s.Status = &v
+	return s
+}
+
+// SetToDbClusterArn sets the ToDbClusterArn field's value.
+func (s *FailoverState) SetToDbClusterArn(v string) *FailoverState {
+	s.ToDbClusterArn = &v
+	return s
+}
+
 // A filter name and value pair that is used to return a more specific list
 // of results from a describe operation. Filters can be used to match a set
 // of resources by specific criteria, such as IDs. The filters supported by
@@ -31838,6 +32261,12 @@ type GlobalCluster struct {
 	// Indicates the database engine version.
 	EngineVersion *string `type:"string"`
 
+	// A data object containing all properties for the current state of an in-process
+	// or pending failover process for this Aurora global database. This object
+	// is empty unless the FailoverGlobalCluster API operation has been called on
+	// this Aurora global database (GlobalCluster).
+	FailoverState *FailoverState `type:"structure"`
+
 	// The Amazon Resource Name (ARN) for the global database cluster.
 	GlobalClusterArn *string `type:"string"`
 
@@ -31892,6 +32321,12 @@ func (s *GlobalCluster) SetEngine(v string) *GlobalCluster {
 // SetEngineVersion sets the EngineVersion field's value.
 func (s *GlobalCluster) SetEngineVersion(v string) *GlobalCluster {
 	s.EngineVersion = &v
+	return s
+}
+
+// SetFailoverState sets the FailoverState field's value.
+func (s *GlobalCluster) SetFailoverState(v *FailoverState) *GlobalCluster {
+	s.FailoverState = v
 	return s
 }
 
@@ -32976,11 +33411,17 @@ type ModifyDBClusterInput struct {
 	// Directory Service.
 	DomainIAMRoleName *string `type:"string"`
 
-	// A value that indicates whether to enable write operations to be forwarded
-	// from this cluster to the primary cluster in an Aurora global database. The
-	// resulting changes are replicated back to this cluster. This parameter only
-	// applies to DB clusters that are secondary clusters in an Aurora global database.
-	// By default, Aurora disallows write operations for secondary clusters.
+	// A value that indicates whether to enable this DB cluster to forward write
+	// operations to the primary cluster of an Aurora global database (GlobalCluster).
+	// By default, write operations are not allowed on Aurora DB clusters that are
+	// secondary clusters in an Aurora global database.
+	//
+	// You can set this value only on Aurora DB clusters that are members of an
+	// Aurora global database. With this parameter enabled, a secondary cluster
+	// can forward writes to the current primary cluster and the resulting changes
+	// are replicated back to this cluster. For the primary DB cluster of an Aurora
+	// global database, this value is used immediately if the primary is demoted
+	// by the FailoverGlobalCluster API operation, but it does nothing until then.
 	EnableGlobalWriteForwarding *bool `type:"boolean"`
 
 	// A value that indicates whether to enable the HTTP endpoint for an Aurora
@@ -33831,6 +34272,11 @@ type ModifyDBInstanceInput struct {
 
 	// The upper limit to which Amazon RDS can automatically scale the storage of
 	// the DB instance.
+	//
+	// For more information about this setting, including limitations that apply
+	// to it, see Managing capacity automatically with Amazon RDS storage autoscaling
+	// (https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/USER_PIOPS.StorageTypes.html#USER_PIOPS.Autoscaling)
+	// in the Amazon RDS User Guide.
 	MaxAllocatedStorage *int64 `type:"integer"`
 
 	// The interval, in seconds, between points when Enhanced Monitoring metrics
@@ -40015,6 +40461,11 @@ type RestoreDBInstanceFromS3Input struct {
 
 	// The upper limit to which Amazon RDS can automatically scale the storage of
 	// the DB instance.
+	//
+	// For more information about this setting, including limitations that apply
+	// to it, see Managing capacity automatically with Amazon RDS storage autoscaling
+	// (https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/USER_PIOPS.StorageTypes.html#USER_PIOPS.Autoscaling)
+	// in the Amazon RDS User Guide.
 	MaxAllocatedStorage *int64 `type:"integer"`
 
 	// The interval, in seconds, between points when Enhanced Monitoring metrics
@@ -40666,6 +41117,11 @@ type RestoreDBInstanceToPointInTimeInput struct {
 
 	// The upper limit to which Amazon RDS can automatically scale the storage of
 	// the DB instance.
+	//
+	// For more information about this setting, including limitations that apply
+	// to it, see Managing capacity automatically with Amazon RDS storage autoscaling
+	// (https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/USER_PIOPS.StorageTypes.html#USER_PIOPS.Autoscaling)
+	// in the Amazon RDS User Guide.
 	MaxAllocatedStorage *int64 `type:"integer"`
 
 	// A value that indicates whether the DB instance is a Multi-AZ deployment.
@@ -42592,8 +43048,20 @@ type UpgradeTarget struct {
 	// The version number of the upgrade target database engine.
 	EngineVersion *string `type:"string"`
 
-	// A value that indicates whether a database engine is upgraded to a major version.
+	// A value that indicates whether upgrading to the target version requires upgrading
+	// the major version of the database engine.
 	IsMajorVersionUpgrade *bool `type:"boolean"`
+
+	// A list of the supported DB engine modes for the target engine version.
+	SupportedEngineModes []*string `type:"list"`
+
+	// A value that indicates whether you can use Aurora global databases with the
+	// target engine version.
+	SupportsGlobalDatabases *bool `type:"boolean"`
+
+	// A value that indicates whether you can use Aurora parallel query with the
+	// target engine version.
+	SupportsParallelQuery *bool `type:"boolean"`
 }
 
 // String returns the string representation
@@ -42633,6 +43101,24 @@ func (s *UpgradeTarget) SetEngineVersion(v string) *UpgradeTarget {
 // SetIsMajorVersionUpgrade sets the IsMajorVersionUpgrade field's value.
 func (s *UpgradeTarget) SetIsMajorVersionUpgrade(v bool) *UpgradeTarget {
 	s.IsMajorVersionUpgrade = &v
+	return s
+}
+
+// SetSupportedEngineModes sets the SupportedEngineModes field's value.
+func (s *UpgradeTarget) SetSupportedEngineModes(v []*string) *UpgradeTarget {
+	s.SupportedEngineModes = v
+	return s
+}
+
+// SetSupportsGlobalDatabases sets the SupportsGlobalDatabases field's value.
+func (s *UpgradeTarget) SetSupportsGlobalDatabases(v bool) *UpgradeTarget {
+	s.SupportsGlobalDatabases = &v
+	return s
+}
+
+// SetSupportsParallelQuery sets the SupportsParallelQuery field's value.
+func (s *UpgradeTarget) SetSupportsParallelQuery(v bool) *UpgradeTarget {
+	s.SupportsParallelQuery = &v
 	return s
 }
 
@@ -43101,6 +43587,26 @@ func EngineFamily_Values() []string {
 	return []string{
 		EngineFamilyMysql,
 		EngineFamilyPostgresql,
+	}
+}
+
+const (
+	// FailoverStatusPending is a FailoverStatus enum value
+	FailoverStatusPending = "pending"
+
+	// FailoverStatusFailingOver is a FailoverStatus enum value
+	FailoverStatusFailingOver = "failing-over"
+
+	// FailoverStatusCancelling is a FailoverStatus enum value
+	FailoverStatusCancelling = "cancelling"
+)
+
+// FailoverStatus_Values returns all elements of the FailoverStatus enum
+func FailoverStatus_Values() []string {
+	return []string{
+		FailoverStatusPending,
+		FailoverStatusFailingOver,
+		FailoverStatusCancelling,
 	}
 }
 

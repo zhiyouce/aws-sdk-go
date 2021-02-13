@@ -1,3 +1,210 @@
+Release v1.37.10 (2021-02-12)
+===
+
+### Service Client Updates
+* `service/appsync`: Updates service API and documentation
+* `service/codepipeline`: Updates service API and documentation
+  * The release provides new GetActionType and UpdateActionType APIs for viewing and editing action types in CodePipeline.
+* `service/detective`: Updates service API
+* `service/eks`: Updates service API, documentation, and paginators
+* `service/elasticloadbalancingv2`: Updates service documentation
+* `service/iam`: Updates service API and documentation
+  * AWS Identity and Access Management now supports tagging for the following resources: customer managed policies, identity providers, instance profiles, server certificates, and virtual MFA devices.
+* `service/macie2`: Updates service API and documentation
+* `service/personalize-events`: Updates service API and documentation
+* `service/rds`: Updates service API and documentation
+  * EngineMode in the response of DescribeDBClusterSnapshots. SupportedEngineModes, SupportsParallelQuery and SupportsGlobalDatabases in ValidUpgradeTarget of DBEngineVersions in DescribeDBEngineVersions.
+* `service/wafv2`: Updates service API and documentation
+
+Release v1.37.9 (2021-02-11)
+===
+
+### Service Client Updates
+* `service/databrew`: Updates service API and documentation
+* `service/rds`: Updates service API and documentation
+  * Adding support for RDS Aurora Global Database Failover
+
+Release v1.37.8 (2021-02-09)
+===
+
+### Service Client Updates
+* `service/gamelift`: Updates service API
+  * GameLift FleetIQ users can now use AMD instance families in supported Regions. In addition, FlexMatch matchmaking notification now supports SNS FIFO topics.
+* `service/mediaconvert`: Updates service API and documentation
+  * AWS Elemental MediaConvert SDK has added support for WMA audio only ingest, SMPTE-TT text and image caption ingest, and MPEG-2 video in MXF OP1a outputs.
+* `service/qldb-session`: Updates service API and documentation
+* `service/quicksight`: Updates service API, documentation, and paginators
+  * QuickSight now supports Python's paginators for Exploration APIs.
+* `service/sagemaker`: Updates service API and documentation
+  * Add a new optional FrameworkVersion field to Sagemaker Neo CreateCompilationJob API
+
+Release v1.37.7 (2021-02-08)
+===
+
+### Service Client Updates
+* `service/cloudtrail`: Updates service API and documentation
+  * ConflictException is now thrown when certain operations are called on resources before CloudTrail has time to load the resources. Two new exceptions have been added to the PutInsightSelectors API.
+* `service/dataexchange`: Updates service API and documentation
+* `service/elasticache`: Updates service documentation
+  * Documentation updates for elasticache
+* `service/elasticloadbalancingv2`: Updates service documentation
+* `service/globalaccelerator`: Updates service API and documentation
+* `service/iotsitewise`: Updates service API and documentation
+* `service/ivs`: Updates service API
+* `service/macie2`: Updates service API and documentation
+
+Release v1.37.6 (2021-02-05)
+===
+
+### Service Client Updates
+* `service/elasticloadbalancingv2`: Updates service documentation
+* `service/macie`: Updates service documentation
+  * Documentation updates for Amazon Macie Classic. We replaced the term "master account" with the term "administrator account." An administrator account is used to centrally manage multiple accounts.
+* `service/organizations`: Updates service API and documentation
+  * Added support for a few additional exception codes for some AWS Organizations APIs.
+
+Release v1.37.5 (2021-02-04)
+===
+
+### Service Client Updates
+* `service/ec2`: Updates service API, documentation, and paginators
+  * AWS Outposts now supports EBS local snapshots on Outposts that allows customers to store snapshots of EBS volumes and AMIs locally on S3 on Outposts.
+
+Release v1.37.4 (2021-02-04)
+===
+
+### Service Client Updates
+* `service/appflow`: Updates service API and documentation
+* `service/athena`: Updates service API and documentation
+  * Adds the Athena ListEngineVersions action and the EngineVersion data type. ListEngineVersions returns the available Athena engine versions, including Auto, as a list of EngineVersion objects.
+* `service/dlm`: Updates service API and documentation
+* `service/ec2`: Updates service API, documentation, and paginators
+  * AWS Outposts now supports EBS local snapshots on Outposts that allows customers to store snapshots of EBS volumes and AMIs locally on S3 on Outposts.
+* `service/emr-containers`: Updates service API
+* `service/quicksight`: Updates service API and documentation
+  * API release for field folders feature.
+
+Release v1.37.3 (2021-02-03)
+===
+
+### Service Client Updates
+* `service/auditmanager`: Updates service API
+* `service/ce`: Updates service documentation
+* `service/codebuild`: Updates service documentation
+  * Documentation updates for codebuild
+* `service/compute-optimizer`: Updates service documentation
+* `service/databrew`: Updates service API and documentation
+* `service/ec2`: Updates service API, documentation, and paginators
+  * EC2 Public IP now supports API for setting PTR records on Elastic IP address.
+* `service/iotsitewise`: Updates service API and documentation
+* `service/lambda`: Updates service API, documentation, and examples
+  * Support for creating Lambda Functions using 'nodejs14.x'
+* `service/securityhub`: Updates service API and documentation
+* `service/workmail`: Updates service API
+  * Increased maximum length of ipRanges values for Access Control Rules from 10 to 1024.
+
+Release v1.37.2 (2021-02-02)
+===
+
+### Service Client Updates
+* `service/application-autoscaling`: Updates service API and documentation
+* `service/appmesh`: Updates service API and documentation
+* `service/iotwireless`: Updates service API and documentation
+* `service/location`: Updates service documentation
+* `service/lookoutvision`: Updates service API and documentation
+* `service/medialive`: Updates service API and documentation
+  * AWS Elemental MediaLive now supports Image Media Playlists on HLS outputs, version 0.4 (trick-mode).
+* `service/organizations`: Updates service documentation
+  * Documentation updates for AWS Organizations.
+* `service/rds-data`: Updates service API and documentation
+* `service/route53`: Updates service documentation
+  * Documentation updates for Route 53
+* `service/s3control`: Updates service API and documentation
+  * Amazon S3 Batch Operations now supports Delete Object Tagging
+
+### SDK Enhancements
+* `service/s3`: Amazon S3 now supports AWS PrivateLink, providing direct access to S3 via a private endpoint within your virtual private network.
+
+### SDK Bugs
+* `aws/session`: Fixed a bug that prevented credentials from being sourced from the environment if the loaded shared config profile contained partial SSO configuration. ([#3769](https://github.com/aws/aws-sdk-go/pull/3769))
+  * Fixes ([#3768](https://github.com/aws/aws-sdk-go/issues/3768))
+
+Release v1.37.1 (2021-01-29)
+===
+
+### Service Client Updates
+* `service/connect`: Updates service API, documentation, and paginators
+* `service/macie2`: Updates service API and documentation
+* `service/medialive`: Updates service API and documentation
+  * "AWS Elemental MediaLive now supports output to a private VPC. When this property is specified, the output will egress from a user specified VPC."
+* `service/transcribe-streaming`: Updates service API and documentation
+
+### SDK Bugs
+* `service/lexmodelsv2`: Add fix to send expected Content-Type header
+    * Fixes the Amazon Lex Model Builder V2 API client to send the expected Content-Type of application/x-amz-json-1.1.
+
+Release v1.37.0 (2021-01-28)
+===
+
+### Service Client Updates
+* `service/databrew`: Updates service API and documentation
+* `service/iot`: Updates service documentation
+  * Documentation updates for IoT DeleteOTAUpdate API
+* `service/managedblockchain`: Updates service API and documentation
+* `service/monitoring`: Updates service API and documentation
+  * Update to SDK to support label time zones in CloudWatch GetMetricData
+* `service/robomaker`: Updates service API and documentation
+* `service/wellarchitected`: Updates service documentation
+
+### SDK Features
+* `aws/credentials/ssocreds`: Add support for AWS Single Sign-On (SSO) Credential Provider ([#3755](https://github.com/aws/aws-sdk-go/pull/3755))
+* `aws/session`: Support has been added to resolve shared configuration profiles that are configured for AWS Single Sign-On (SSO) ([#3755](https://github.com/aws/aws-sdk-go/pull/3755))
+
+Release v1.36.33 (2021-01-27)
+===
+
+### Service Client Updates
+* `service/accessanalyzer`: Updates service API and documentation
+* `service/customer-profiles`: Updates service API
+* `service/elasticache`: Updates service API and documentation
+  * Add support to pass ParameterGroup name as part updating Engine Version of Global Datastore.
+* `service/es`: Updates service API and documentation
+  * Amazon Elasticsearch Service adds support for node-to-node encryption and encryption at rest for existing domains running Elasticsearch version 6.7 and above
+* `service/lightsail`: Updates service documentation
+  * Documentation updates for Lightsail
+* `service/sesv2`: Updates service API and documentation
+
+Release v1.36.32 (2021-01-26)
+===
+
+### Service Client Updates
+* `service/backup`: Updates service documentation
+
+Release v1.36.31 (2021-01-22)
+===
+
+### Service Client Updates
+* `service/ec2`: Updates service API and documentation
+  * Introducing startDate field for CapacityReservation object for the date and time which the reservation started and adding reserved parameter for ModifyCapacityReservation.
+* `service/greengrassv2`: Updates service documentation
+* `service/models.lex.v2`: Adds new service
+* `service/rds`: Updates service documentation
+  * Documentation updates for Amazon RDS
+* `service/redshift`: Updates service API and documentation
+  * Update VPC endpoint field names.
+* `service/runtime.lex.v2`: Adds new service
+* `service/ssm`: Updates service documentation
+  * Documentation updates for the ListDocumentFilters API action.
+
+Release v1.36.30 (2021-01-21)
+===
+
+### Service Client Updates
+* `service/kafka`: Updates service API and documentation
+* `service/resourcegroupstaggingapi`: Updates service API and documentation
+  * This release adds a new parameter ResourceARNList to Resource Groups Tagging api GetResources api to allow customers retrieve tag data for specific resources.
+* `service/securityhub`: Updates service API and documentation
+
 Release v1.36.29 (2021-01-19)
 ===
 
