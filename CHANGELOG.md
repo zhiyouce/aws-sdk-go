@@ -1,3 +1,64 @@
+Release v1.37.15 (2021-02-19)
+===
+
+### Service Client Updates
+* `service/rds`: Updates service API and documentation
+  * Added awsBackupRecoveryPointArn in ModifyDBInstanceRequest and in the response of ModifyDBInstance.
+
+Release v1.37.14 (2021-02-18)
+===
+
+### Service Client Updates
+* `service/cloudformation`: Updates service API and documentation
+  * Adding the 'callAs' parameter to all CloudFormation StackSets APIs except getTemplateSummary to support creating and managing service-managed StackSets with AWS Organizations Delegated Administrators
+* `service/codebuild`: Updates service API and documentation
+  * AWS CodeBuild now allows you to specify a separate bucket owner as part of the S3 destination in a report group.
+* `service/health`: Updates service documentation
+  * Documentation updates for health
+* `service/sagemaker`: Updates service API and documentation
+  * This release adds expires-in-seconds parameter to the CreatePresignedDomainUrl API for support of a configurable TTL.
+
+### SDK Enhancements
+* `service/neptune`: Support for PreSignedUrl generation for CopyDBClusterSnapshot and CreateDBCluster operations. ([#3782](https://github.com/aws/aws-sdk-go/pull/3782))
+* `service/docdb`: Support for PreSignedUrl generation for CopyDBClusterSnapshot and CreateDBCluster operations. ([#3782](https://github.com/aws/aws-sdk-go/pull/3782))
+
+Release v1.37.13 (2021-02-17)
+===
+
+### Service Client Updates
+* `service/config`: Updates service API
+* `service/ec2`: Updates service API and documentation
+  * This release includes a new filter for describe-vpc-endpoint-services.
+* `service/lookoutvision`: Updates service API and documentation
+
+Release v1.37.12 (2021-02-16)
+===
+
+### Service Client Updates
+* `service/codebuild`: Updates service API and documentation
+  * This release provides per-project limits for the number of concurrent builds
+* `service/devops-guru`: Updates service API and documentation
+
+### SDK Bugs
+* `aws/client`: Fix logging to allow it to be enabled per operation
+  * Allow logging of operation and request to be enabled per operation, not only per client or session.
+
+Release v1.37.11 (2021-02-15)
+===
+
+### Service Client Updates
+* `service/config`: Updates service API and documentation
+* `service/kinesis-video-archived-media`: Updates service API and documentation
+* `service/lightsail`: Updates service documentation
+  * Documentation updates for Lightsail
+* `service/medialive`: Updates service API and documentation
+  * AWS MediaLive now supports Automatic-Input-Failover for CDI Inputs.
+* `service/mediatailor`: Updates service API, documentation, and paginators
+* `service/pinpoint`: Updates service API and documentation
+  * Lets customers use origination number when specifying SMS message configuration for Campaigns and Journeys.
+* `service/redshift-data`: Updates service API and documentation
+* `service/workmailmessageflow`: Updates service API and documentation
+
 Release v1.37.10 (2021-02-12)
 ===
 

@@ -4946,7 +4946,7 @@ type Build struct {
 	//
 	//    * For AWS CodePipeline, the source revision provided by AWS CodePipeline.
 	//
-	//    * For Amazon Simple Storage Service (Amazon S3), this does not apply.
+	//    * For Amazon S3, this does not apply.
 	ResolvedSourceVersion *string `locationName:"resolvedSourceVersion" min:"1" type:"string"`
 
 	// An array of ProjectArtifacts objects.
@@ -4969,8 +4969,8 @@ type Build struct {
 	//    is specified, the branch's HEAD commit ID is used. If not specified, the
 	//    default branch's HEAD commit ID is used.
 	//
-	//    * For Amazon Simple Storage Service (Amazon S3): the version ID of the
-	//    object that represents the build input ZIP file to use.
+	//    * For Amazon S3: the version ID of the object that represents the build
+	//    input ZIP file to use.
 	SecondarySourceVersions []*ProjectSourceVersion `locationName:"secondarySourceVersions" type:"list"`
 
 	// An array of ProjectSource objects.
@@ -5386,7 +5386,7 @@ type BuildBatch struct {
 	//
 	//    * For AWS CodePipeline, the source revision provided by AWS CodePipeline.
 	//
-	//    * For Amazon Simple Storage Service (Amazon S3), this does not apply.
+	//    * For Amazon S3, this does not apply.
 	ResolvedSourceVersion *string `locationName:"resolvedSourceVersion" min:"1" type:"string"`
 
 	// An array of BuildArtifacts objects the define the build artifacts for this
@@ -5410,8 +5410,8 @@ type BuildBatch struct {
 	//    is specified, the branch's HEAD commit ID is used. If not specified, the
 	//    default branch's HEAD commit ID is used.
 	//
-	//    * For Amazon Simple Storage Service (Amazon S3): the version ID of the
-	//    object that represents the build input ZIP file to use.
+	//    * For Amazon S3: the version ID of the object that represents the build
+	//    input ZIP file to use.
 	SecondarySourceVersions []*ProjectSourceVersion `locationName:"secondarySourceVersions" type:"list"`
 
 	// An array of ProjectSource objects that define the sources for the batch build.
@@ -5647,7 +5647,7 @@ type BuildBatchPhase struct {
 	_ struct{} `type:"structure"`
 
 	// Additional information about the batch build phase. Especially to help troubleshoot
-	// a failed btach build.
+	// a failed batch build.
 	Contexts []*PhaseContext `locationName:"contexts" type:"list"`
 
 	// How long, in seconds, between the starting and ending times of the batch
@@ -6405,6 +6405,13 @@ type CreateProjectInput struct {
 	// later time.
 	Cache *ProjectCache `locationName:"cache" type:"structure"`
 
+	// The maximum number of concurrent builds that are allowed for this project.
+	//
+	// New builds are only started if the current number of builds is less than
+	// or equal to this limit. If the current build count meets this limit, new
+	// builds are throttled and are not run.
+	ConcurrentBuildLimit *int64 `locationName:"concurrentBuildLimit" type:"integer"`
+
 	// A description that makes the build project easy to identify.
 	Description *string `locationName:"description" type:"string"`
 
@@ -6480,8 +6487,8 @@ type CreateProjectInput struct {
 	//    is specified, the branch's HEAD commit ID is used. If not specified, the
 	//    default branch's HEAD commit ID is used.
 	//
-	//    * For Amazon Simple Storage Service (Amazon S3): the version ID of the
-	//    object that represents the build input ZIP file to use.
+	//    * For Amazon S3: the version ID of the object that represents the build
+	//    input ZIP file to use.
 	//
 	// If sourceVersion is specified at the build level, then that version takes
 	// precedence over this sourceVersion (at the project level).
@@ -6651,6 +6658,12 @@ func (s *CreateProjectInput) SetBuildBatchConfig(v *ProjectBuildBatchConfig) *Cr
 // SetCache sets the Cache field's value.
 func (s *CreateProjectInput) SetCache(v *ProjectCache) *CreateProjectInput {
 	s.Cache = v
+	return s
+}
+
+// SetConcurrentBuildLimit sets the ConcurrentBuildLimit field's value.
+func (s *CreateProjectInput) SetConcurrentBuildLimit(v int64) *CreateProjectInput {
+	s.ConcurrentBuildLimit = &v
 	return s
 }
 
@@ -9913,6 +9926,13 @@ type Project struct {
 	// Information about the cache for the build project.
 	Cache *ProjectCache `locationName:"cache" type:"structure"`
 
+	// The maximum number of concurrent builds that are allowed for this project.
+	//
+	// New builds are only started if the current number of builds is less than
+	// or equal to this limit. If the current build count meets this limit, new
+	// builds are throttled and are not run.
+	ConcurrentBuildLimit *int64 `locationName:"concurrentBuildLimit" type:"integer"`
+
 	// When the build project was created, expressed in Unix time format.
 	Created *time.Time `locationName:"created" type:"timestamp"`
 
@@ -9987,8 +10007,8 @@ type Project struct {
 	//    is specified, the branch's HEAD commit ID is used. If not specified, the
 	//    default branch's HEAD commit ID is used.
 	//
-	//    * For Amazon Simple Storage Service (Amazon S3): the version ID of the
-	//    object that represents the build input ZIP file to use.
+	//    * For Amazon S3: the version ID of the object that represents the build
+	//    input ZIP file to use.
 	//
 	// If sourceVersion is specified at the build level, then that version takes
 	// precedence over this sourceVersion (at the project level).
@@ -10053,6 +10073,12 @@ func (s *Project) SetBuildBatchConfig(v *ProjectBuildBatchConfig) *Project {
 // SetCache sets the Cache field's value.
 func (s *Project) SetCache(v *ProjectCache) *Project {
 	s.Cache = v
+	return s
+}
+
+// SetConcurrentBuildLimit sets the ConcurrentBuildLimit field's value.
+func (s *Project) SetConcurrentBuildLimit(v int64) *Project {
+	s.ConcurrentBuildLimit = &v
 	return s
 }
 
@@ -10178,9 +10204,8 @@ type ProjectArtifacts struct {
 	ArtifactIdentifier *string `locationName:"artifactIdentifier" type:"string"`
 
 	// Set to true if you do not want your output artifacts encrypted. This option
-	// is valid only if your artifacts type is Amazon Simple Storage Service (Amazon
-	// S3). If this is set with another artifacts type, an invalidInputException
-	// is thrown.
+	// is valid only if your artifacts type is Amazon S3. If this is set with another
+	// artifacts type, an invalidInputException is thrown.
 	EncryptionDisabled *bool `locationName:"encryptionDisabled" type:"boolean"`
 
 	// Information about the build output artifact location:
@@ -10285,8 +10310,7 @@ type ProjectArtifacts struct {
 	//
 	//    * NO_ARTIFACTS: The build project does not produce any build output.
 	//
-	//    * S3: The build project stores build output in Amazon Simple Storage Service
-	//    (Amazon S3).
+	//    * S3: The build project stores build output in Amazon S3.
 	//
 	// Type is a required field
 	Type *string `locationName:"type" type:"string" required:"true" enum:"ArtifactsType"`
@@ -10378,9 +10402,6 @@ type ProjectBadge struct {
 	BadgeEnabled *bool `locationName:"badgeEnabled" type:"boolean"`
 
 	// The publicly-accessible URL through which you can access the build badge
-	// for your project.
-	//
-	// The publicly accessible URL through which you can access the build badge
 	// for your project.
 	BadgeRequestUrl *string `locationName:"badgeRequestUrl" type:"string"`
 }
@@ -10589,9 +10610,9 @@ func (s *ProjectCache) SetType(v string) *ProjectCache {
 type ProjectEnvironment struct {
 	_ struct{} `type:"structure"`
 
-	// The ARN of the Amazon Simple Storage Service (Amazon S3) bucket, path prefix,
-	// and object key that contains the PEM-encoded certificate for the build project.
-	// For more information, see certificate (https://docs.aws.amazon.com/codebuild/latest/userguide/create-project-cli.html#cli.environment.certificate)
+	// The ARN of the Amazon S3 bucket, path prefix, and object key that contains
+	// the PEM-encoded certificate for the build project. For more information,
+	// see certificate (https://docs.aws.amazon.com/codebuild/latest/userguide/create-project-cli.html#cli.environment.certificate)
 	// in the AWS CodeBuild User Guide.
 	Certificate *string `locationName:"certificate" type:"string"`
 
@@ -10931,10 +10952,9 @@ type ProjectSource struct {
 	//    to the repository that contains the source code and the buildspec file
 	//    (for example, https://git-codecommit.<region-ID>.amazonaws.com/v1/repos/<repo-name>).
 	//
-	//    * For source code in an Amazon Simple Storage Service (Amazon S3) input
-	//    bucket, one of the following. The path to the ZIP file that contains the
-	//    source code (for example, <bucket-name>/<path>/<object-name>.zip). The
-	//    path to the folder that contains the source code (for example, <bucket-name>/<path-to-source-code>/<folder>/).
+	//    * For source code in an Amazon S3 input bucket, one of the following.
+	//    The path to the ZIP file that contains the source code (for example, <bucket-name>/<path>/<object-name>.zip).
+	//    The path to the folder that contains the source code (for example, <bucket-name>/<path-to-source-code>/<folder>/).
 	//
 	//    * For source code in a GitHub repository, the HTTPS clone URL to the repository
 	//    that contains the source and the buildspec file. You must connect your
@@ -10995,8 +11015,7 @@ type ProjectSource struct {
 	//
 	//    * NO_SOURCE: The project does not have input source code.
 	//
-	//    * S3: The source code is in an Amazon Simple Storage Service (Amazon S3)
-	//    input bucket.
+	//    * S3: The source code is in an Amazon S3 input bucket.
 	//
 	// Type is a required field
 	Type *string `locationName:"type" type:"string" required:"true" enum:"SourceType"`
@@ -11121,8 +11140,8 @@ type ProjectSourceVersion struct {
 	//    is specified, the branch's HEAD commit ID is used. If not specified, the
 	//    default branch's HEAD commit ID is used.
 	//
-	//    * For Amazon Simple Storage Service (Amazon S3): the version ID of the
-	//    object that represents the build input ZIP file to use.
+	//    * For Amazon S3: the version ID of the object that represents the build
+	//    input ZIP file to use.
 	//
 	// For more information, see Source Version Sample with CodeBuild (https://docs.aws.amazon.com/codebuild/latest/userguide/sample-source-version.html)
 	// in the AWS CodeBuild User Guide.
@@ -11729,8 +11748,7 @@ func (s *ReportWithRawData) SetReportArn(v string) *ReportWithRawData {
 }
 
 // Represents a resolved build artifact. A resolve artifact is an artifact that
-// is built and deployed to the destination, such as Amazon Simple Storage Service
-// (Amazon S3).
+// is built and deployed to the destination, such as Amazon S3.
 type ResolvedArtifact struct {
 	_ struct{} `type:"structure"`
 
@@ -12109,6 +12127,11 @@ type S3ReportExportConfig struct {
 	// The name of the S3 bucket where the raw data of a report are exported.
 	Bucket *string `locationName:"bucket" min:"1" type:"string"`
 
+	// The AWS account identifier of the owner of the Amazon S3 bucket. This allows
+	// report data to be exported to an Amazon S3 bucket that is owned by an account
+	// other than the account running the build.
+	BucketOwner *string `locationName:"bucketOwner" type:"string"`
+
 	// A boolean value that specifies if the results of a report are encrypted.
 	EncryptionDisabled *bool `locationName:"encryptionDisabled" type:"boolean"`
 
@@ -12157,6 +12180,12 @@ func (s *S3ReportExportConfig) Validate() error {
 // SetBucket sets the Bucket field's value.
 func (s *S3ReportExportConfig) SetBucket(v string) *S3ReportExportConfig {
 	s.Bucket = &v
+	return s
+}
+
+// SetBucketOwner sets the BucketOwner field's value.
+func (s *S3ReportExportConfig) SetBucketOwner(v string) *S3ReportExportConfig {
+	s.BucketOwner = &v
 	return s
 }
 
@@ -12466,7 +12495,7 @@ type StartBuildBatchInput struct {
 	// HEAD commit ID is used. If not specified, the default branch's HEAD commit
 	// ID is used.
 	//
-	// Amazon Simple Storage Service (Amazon S3)
+	// Amazon S3
 	//
 	// The version ID of the object that represents the build input ZIP file to
 	// use.
@@ -12982,7 +13011,7 @@ type StartBuildInput struct {
 	// HEAD commit ID is used. If not specified, the default branch's HEAD commit
 	// ID is used.
 	//
-	// Amazon Simple Storage Service (Amazon S3)
+	// Amazon S3
 	//
 	// The version ID of the object that represents the build input ZIP file to
 	// use.
@@ -13702,6 +13731,15 @@ type UpdateProjectInput struct {
 	// later time.
 	Cache *ProjectCache `locationName:"cache" type:"structure"`
 
+	// The maximum number of concurrent builds that are allowed for this project.
+	//
+	// New builds are only started if the current number of builds is less than
+	// or equal to this limit. If the current build count meets this limit, new
+	// builds are throttled and are not run.
+	//
+	// To remove this limit, set this value to -1.
+	ConcurrentBuildLimit *int64 `locationName:"concurrentBuildLimit" type:"integer"`
+
 	// A new or replacement description of the build project.
 	Description *string `locationName:"description" type:"string"`
 
@@ -13774,8 +13812,8 @@ type UpdateProjectInput struct {
 	//    is specified, the branch's HEAD commit ID is used. If not specified, the
 	//    default branch's HEAD commit ID is used.
 	//
-	//    * For Amazon Simple Storage Service (Amazon S3): the version ID of the
-	//    object that represents the build input ZIP file to use.
+	//    * For Amazon S3: the version ID of the object that represents the build
+	//    input ZIP file to use.
 	//
 	// If sourceVersion is specified at the build level, then that version takes
 	// precedence over this sourceVersion (at the project level).
@@ -13932,6 +13970,12 @@ func (s *UpdateProjectInput) SetBuildBatchConfig(v *ProjectBuildBatchConfig) *Up
 // SetCache sets the Cache field's value.
 func (s *UpdateProjectInput) SetCache(v *ProjectCache) *UpdateProjectInput {
 	s.Cache = v
+	return s
+}
+
+// SetConcurrentBuildLimit sets the ConcurrentBuildLimit field's value.
+func (s *UpdateProjectInput) SetConcurrentBuildLimit(v int64) *UpdateProjectInput {
+	s.ConcurrentBuildLimit = &v
 	return s
 }
 
