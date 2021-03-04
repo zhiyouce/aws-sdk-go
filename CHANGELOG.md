@@ -1,3 +1,116 @@
+Release v1.37.24 (2021-03-04)
+===
+
+### Service Client Updates
+* `service/eventbridge`: Updates service API and documentation
+* `service/events`: Updates service API and documentation
+  * Introducing support for EventBridge Api Destinations - any HTTP APIs as Targets, with managed authorization via EventBridge Connections.
+* `service/mwaa`: Updates service API and documentation
+* `service/sagemaker`: Updates service API and documentation
+  * This release adds the ResolvedOutputS3Uri to the DescribeFeatureGroup API to indicate the S3 prefix where offline data is stored in a feature group
+* `service/servicediscovery`: Updates service API and documentation
+
+Release v1.37.23 (2021-03-03)
+===
+
+### Service Client Updates
+* `service/acm`: Updates service API and documentation
+  * Adds 2 new APIs to add and retrieve account configuration in AWS Certificate Manager.
+* `service/codebuild`: Updates service API and documentation
+  * AWS CodeBuild now supports Session Manager debugging for batch builds.
+* `service/es`: Updates service API and documentation
+  * AWS ElasticSearch Feature : Support for adding tags in elastic search domain during domain creation
+* `service/events`: Updates service API and documentation
+  * Adds TraceHeader to PutEventsRequestEntry to support AWS X-Ray trace-ids on events generated using the PutEvents operation.
+* `service/forecast`: Updates service API and documentation
+* `service/macie2`: Updates service API and documentation
+* `service/secretsmanager`: Updates service API and documentation
+  * Added support for multi-Region secrets APIs ReplicateSecretToRegions, RemoveRegionsFromReplication, and StopReplicationToReplica
+* `service/wellarchitected`: Updates service API and documentation
+
+Release v1.37.22 (2021-03-02)
+===
+
+### Service Client Updates
+* `service/compute-optimizer`: Updates service documentation
+* `service/datasync`: Updates service API and documentation
+* `service/directconnect`: Updates service documentation
+  * Doc only update for AWS Direct Connect that fixes several customer-reported issues
+* `service/eventbridge`: Updates service API and documentation
+* `service/iotwireless`: Updates service API and documentation
+* `service/managedblockchain`: Updates service documentation
+
+Release v1.37.21 (2021-03-01)
+===
+
+### Service Client Updates
+* `service/alexaforbusiness`: Updates service API and documentation
+* `service/codepipeline`: Updates service API, documentation, and paginators
+  * Added a new field to the ListPipelines API to allow maximum search results of 1000
+* `service/eks`: Updates service API
+* `service/ssm`: Updates service API and documentation
+  * Add Support for Patch Manger Baseline Override parameter.
+
+Release v1.37.20 (2021-02-26)
+===
+
+### Service Client Updates
+* `service/eks`: Updates service API and documentation
+* `service/elasticmapreduce`: Updates service API and documentation
+  * Added UpdateStudio API that allows updating a few attributes of an EMR Studio.
+* `service/s3`: Updates service API, documentation, and examples
+  * Add RequestPayer to GetObjectTagging and PutObjectTagging.
+* `service/sso-admin`: Updates service API
+
+Release v1.37.19 (2021-02-25)
+===
+
+### Service Client Updates
+* `service/databrew`: Updates service API and documentation
+* `service/detective`: Updates service API and documentation
+* `service/imagebuilder`: Updates service API, documentation, and paginators
+* `service/lightsail`: Updates service documentation
+  * Documentation updates for Lightsail
+* `service/transfer`: Updates service API
+  * Corrected the upper limit for TestIdentityProvider input lengths to 1024 characters
+
+Release v1.37.18 (2021-02-24)
+===
+
+### Service Client Updates
+* `service/appflow`: Updates service API and documentation
+* `service/compute-optimizer`: Updates service documentation
+* `service/ecr-public`: Updates service API and documentation
+* `service/es`: Updates service API, documentation, and paginators
+  * Amazon Elasticsearch Service now supports Auto-Tune, which monitors performance metrics and automatically optimizes domains
+* `service/mediapackage-vod`: Updates service API and documentation
+
+Release v1.37.17 (2021-02-23)
+===
+
+### Service Client Updates
+* `service/autoscaling`: Updates service API and documentation
+  * Adds a new optional IncludeDeletedGroups parameter to the DescribeScalingActivities API.
+* `service/connect`: Updates service API
+* `service/glue`: Updates service API and documentation
+  * Updating the page size for Glue catalog getter APIs.
+* `service/iotevents`: Updates service API and documentation
+* `service/pinpoint`: Updates service API and documentation
+  * Enables AWS Pinpoint customers to use Entity Id and Template Id when sending SMS message. These parameters can be obtained from the regulatory body of the country where you are trying to send the SMS.
+* `service/quicksight`: Updates service documentation
+  * Documentation updates for QuickSight Row Level Security
+* `service/redshift-data`: Updates service API and documentation
+* `service/s3control`: Updates service documentation
+  * Documentation updates for s3-control
+
+Release v1.37.16 (2021-02-22)
+===
+
+### Service Client Updates
+* `service/runtime.sagemaker`: Updates service API and documentation
+* `service/sagemaker`: Updates service API and documentation
+  * Amazon SageMaker now supports core dump for SageMaker Endpoints and direct invocation of a single container in a SageMaker Endpoint that hosts multiple containers.
+
 Release v1.37.15 (2021-02-19)
 ===
 

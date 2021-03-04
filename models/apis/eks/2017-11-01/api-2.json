@@ -13,6 +13,23 @@
     "uid":"eks-2017-11-01"
   },
   "operations":{
+    "AssociateEncryptionConfig":{
+      "name":"AssociateEncryptionConfig",
+      "http":{
+        "method":"POST",
+        "requestUri":"/clusters/{name}/encryption-config/associate"
+      },
+      "input":{"shape":"AssociateEncryptionConfigRequest"},
+      "output":{"shape":"AssociateEncryptionConfigResponse"},
+      "errors":[
+        {"shape":"InvalidParameterException"},
+        {"shape":"ClientException"},
+        {"shape":"ServerException"},
+        {"shape":"ResourceInUseException"},
+        {"shape":"ResourceNotFoundException"},
+        {"shape":"InvalidRequestException"}
+      ]
+    },
     "AssociateIdentityProviderConfig":{
       "name":"AssociateIdentityProviderConfig",
       "http":{
@@ -559,7 +576,8 @@
         "InternalFailure",
         "ClusterUnreachable",
         "InsufficientNumberOfReplicas",
-        "ConfigurationConflict"
+        "ConfigurationConflict",
+        "AdmissionRequestDenied"
       ]
     },
     "AddonIssueList":{
@@ -593,6 +611,31 @@
     "Addons":{
       "type":"list",
       "member":{"shape":"AddonInfo"}
+    },
+    "AssociateEncryptionConfigRequest":{
+      "type":"structure",
+      "required":[
+        "clusterName",
+        "encryptionConfig"
+      ],
+      "members":{
+        "clusterName":{
+          "shape":"String",
+          "location":"uri",
+          "locationName":"name"
+        },
+        "encryptionConfig":{"shape":"EncryptionConfigList"},
+        "clientRequestToken":{
+          "shape":"String",
+          "idempotencyToken":true
+        }
+      }
+    },
+    "AssociateEncryptionConfigResponse":{
+      "type":"structure",
+      "members":{
+        "update":{"shape":"Update"}
+      }
     },
     "AssociateIdentityProviderConfigRequest":{
       "type":"structure",
@@ -1184,7 +1227,8 @@
         "InsufficientFreeAddresses",
         "ClusterUnreachable",
         "InsufficientNumberOfReplicas",
-        "ConfigurationConflict"
+        "ConfigurationConflict",
+        "AdmissionRequestDenied"
       ]
     },
     "ErrorDetail":{
@@ -2055,6 +2099,7 @@
         "ReleaseVersion",
         "PublicAccessCidrs",
         "IdentityProviderConfig",
+        "EncryptionConfig",
         "AddonVersion",
         "ServiceAccountRoleArn",
         "ResolveConflicts"
@@ -2082,6 +2127,7 @@
         "ConfigUpdate",
         "AssociateIdentityProviderConfig",
         "DisassociateIdentityProviderConfig",
+        "AssociateEncryptionConfig",
         "AddonUpdate"
       ]
     },
