@@ -1,3 +1,71 @@
+Release v1.37.29 (2021-03-11)
+===
+
+### Service Client Updates
+* `service/comprehend`: Updates service API and documentation
+* `service/medialive`: Updates service API and documentation
+  * MediaLive supports the ability to apply a canned ACL to output sent to an AWS S3 bucket; supports ability to specify position for EBU-TT and TTML output captions converted from Teletext source.
+* `service/network-firewall`: Updates service documentation
+* `service/wafv2`: Updates service documentation
+
+Release v1.37.28 (2021-03-10)
+===
+
+### Service Client Updates
+* `service/accessanalyzer`: Updates service API, documentation, and paginators
+* `service/backup`: Updates service API and documentation
+* `service/s3`: Updates service API, documentation, and examples
+  * Adding ID element to the CORSRule schema
+* `service/ssm`: Updates service API and documentation
+  * Systems Manager support for tagging OpsMetadata.
+
+Release v1.37.27 (2021-03-09)
+===
+
+### Service Client Updates
+* `service/autoscaling`: Updates service API and documentation
+  * EC2 Auto Scaling now supports setting a local time zone for cron expressions in scheduled actions, removing the need to adjust for Daylight Saving Time (DST)
+* `service/codeguruprofiler`: Updates service API and documentation
+* `service/elasticfilesystem`: Updates service API, documentation, and examples
+  * AWS EFS is introducing one-zone file systems.
+* `service/iotwireless`: Updates service API
+* `service/rds`: Updates service API, documentation, and paginators
+  * This release adds support for Amazon RDS Proxy endpoints.
+
+Release v1.37.26 (2021-03-08)
+===
+
+### Service Client Updates
+* `service/autoscaling`: Updates service documentation
+  * Documentation updates for autoscaling for capacity-optimized-prioritized SpotAllocationStrategy
+* `service/elasticmapreduce`: Updates service API and documentation
+  * Amazon EMR customers can now specify how EC2 On-Demand Capacity Reservations are used in their EMR clusters with instance fleets using allocation strategy.
+* `service/kinesis-video-archived-media`: Updates service API and documentation
+* `service/lambda`: Updates service API and documentation
+  * Documentation updates for Lambda. Constraint updates to AddLayerVersionPermission's Action and OrganizationId parameters, and AddPermission's Principal and SourceAccount parameters.
+* `service/s3`: Updates service documentation and examples
+  * Amazon S3 Documentation updates
+* `service/s3control`: Updates service API and documentation
+  * Documentation updates for Amazon S3
+
+Release v1.37.25 (2021-03-05)
+===
+
+### Service Client Updates
+* `service/appflow`: Updates service documentation
+* `service/athena`: Updates service API, documentation, and paginators
+  * Adds APIs to create, list, update, and delete prepared SQL statements that have optional placeholder parameters. A prepared statement can use different values for these parameters each time it is run.
+* `service/codepipeline`: Updates service API
+  * Updated the parameters to make actionType required for UpdateActionType
+* `service/ec2`: Updates service API and documentation
+  * Expands EC2/Spot Fleet capacity-optimized allocation strategy to allow users to prioritize instance pools. Fleet attempts to fulfill priorities on a best-effort basis but optimizes for capacity first.
+* `service/license-manager`: Updates service API
+* `service/medialive`: Updates service API and documentation
+  * Medialive now supports the ability to transfer AWS Elemental Link devices to another region.
+* `service/network-firewall`: Updates service API and documentation
+* `service/shield`: Updates service API and documentation
+  * Add support for tagging of Shield protection and protection group resources.
+
 Release v1.37.24 (2021-03-04)
 ===
 
